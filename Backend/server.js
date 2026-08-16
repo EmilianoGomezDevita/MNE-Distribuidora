@@ -1,6 +1,9 @@
 import express from 'express';
 import cors from 'cors'
 import dotenv from 'dotenv';
+import router from './src/routes/authRoute.js';
+
+
 dotenv.config();
 
 const app = express();
@@ -12,6 +15,8 @@ app.use(express.json())
 app.get('/', (req, res) => {
     res.json({mensaje: "API de MNE backend funcionando"})
 })
+
+app.use('/api/auth', router)
 
 app.listen(port, () => {
     console.log("Servidor corriendo en ", port)
