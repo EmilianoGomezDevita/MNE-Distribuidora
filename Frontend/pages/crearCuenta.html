@@ -1,27 +1,112 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
-  <title>Ingresar o Registrarse | MNE-Distribuidora</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/estilos.css">
+    <title>Ingresar o Registrarse | MNE-Distribuidora</title>
 </head>
+
 <body>
     <main class="container" id="container">
         <div class="container-forma registrarse">
-            <form action="" class="formulario-cuenta">
+            <form action="/registro" enctype="multipart/form-data" method="post" class="formulario-cuenta">
                 <h1 class="titulo">Crear Cuenta</h1>
+                <!--Info personal-->
+                <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                <input type="text" name="apellido" id="apellido" placeholder="Apellido">
+                <div class="phone-group">
+                    <select name="codigo_pais" id="codigo_pais">
+                        <option value="+54">🇦🇷 +54</option>
+                        <option value="+598">🇺🇾 +598</option>
+                        <option value="+56">🇨🇱 +56</option>
+                    </select>
+                    <input type="tel" name="telefono" id="telefono" placeholder="11 1234 5678" inputmode="numeric" />
+                </div>
+                <input type="email" name="email" id="email-sing-up" placeholder="Email">
+                <input type="password" name="pswrd" id="pswrd-sing-up" placeholder="Contraseña">
+                <!--Info direccion-->
+                <span>Ingresar Direccion</span>
+
+                <input type="text" name="calle" id="calle" placeholder="Calle">
+                <input type="text" inputmode="numeric" name="numeroCalle" id="numeroCalle"
+                    placeholder="Numero de calle">
+                <input type="text" inputmode="numeric" name="cp" id="cp" placeholder="Codigo postal">
+                <input type="text" name="piso" id="piso" placeholder="Piso / Departamento">
+                <input type="text" name="localidad" id="localidad" placeholder="Localidad">
+                <input type="text" name="provincia" id="provincia" placeholder="Provincia">
+                <!--seleccion de tipo de cuenta-->
+                <fieldset class="opciones-profesional">
+                    <legend>Sos profesional?</legend>
+                    <label>
+                        <input type="radio" name="es-profesional" id="es-profesional-no" value="no" checked>
+                        No, crear cuenta
+                    </label>
+                    <label>
+                        <input type="radio" name="es-profesional" id="es-profesional-si" value="si">
+                        Si, solicitar cuenta profesional
+                    </label>
+                </fieldset>
+
+                <fieldset class="form-profesionales" id="form-profesionales">
+                    <legend>Datos Profesional</legend>
+
+                    <select name="profesion" id="profesion">
+                        <option value="dermatologo">Dermatologo</option>
+                        <option value="cosmiatra">Cosmiatra</option>
+                        <option value="esteticista">Esteticista</option>
+                        <option value="Cosmetologo">Cosmetólogo/a</option>
+                    </select>
+
+                    <input type="text" name="matricula" id="matricula" placeholder="Matricula">
+
+                    <label for="credencial">Documento / credencial</label>
+
+                    <input type="file" name="credencial" id="credencial" accept=".pdf,.png,.jpg">
+                </fieldset>
+
+                <button type="submit" id="btn-submit-sing-up">Crear cuenta</button>
+            </form>
+        </div>
+
+        <div class="container-forma iniciar-sesion">
+            <form action="" class="formulario-cuenta">
+                <h1 class="titulo">Iniciar sesion</h1>
+                <!--iniciar sesion-->
+                <input type="email" name="email" id="email-sing-in" placeholder="Email">
+                <input type="password" name="pswrd" id="pswrd-sing-in" placeholder="Contraseña">
+                <a href="#">¿Olvidaste tu contraseña?</a>
+                <span>o inicia sesion con tu cuenta de google</span>
+                
                 <div class="iconos-redes">
                     <a href="#"><i class="fa-brands fa-google"></i></a>
                 </div>
-
+                
+                <button type="submit" id="btn-submit-sing-in">iniciar sesion</button>
             </form>
         </div>
+
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>¡Hola de nuevo!</h1>
+                    <p>Accedé a tu perfil</p>
+                    <button class="hidden" id="btn-show-login">Ingresar</button>
+                </div>
+              <div class="toggle-panel toggle-right">
+                    <h1>Crea tu cuenta</h1>
+                    <p>Completá tus datos para registrarte en la plataforma</p>
+                    <button class="hidden" id="btn-show-register">Registrarse</button>
+                </div>
+            </div>
+        </div>
     </main>
-  
+
 
 
     <script src="../JS/crearCuenta.js"></script>
 </body>
+
 </html>
