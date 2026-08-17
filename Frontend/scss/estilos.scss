@@ -1,1 +1,580 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+// ==========================================================================
+// Paleta — minimalista, cálida, base lila / pastel
+// ==========================================================================
+$bg-main: #FBF8FD;
+$bg-card: #FFFFFF;
+$text-primary: #2D2533;
+$text-secondary: #7A7080;
+$primary-color: #9B72CF;
+$primary-hover: #8958C7;
+$primary-light: #E4D6F5;
+$input-bg: #F5F1F8;
+$border-color: #E6DFEC;
+$accent-warm: #F3D8C7; // durazno pastel, calidez sutil
+$accent-warm-text: #B8815C;
+$error-color: #D9736C;
+$white: #FFFFFF;
+
+$radius-lg: 30px;
+$radius-md: 16px;
+$radius-sm: 10px;
+$radius-pill: 999px;
+
+$shadow-card: 0 20px 50px rgba(155, 114, 207, 0.18);
+$transition-base: all 0.6s ease-in-out;
+
+html,
+body {
+    background-color: $bg-main;
+    color: $text-primary;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 24px;
+}
+
+// ==========================================================================
+// Contenedor principal
+// ==========================================================================
+main.container {
+    background-color: $bg-card;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-card;
+    position: relative;
+    overflow: hidden;
+    width: 850px;
+    max-width: 100%;
+    min-height: 560px;
+}
+
+// ==========================================================================
+// Paneles de formulario (registrarse / iniciar-sesion)
+// ==========================================================================
+.container-forma {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    left: 0;
+    background-color: $bg-card;
+    transition: $transition-base;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: $primary-light transparent;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $primary-light;
+        border-radius: $radius-pill;
+    }
+}
+
+.registrarse {
+    z-index: 1;
+}
+
+main.container.active .registrarse {
+    transform: translateX(100%);
+    z-index: 5;
+    animation: mostrar 0.6s;
+}
+
+.iniciar-sesion {
+    z-index: 2;
+}
+
+main.container.active .iniciar-sesion {
+    transform: translateX(100%);
+}
+
+@keyframes mostrar {
+
+    0%,
+    49.9% {
+        opacity: 0;
+        z-index: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+// ==========================================================================
+// Formulario
+// ==========================================================================
+.formulario-cuenta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 56px 48px;
+    min-height: 100%;
+    height: auto;
+}
+
+.titulo {
+    font-size: 26px;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 4px;
+}
+
+.formulario-cuenta>span {
+    font-size: 13px;
+    color: $text-secondary;
+    text-align: center;
+}
+
+.formulario-cuenta>a {
+    align-self: flex-end;
+    font-size: 12.5px;
+    color: $primary-color;
+    text-decoration: none;
+    margin-top: -4px;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+// Botón / ícono de Google
+.iconos-redes {
+    display: flex;
+    gap: 12px;
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid $border-color;
+        border-radius: $radius-pill;
+        color: $text-secondary;
+        text-decoration: none;
+        transition: all 0.25s ease;
+
+        &:hover {
+            border-color: $primary-color;
+            color: $primary-color;
+            background-color: $primary-light;
+        }
+    }
+}
+
+// ==========================================================================
+// Inputs, selects, textarea
+// ==========================================================================
+input:not([type="radio"]):not([type="file"]),
+select {
+    width: 100%;
+    background-color: $input-bg;
+    border: 1px solid transparent;
+    border-radius: $radius-sm;
+    padding: 13px 16px;
+    font-size: 14px;
+    color: $text-primary;
+    outline: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+
+    &::placeholder {
+        color: $text-secondary;
+    }
+
+    &:focus {
+        border-color: $primary-color;
+        background-color: $white;
+    }
+}
+
+select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%237A7080'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01 0-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.phone-group {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+
+    #codigo_pais {
+        flex: 0 0 92px;
+    }
+
+    #telefono {
+        flex: 1;
+    }
+}
+
+// Input file (documento / credencial profesional)
+input[type="file"] {
+    width: 100%;
+    font-size: 13px;
+    color: $text-secondary;
+    background-color: $input-bg;
+    border: 1px dashed $border-color;
+    border-radius: $radius-sm;
+    padding: 12px 14px;
+    cursor: pointer;
+
+    &::file-selector-button {
+        margin-right: 12px;
+        padding: 7px 14px;
+        border: none;
+        border-radius: $radius-pill;
+        background-color: $primary-color;
+        color: $white;
+        font-size: 12.5px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: $primary-hover;
+        }
+    }
+}
+
+label[for="credencial"] {
+    align-self: flex-start;
+    font-size: 12.5px;
+    color: $text-secondary;
+    margin-top: 4px;
+}
+
+// ==========================================================================
+// Selección tipo de cuenta (radios "¿Sos profesional?")
+// ==========================================================================
+fieldset {
+    border: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.opciones-profesional {
+    background-color: $input-bg;
+    border-radius: $radius-md;
+    padding: 14px 16px;
+    gap: 8px;
+
+    >span {
+        font-size: 13px;
+        font-weight: 600;
+        color: $text-primary;
+        margin-bottom: 2px;
+    }
+
+    label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13.5px;
+        color: $text-secondary;
+        cursor: pointer;
+    }
+
+    input[type="radio"] {
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        min-width: 18px;
+        border: 2px solid $border-color;
+        border-radius: 50%;
+        background-color: $white;
+        cursor: pointer;
+        position: relative;
+        transition: border-color 0.2s ease;
+
+        &:checked {
+            border-color: $primary-color;
+
+            &::after {
+                content: "";
+                position: absolute;
+                inset: 3px;
+                border-radius: 50%;
+                background-color: $primary-color;
+            }
+        }
+    }
+}
+
+// Datos profesionales — oculto por defecto, se muestra vía clase .activo
+// (agregala con JS al detectar el radio "si" marcado)
+.form-profesionales {
+    width: 100%;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    gap: 10px;
+    padding: 0 16px;
+    border-radius: $radius-md;
+    background-color: color-mix(in srgb, $accent-warm 35%, $input-bg);
+    transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out, padding 0.4s ease;
+
+    legend {
+        font-size: 13px;
+        font-weight: 600;
+        color: $accent-warm-text;
+        padding: 14px 0 2px;
+    }
+
+    &.activo {
+        max-height: 600px;
+        opacity: 1;
+        padding: 14px 16px 16px;
+    }
+}
+
+// Fallback sin JS: usa :has() para mostrar según el radio marcado
+.opciones-profesional:has(input[value="si"]:checked)+.form-profesionales {
+    max-height: 600px;
+    opacity: 1;
+    padding: 14px 16px 16px;
+}
+
+// ==========================================================================
+// Botón principal
+// ==========================================================================
+button[type="submit"],
+#btn-submit {
+    width: 100%;
+    margin-top: 6px;
+    padding: 13px 0;
+    border: none;
+    border-radius: $radius-pill;
+    background-color: $primary-color;
+    color: $white;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+
+    &:hover {
+        background-color: $primary-hover;
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+// ==========================================================================
+// Panel deslizante (toggle) con el mensaje de bienvenida
+// ==========================================================================
+.toggle-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: $transition-base;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+
+main.container.active .toggle-container {
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.toggle {
+    background: linear-gradient(140deg, $primary-color 0%, $primary-hover 60%, #7A4FB0 100%);
+    height: 100%;
+    position: relative;
+    left: -100%;
+    width: 200%;
+    color: $white;
+    transform: translateX(0);
+    transition: $transition-base;
+}
+
+main.container.active .toggle {
+    transform: translateX(50%);
+}
+
+.toggle-panel {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 40px;
+    text-align: center;
+    transition: $transition-base;
+
+    h1 {
+        font-size: 26px;
+        font-weight: 700;
+    }
+
+    p {
+        font-size: 13.5px;
+        opacity: 0.85;
+        line-height: 1.5;
+    }
+}
+
+.toggle-left {
+    transform: translateX(-200%);
+}
+
+main.container.active .toggle-left {
+    transform: translateX(0);
+}
+
+.toggle-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+main.container.active .toggle-right {
+    transform: translateX(200%);
+}
+
+.toggle-panel button {
+    margin-top: 6px;
+    padding: 10px 32px;
+    border: 1.5px solid $white;
+    border-radius: $radius-pill;
+    background-color: transparent;
+    color: $white;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+        background-color: $white;
+        color: $primary-color;
+    }
+}
+
+// ==========================================================================
+// Responsive — en pantallas chicas se apila el formulario y se usan
+// los botones "Ingresar" / "Registrarse" para alternar
+// ==========================================================================
+@media (max-width: 720px) {
+    main.container {
+        width: 100%;
+        min-height: 0;
+        border-radius: $radius-md;
+    }
+
+    .container-forma {
+        position: relative;
+        width: 100%;
+        max-height: 80vh;
+    }
+
+    .iniciar-sesion {
+        display: block;
+    }
+
+    .registrarse {
+        display: none;
+    }
+
+    main.container.active .iniciar-sesion {
+        display: none;
+        transform: none;
+    }
+
+    main.container.active .registrarse {
+        display: block;
+        transform: none;
+        animation: none;
+    }
+
+    .formulario-cuenta {
+        padding: 40px 24px 32px;
+    }
+
+    .toggle-container {
+        position: relative;
+        left: 0;
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+        order: -1;
+    }
+
+    main.container.active .toggle-container {
+        transform: none;
+        border-radius: 0;
+    }
+
+    .toggle {
+        position: static;
+        left: 0;
+        width: 100%;
+        display: flex;
+    }
+
+    main.container.active .toggle {
+        transform: none;
+    }
+
+    .toggle-panel {
+        position: static;
+        width: 50%;
+        padding: 28px 16px;
+        transform: none !important;
+        gap: 8px;
+
+        h1 {
+            font-size: 18px;
+        }
+
+        p {
+            font-size: 12px;
+        }
+    }
+
+    main.container.active .toggle-left,
+    .toggle-left {
+        display: block;
+    }
+
+    main.container.active .toggle-right,
+    .toggle-right {
+        display: block;
+    }
+}
+
