@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 * {
   padding: 0;
@@ -5,10 +6,11 @@
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif; }
 
+/*Mixin*/
 html,
 body {
-  background-color: #FBF8FD;
-  color: #2D2533; }
+  background-color: #F4F4F3;
+  color: #121212; }
 
 body {
   display: flex;
@@ -21,7 +23,7 @@ body {
 main.container {
   background-color: #FFFFFF;
   border-radius: 30px;
-  box-shadow: 0 20px 50px rgba(155, 114, 207, 0.18);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
   position: relative;
   overflow: hidden;
   width: 850px;
@@ -38,15 +40,22 @@ main.container {
   transition: all 0.6s ease-in-out;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #E4D6F5 transparent; }
+  scrollbar-color: #EBEAE8 transparent; }
   .container-forma::-webkit-scrollbar {
     width: 6px; }
   .container-forma::-webkit-scrollbar-thumb {
-    background-color: #E4D6F5;
+    background-color: #EBEAE8;
     border-radius: 999px; }
 
 .registrarse {
   z-index: 1; }
+
+img.img-logo {
+  width: 110px;
+  /* Tamaño equilibrado */
+  height: auto;
+  margin-bottom: 2px;
+  display: block; }
 
 main.container.active .registrarse {
   transform: translateX(100%);
@@ -72,26 +81,26 @@ main.container.active .iniciar-sesion {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  padding: 56px 48px;
+  gap: 10px;
+  padding: 28px 48px;
   min-height: 100%;
-  height: auto; }
+  justify-content: center; }
 
 .titulo {
   font-size: 26px;
   font-weight: 700;
-  color: #2D2533;
+  color: #121212;
   margin-bottom: 4px; }
 
 .formulario-cuenta > span {
   font-size: 13px;
-  color: #7A7080;
+  color: #666666;
   text-align: center; }
 
 .formulario-cuenta > a {
   align-self: flex-end;
   font-size: 12.5px;
-  color: #9B72CF;
+  color: #1A1A1A;
   text-decoration: none;
   margin-top: -4px; }
   .formulario-cuenta > a:hover {
@@ -106,33 +115,33 @@ main.container.active .iniciar-sesion {
     justify-content: center;
     width: 42px;
     height: 42px;
-    border: 1px solid #E6DFEC;
+    border: 1px solid #E2E2E0;
     border-radius: 999px;
-    color: #7A7080;
+    color: #666666;
     text-decoration: none;
     transition: all 0.25s ease; }
     .iconos-redes a:hover {
-      border-color: #9B72CF;
-      color: #9B72CF;
-      background-color: #E4D6F5; }
+      border-color: #1A1A1A;
+      color: #1A1A1A;
+      background-color: #EBEAE8; }
 
 input:not([type="radio"]):not([type="file"]),
 select {
   width: 100%;
-  background-color: #F5F1F8;
+  background-color: #F4F4F3;
   border: 1px solid transparent;
   border-radius: 10px;
   padding: 13px 16px;
   font-size: 14px;
-  color: #2D2533;
+  color: #121212;
   outline: none;
   transition: border-color 0.2s ease, background-color 0.2s ease; }
   input:not([type="radio"]):not([type="file"])::placeholder,
   select::placeholder {
-    color: #7A7080; }
+    color: #666666; }
   input:not([type="radio"]):not([type="file"]):focus,
   select:focus {
-    border-color: #9B72CF;
+    border-color: #1A1A1A;
     background-color: #FFFFFF; }
 
 select {
@@ -145,9 +154,10 @@ select {
   padding-right: 40px; }
 
 .phone-group {
-  display: flex;
+  display: grid;
   gap: 8px;
-  width: 100%; }
+  width: 100%;
+  grid-template-columns: 110px 1fr; }
   .phone-group #codigo_pais {
     flex: 0 0 92px; }
   .phone-group #telefono {
@@ -156,9 +166,9 @@ select {
 input[type="file"] {
   width: 100%;
   font-size: 13px;
-  color: #7A7080;
-  background-color: #F5F1F8;
-  border: 1px dashed #E6DFEC;
+  color: #666666;
+  background-color: #F4F4F3;
+  border: 1px dashed #E2E2E0;
   border-radius: 10px;
   padding: 12px 14px;
   cursor: pointer; }
@@ -167,19 +177,19 @@ input[type="file"] {
     padding: 7px 14px;
     border: none;
     border-radius: 999px;
-    background-color: #9B72CF;
+    background-color: #1A1A1A;
     color: #FFFFFF;
     font-size: 12.5px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease; }
     input[type="file"]::file-selector-button:hover {
-      background-color: #8958C7; }
+      background-color: #333333; }
 
 label[for="credencial"] {
   align-self: flex-start;
   font-size: 12.5px;
-  color: #7A7080;
+  color: #666666;
   margin-top: 4px; }
 
 fieldset {
@@ -190,41 +200,41 @@ fieldset {
   gap: 10px; }
 
 .opciones-profesional {
-  background-color: #F5F1F8;
+  background-color: #F4F4F3;
   border-radius: 16px;
   padding: 14px 16px;
   gap: 8px; }
   .opciones-profesional > span {
     font-size: 13px;
     font-weight: 600;
-    color: #2D2533;
+    color: #121212;
     margin-bottom: 2px; }
   .opciones-profesional label {
     display: flex;
     align-items: center;
     gap: 10px;
     font-size: 13.5px;
-    color: #7A7080;
+    color: #666666;
     cursor: pointer; }
   .opciones-profesional input[type="radio"] {
     appearance: none;
     width: 18px;
     height: 18px;
     min-width: 18px;
-    border: 2px solid #E6DFEC;
+    border: 2px solid #E2E2E0;
     border-radius: 50%;
     background-color: #FFFFFF;
     cursor: pointer;
     position: relative;
     transition: border-color 0.2s ease; }
     .opciones-profesional input[type="radio"]:checked {
-      border-color: #9B72CF; }
+      border-color: #1A1A1A; }
       .opciones-profesional input[type="radio"]:checked::after {
         content: "";
         position: absolute;
         inset: 3px;
         border-radius: 50%;
-        background-color: #9B72CF; }
+        background-color: #1A1A1A; }
 
 .form-profesionales {
   width: 100%;
@@ -234,12 +244,12 @@ fieldset {
   gap: 10px;
   padding: 0 16px;
   border-radius: 16px;
-  background-color: color-mix(in srgb, #F3D8C7 35%, #F5F1F8);
+  background-color: color-mix(in srgb, #EFE8E1 35%, #F4F4F3);
   transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out, padding 0.4s ease; }
   .form-profesionales legend {
     font-size: 13px;
     font-weight: 600;
-    color: #B8815C;
+    color: #7D6B5D;
     padding: 14px 0 2px; }
   .form-profesionales.activo {
     max-height: 600px;
@@ -258,7 +268,7 @@ button[type="submit"],
   padding: 13px 0;
   border: none;
   border-radius: 999px;
-  background-color: #9B72CF;
+  background-color: #1A1A1A;
   color: #FFFFFF;
   font-size: 14px;
   font-weight: 700;
@@ -268,7 +278,7 @@ button[type="submit"],
   transition: background-color 0.2s ease, transform 0.15s ease; }
   button[type="submit"]:hover,
   #btn-submit:hover {
-    background-color: #8958C7; }
+    background-color: #333333; }
   button[type="submit"]:active,
   #btn-submit:active {
     transform: scale(0.98); }
@@ -289,7 +299,7 @@ main.container.active .toggle-container {
   border-radius: 0 150px 100px 0; }
 
 .toggle {
-  background: linear-gradient(140deg, #9B72CF 0%, #8958C7 60%, #7A4FB0 100%);
+  background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 50%, #121212 100%);
   height: 100%;
   position: relative;
   left: -100%;
@@ -350,18 +360,23 @@ main.container.active .toggle-right {
   transition: background-color 0.2s ease, color 0.2s ease; }
   .toggle-panel button:hover {
     background-color: #FFFFFF;
-    color: #9B72CF; }
+    color: #1A1A1A; }
 
 @media (max-width: 720px) {
   main.container {
     width: 100%;
-    min-height: 0;
-    border-radius: 16px; }
+    min-height: 100vh;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column; }
 
+  /* 1. Permitir que el formulario crezca y haga scroll libremente */
   .container-forma {
     position: relative;
     width: 100%;
-    max-height: 80vh; }
+    max-height: none;
+    /* Quitamos el 80vh para que no corte los inputs */
+    overflow-y: auto; }
 
   .iniciar-sesion {
     display: block; }
@@ -379,15 +394,18 @@ main.container.active .toggle-right {
     animation: none; }
 
   .formulario-cuenta {
-    padding: 40px 24px 32px; }
+    padding: 24px 16px 40px;
+    gap: 12px; }
 
+  /* 2. Convertir la barra toggle en una barra de cambio limpia */
   .toggle-container {
     position: relative;
     left: 0;
     width: 100%;
     height: auto;
     border-radius: 0;
-    order: -1; }
+    order: -1;
+    /* Mantiene la barra de navegacion arriba si preferis, o quitalo para dejarla abajo */ }
 
   main.container.active .toggle-container {
     transform: none;
@@ -395,30 +413,42 @@ main.container.active .toggle-right {
 
   .toggle {
     position: static;
-    left: 0;
     width: 100%;
     display: flex; }
 
   main.container.active .toggle {
     transform: none; }
 
+  /* 3. Alternar visibilidad de paneles según el estado activo */
   .toggle-panel {
     position: static;
-    width: 50%;
-    padding: 28px 16px;
+    width: 100%;
+    padding: 16px;
     transform: none !important;
-    gap: 8px; }
-    .toggle-panel h1 {
-      font-size: 18px; }
+    gap: 6px; }
     .toggle-panel p {
-      font-size: 12px; }
+      display: none;
+      /* Ocultamos parrafos para ahorrar espacio vertical */ }
+    .toggle-panel h1 {
+      font-size: 16px; }
 
-  main.container.active .toggle-left,
+  /* Cuando estoy en LOGIN -> muestro la opcion de ir a REGISTRO */
   .toggle-left {
-    display: block; }
+    display: none !important; }
 
-  main.container.active .toggle-right,
   .toggle-right {
-    display: block; } }
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; }
+
+  /* Cuando estoy en REGISTRO (.active) -> muestro la opcion de ir a LOGIN */
+  main.container.active .toggle-left {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; }
+  main.container.active .toggle-right {
+    display: none !important; } }
 
 /*# sourceMappingURL=estilos.css.map */

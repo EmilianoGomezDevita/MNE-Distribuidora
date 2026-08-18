@@ -6,35 +6,70 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
+/*Mixin*/
+@mixin rounded($radius: 5px) {
+  border-radius: $radius;
+}
+
+// // ==========================================================================
+// // Paleta — minimalista, cálida, base lila / pastel
+// // ==========================================================================
+// $bg-main: #FBF8FD;
+// $bg-card: #FFFFFF;
+// $text-primary: #2D2533;
+// $text-secondary: #7A7080;
+// $primary-color: #9B72CF;
+// $primary-hover: #8958C7;
+// $primary-light: #E4D6F5;
+// $input-bg: #F5F1F8;
+// $border-color: #E6DFEC;
+// $accent-warm: #F3D8C7; // durazno pastel, calidez sutil
+// $accent-warm-text: #B8815C;
+// $error-color: #D9736C;
+// $white: #FFFFFF;
+
+ $radius-lg: 30px;
+ $radius-md: 16px;
+ $radius-sm: 10px;
+ $radius-pill: 999px;
+
+// $shadow-card: 0 20px 50px rgba(155, 114, 207, 0.18);
 
 // ==========================================================================
-// Paleta — minimalista, cálida, base lila / pastel
+// Paleta — Minimalista, Sobria & Elegante (Alineada al Logo MNE)
 // ==========================================================================
-$bg-main: #FBF8FD;
-$bg-card: #FFFFFF;
-$text-primary: #2D2533;
-$text-secondary: #7A7080;
-$primary-color: #9B72CF;
-$primary-hover: #8958C7;
-$primary-light: #E4D6F5;
-$input-bg: #F5F1F8;
-$border-color: #E6DFEC;
-$accent-warm: #F3D8C7; // durazno pastel, calidez sutil
-$accent-warm-text: #B8815C;
-$error-color: #D9736C;
+$bg-main: #F8F8F7;         // Blanco hueso / Gris neutro de fondo general
+$bg-card: #FFFFFF;         // Blanco puro para la tarjeta
+$text-primary: #121212;     // Negro carbón profundo (tono exacto del logo)
+$text-secondary: #666666;   // Gris medio para placeholders y leyendas
+
+// Colores principales (Sustituyen al violeta por un estilo sofisticado)
+$primary-color: #1A1A1A;    // Negro elegante para botones y acentos
+$primary-hover: #333333;    // Gris oscuro para el hover de los botones
+$primary-light: #EBEAE8;    // Gris suave para bordes o backgrounds al pasar el mouse
+
+$input-bg: #F4F4F3;         // Gris clarísimo para los campos
+$border-color: #E2E2E0;     // Borde fino y sutil
+
+// Acentos cálidos (Nude / Piel / Arena suave)
+$accent-warm: #EFE8E1;      // Fondo sutil para la sección de datos profesionales
+$accent-warm-text: #7D6B5D; // Texto descriptivo cálido
+
+$error-color: #C94A4A;      // Rojo sobrio para validaciones
 $white: #FFFFFF;
 
-$radius-lg: 30px;
-$radius-md: 16px;
-$radius-sm: 10px;
-$radius-pill: 999px;
+ $radius-lg: 30px;
+ $radius-md: 16px;
+ $radius-sm: 10px;
+ $radius-pill: 999px;
 
-$shadow-card: 0 20px 50px rgba(155, 114, 207, 0.18);
+// Sombra mucho más ligera y sutil (sin tinte violáceo)
+$shadow-card: 0 15px 35px rgba(0, 0, 0, 0.06);
 $transition-base: all 0.6s ease-in-out;
 
 html,
 body {
-    background-color: $bg-main;
+    background-color: #F4F4F3;
     color: $text-primary;
 }
 
@@ -89,6 +124,13 @@ main.container {
 .registrarse {
     z-index: 1;
 }
+img.img-logo{
+    width: 110px;        /* Tamaño equilibrado */
+    height: auto;
+    margin-bottom: 2px;
+    display: block;
+
+}
 
 main.container.active .registrarse {
     transform: translateX(100%);
@@ -126,10 +168,10 @@ main.container.active .iniciar-sesion {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
-    padding: 56px 48px;
+    gap: 10px;           // Reducimos ligeramente el espacio entre elementos (estaba en 12px)
+    padding: 28px 48px;  // Bajamos de 56px a 28px el padding superior e inferior
     min-height: 100%;
-    height: auto;
+    justify-content: center; // Centra verticalmente el contenido
 }
 
 .titulo {
@@ -218,9 +260,10 @@ select {
 }
 
 .phone-group {
-    display: flex;
+    display: grid;
     gap: 8px;
     width: 100%;
+    grid-template-columns: 110px 1fr;
 
     #codigo_pais {
         flex: 0 0 92px;
@@ -409,7 +452,8 @@ main.container.active .toggle-container {
 }
 
 .toggle {
-    background: linear-gradient(140deg, $primary-color 0%, $primary-hover 60%, #7A4FB0 100%);
+    //background: linear-gradient(140deg, $primary-color 0%, $primary-hover 60%, #7A4FB0 100%);
+    background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 50%, #121212 100%);
     height: 100%;
     position: relative;
     left: -100%;
@@ -493,14 +537,18 @@ main.container.active .toggle-right {
 @media (max-width: 720px) {
     main.container {
         width: 100%;
-        min-height: 0;
-        border-radius: $radius-md;
+        min-height: 100vh;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
     }
 
+    /* 1. Permitir que el formulario crezca y haga scroll libremente */
     .container-forma {
         position: relative;
         width: 100%;
-        max-height: 80vh;
+        max-height: none; /* Quitamos el 80vh para que no corte los inputs */
+        overflow-y: auto;
     }
 
     .iniciar-sesion {
@@ -523,16 +571,18 @@ main.container.active .toggle-right {
     }
 
     .formulario-cuenta {
-        padding: 40px 24px 32px;
+        padding: 24px 16px 40px;
+        gap: 12px;
     }
 
+    /* 2. Convertir la barra toggle en una barra de cambio limpia */
     .toggle-container {
         position: relative;
         left: 0;
         width: 100%;
         height: auto;
         border-radius: 0;
-        order: -1;
+        order: -1; /* Mantiene la barra de navegacion arriba si preferis, o quitalo para dejarla abajo */
     }
 
     main.container.active .toggle-container {
@@ -542,7 +592,6 @@ main.container.active .toggle-right {
 
     .toggle {
         position: static;
-        left: 0;
         width: 100%;
         display: flex;
     }
@@ -551,30 +600,44 @@ main.container.active .toggle-right {
         transform: none;
     }
 
+    /* 3. Alternar visibilidad de paneles según el estado activo */
     .toggle-panel {
         position: static;
-        width: 50%;
-        padding: 28px 16px;
+        width: 100%;
+        padding: 16px;
         transform: none !important;
-        gap: 8px;
-
-        h1 {
-            font-size: 18px;
-        }
+        gap: 6px;
 
         p {
-            font-size: 12px;
+            display: none; /* Ocultamos parrafos para ahorrar espacio vertical */
+        }
+
+        h1 {
+            font-size: 16px;
         }
     }
 
-    main.container.active .toggle-left,
+    /* Cuando estoy en LOGIN -> muestro la opcion de ir a REGISTRO */
     .toggle-left {
-        display: block;
+        display: none !important;
+    }
+    .toggle-right {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    main.container.active .toggle-right,
-    .toggle-right {
-        display: block;
+    /* Cuando estoy en REGISTRO (.active) -> muestro la opcion de ir a LOGIN */
+    main.container.active {
+        .toggle-left {
+            display: flex !important;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .toggle-right {
+            display: none !important;
+        }
     }
 }
-
