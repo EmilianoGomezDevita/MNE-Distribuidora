@@ -10,9 +10,14 @@
 </head>
 
 <body>
+
     <main class="container" id="container">
         <div class="container-forma registrarse">
-            <form action="api/auth/Registro" enctype="multipart/form-data" method="post" class="formulario-cuenta" id="formulario-cuenta">
+            <form action="api/auth/Registro" enctype="multipart/form-data" method="post" class="formulario-cuenta"
+                id="formulario-cuenta">
+                <img src="../assets/img/logo.webp"
+                alt="logo de MNE-Distribuidora, que contiene el nombre de la marca, monocromático en negro sobre blanco con una tipografía serif muy elegante y minimalista."
+                class="img-logo">
                 <h1 class="titulo">Crear Cuenta</h1>
                 <!--Info personal-->
                 <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
@@ -21,7 +26,8 @@
                     <select name="codigo-pais" id="codigo-pais">
                         <option value="+54">🇦🇷 +54</option>
                     </select>
-                    <input type="tel" name="telefono" id="telefono" placeholder="11 1234 5678" inputmode="numeric" required/>
+                    <input type="tel" name="telefono" id="telefono" placeholder="11 1234 5678" inputmode="numeric"
+                        required />
                 </div>
                 <input type="email" name="email" id="email-sign-up" placeholder="Email" required>
                 <input type="password" name="pswrd" id="pswrd-sign-up" placeholder="Contraseña" required>
@@ -29,8 +35,8 @@
                 <span>Ingresar Direccion</span>
 
                 <input type="text" name="calle" id="calle" placeholder="Calle" required>
-                <input type="text" inputmode="numeric" name="numeroCalle" id="numeroCalle"
-                    placeholder="Numero de calle" required>
+                <input type="text" inputmode="numeric" name="numeroCalle" id="numeroCalle" placeholder="Numero de calle"
+                    required>
                 <input type="text" inputmode="numeric" name="cp" id="cp" placeholder="Codigo postal" required>
                 <input type="text" name="piso" id="piso" placeholder="Piso / Departamento">
                 <input type="text" name="localidad" id="localidad" placeholder="Localidad" required>
@@ -59,7 +65,7 @@
                         <option value="Cosmetologo">Cosmetólogo/a</option>
                     </select>
 
-                    <input type="text" name="matricula" id="matricula" placeholder="Matricula" >
+                    <input type="text" name="matricula" id="matricula" placeholder="Matricula">
 
                     <label for="credencial">Documento / credencial</label>
 
@@ -72,17 +78,20 @@
 
         <div class="container-forma iniciar-sesion">
             <form action="" class="formulario-cuenta">
+                <img src="../assets/img/logo.webp"
+                alt="logo de MNE-Distribuidora, que contiene el nombre de la marca, monocromático en negro sobre blanco con una tipografía serif muy elegante y minimalista."
+                class="img-logo">
                 <h1 class="titulo">Iniciar sesion</h1>
                 <!--iniciar sesion-->
                 <input type="email" name="email" id="email-sing-in" placeholder="Email">
                 <input type="password" name="pswrd" id="pswrd-sing-in" placeholder="Contraseña">
                 <a href="#">¿Olvidaste tu contraseña?</a>
                 <span>o inicia sesion con tu cuenta de google</span>
-                
+
                 <div class="iconos-redes">
                     <a href="#"><i class="fa-brands fa-google"></i></a>
                 </div>
-                
+
                 <button type="submit" id="btn-submit-sing-in">iniciar sesion</button>
             </form>
         </div>
@@ -94,7 +103,7 @@
                     <p>Accedé a tu perfil</p>
                     <button class="hidden" id="btn-show-login">Ingresar</button>
                 </div>
-              <div class="toggle-panel toggle-right">
+                <div class="toggle-panel toggle-right">
                     <h1>Crea tu cuenta</h1>
                     <p>Completá tus datos para registrarte en la plataforma</p>
                     <button class="hidden" id="btn-show-register">Registrarse</button>
