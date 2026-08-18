@@ -12,31 +12,29 @@
 <body>
     <main class="container" id="container">
         <div class="container-forma registrarse">
-            <form action="/registro" enctype="multipart/form-data" method="post" class="formulario-cuenta">
+            <form action="api/auth/Registro" enctype="multipart/form-data" method="post" class="formulario-cuenta" id="formulario-cuenta">
                 <h1 class="titulo">Crear Cuenta</h1>
                 <!--Info personal-->
-                <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-                <input type="text" name="apellido" id="apellido" placeholder="Apellido">
+                <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+                <input type="text" name="apellido" id="apellido" placeholder="Apellido" required>
                 <div class="phone-group">
-                    <select name="codigo_pais" id="codigo_pais">
+                    <select name="codigo-pais" id="codigo-pais">
                         <option value="+54">🇦🇷 +54</option>
-                        <option value="+598">🇺🇾 +598</option>
-                        <option value="+56">🇨🇱 +56</option>
                     </select>
-                    <input type="tel" name="telefono" id="telefono" placeholder="11 1234 5678" inputmode="numeric" />
+                    <input type="tel" name="telefono" id="telefono" placeholder="11 1234 5678" inputmode="numeric" required/>
                 </div>
-                <input type="email" name="email" id="email-sing-up" placeholder="Email">
-                <input type="password" name="pswrd" id="pswrd-sing-up" placeholder="Contraseña">
+                <input type="email" name="email" id="email-sign-up" placeholder="Email" required>
+                <input type="password" name="pswrd" id="pswrd-sign-up" placeholder="Contraseña" required>
                 <!--Info direccion-->
                 <span>Ingresar Direccion</span>
 
-                <input type="text" name="calle" id="calle" placeholder="Calle">
+                <input type="text" name="calle" id="calle" placeholder="Calle" required>
                 <input type="text" inputmode="numeric" name="numeroCalle" id="numeroCalle"
-                    placeholder="Numero de calle">
-                <input type="text" inputmode="numeric" name="cp" id="cp" placeholder="Codigo postal">
+                    placeholder="Numero de calle" required>
+                <input type="text" inputmode="numeric" name="cp" id="cp" placeholder="Codigo postal" required>
                 <input type="text" name="piso" id="piso" placeholder="Piso / Departamento">
-                <input type="text" name="localidad" id="localidad" placeholder="Localidad">
-                <input type="text" name="provincia" id="provincia" placeholder="Provincia">
+                <input type="text" name="localidad" id="localidad" placeholder="Localidad" required>
+                <input type="text" name="provincia" id="provincia" placeholder="Provincia" required>
                 <!--seleccion de tipo de cuenta-->
                 <fieldset class="opciones-profesional">
                     <legend>Sos profesional?</legend>
@@ -54,13 +52,14 @@
                     <legend>Datos Profesional</legend>
 
                     <select name="profesion" id="profesion">
+                        <option value="" disabled selected>Elige tu profesion</option>
                         <option value="dermatologo">Dermatologo</option>
                         <option value="cosmiatra">Cosmiatra</option>
                         <option value="esteticista">Esteticista</option>
                         <option value="Cosmetologo">Cosmetólogo/a</option>
                     </select>
 
-                    <input type="text" name="matricula" id="matricula" placeholder="Matricula">
+                    <input type="text" name="matricula" id="matricula" placeholder="Matricula" >
 
                     <label for="credencial">Documento / credencial</label>
 
