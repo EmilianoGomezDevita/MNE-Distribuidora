@@ -1,0 +1,138 @@
+$bg-main: #F8F8F7; // Blanco hueso / fondo general
+$bg-card: #FFFFFF; // Blanco puro
+$text-primary: #121212; // Negro carbón profundo
+$text-secondary: #666666; // Gris medio (leyendas, placeholders)
+
+$primary-color: #1A1A1A; // Negro elegante (botones/acentos)
+$primary-hover: #333333; // Hover de botones
+$primary-light: #EBEAE8; // Gris suave (bordes/hover bg)
+
+$input-bg: #F4F4F3; // Gris clarísimo (campos)
+$border-color: #E2E2E0; // Borde fino y sutil
+
+$accent-warm: #EFE8E1; // Nude / arena suave
+$accent-warm-text: #7D6B5D; // Texto cálido descriptivo
+
+$footer-bg: #1A1A1A; // Fondo del pie
+$footer-text: #C9C7C4; // Texto del pie
+
+$radius-lg: 30px;
+$radius-md: 16px;
+$radius-sm: 10px;
+$radius-pill: 999px;
+
+$shadow-card: 0 15px 35px rgba(0, 0, 0, 0.06);
+$shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.05);
+$transition-base: all 0.25s ease;
+
+$font-head: 'Cormorant Garamond', Georgia, serif;
+$font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+$max-width: 1160px;
+
+
+// ==========================================================================
+// Header
+// ==========================================================================
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(248, 248, 247, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid $border-color;
+}
+
+.header-inner {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-mark {
+    font-family: $font-head;
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: $text-primary;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.brand-name {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: $text-primary;
+}
+
+.brand-sub {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: $text-secondary;
+}
+
+.main-nav {
+    display: flex;
+    gap: 32px;
+
+    a {
+        font-size: 0.9rem;
+        color: $text-primary;
+        position: relative;
+        transition: $transition-base;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 1px;
+            background-color: $text-primary;
+            transition: width 0.25s ease;
+        }
+
+        &:hover::after {
+            width: 100%;
+        }
+    }
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.cart-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid $border-color;
+    border-radius: $radius-pill;
+    background-color: $bg-card;
+    color: $text-primary;
+    cursor: pointer;
+    transition: $transition-base;
+
+    &:hover {
+        background-color: $primary-light;
+    }
+}

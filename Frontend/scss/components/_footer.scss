@@ -1,0 +1,181 @@
+$bg-main: #F8F8F7; // Blanco hueso / fondo general
+$bg-card: #FFFFFF; // Blanco puro
+$text-primary: #121212; // Negro carbón profundo
+$text-secondary: #666666; // Gris medio (leyendas, placeholders)
+
+$primary-color: #1A1A1A; // Negro elegante (botones/acentos)
+$primary-hover: #333333; // Hover de botones
+$primary-light: #EBEAE8; // Gris suave (bordes/hover bg)
+
+$input-bg: #F4F4F3; // Gris clarísimo (campos)
+$border-color: #E2E2E0; // Borde fino y sutil
+
+$accent-warm: #EFE8E1; // Nude / arena suave
+$accent-warm-text: #7D6B5D; // Texto cálido descriptivo
+
+$footer-bg: #1A1A1A; // Fondo del pie
+$footer-text: #C9C7C4; // Texto del pie
+
+$radius-lg: 30px;
+$radius-md: 16px;
+$radius-sm: 10px;
+$radius-pill: 999px;
+
+$shadow-card: 0 15px 35px rgba(0, 0, 0, 0.06);
+$shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.05);
+$transition-base: all 0.25s ease;
+
+$font-head: 'Cormorant Garamond', Georgia, serif;
+$font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+$max-width: 1160px;
+
+
+// ==========================================================================
+// Footer
+// ==========================================================================
+.site-footer {
+    background-color: $footer-bg;
+    color: $footer-text;
+    margin-top: 40px;
+}
+
+.footer-inner {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 64px 24px 40px;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1.6fr;
+    gap: 40px;
+
+    h4 {
+        color: $bg-card;
+        font-family: $font-body;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+    }
+}
+
+.footer-brand {
+    .brand-mark--footer {
+        color: $bg-card;
+        display: inline-block;
+        margin-bottom: 14px;
+    }
+}
+
+.footer-tagline {
+    font-size: 0.88rem;
+    color: $footer-text;
+    max-width: 260px;
+    margin-bottom: 20px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+
+    a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: $radius-pill;
+        color: $bg-card;
+        transition: $transition-base;
+
+        &:hover {
+            background-color: $bg-card;
+            color: $footer-bg;
+        }
+    }
+}
+
+.footer-nav {
+    display: flex;
+    flex-direction: column;
+
+    a {
+        font-size: 0.9rem;
+        color: $footer-text;
+        padding: 5px 0;
+        transition: $transition-base;
+
+        &:hover {
+            color: $bg-card;
+        }
+    }
+}
+
+.footer-pay {
+    .pay-list {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+
+        li {
+            font-size: 0.72rem;
+            letter-spacing: 0.04em;
+            padding: 6px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: $radius-sm;
+            color: $bg-card;
+        }
+    }
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    input,
+    textarea {
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: $radius-sm;
+        padding: 12px 14px;
+        color: $bg-card;
+        font-family: $font-body;
+        font-size: 0.9rem;
+        resize: vertical;
+        transition: $transition-base;
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    }
+
+    .btn-primary {
+        background-color: $bg-card;
+        color: $footer-bg;
+
+        &:hover {
+            background-color: $primary-light;
+        }
+    }
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    padding: 22px 24px;
+
+    p {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.45);
+    }
+}
