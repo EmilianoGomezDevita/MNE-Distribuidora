@@ -1,38 +1,282 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- favicon -->
-    <link rel="icon" href="assets/img/logo.webp" type="image/webp">
-    <!--Estilos-->
-    <link rel="stylesheet" href="./css/style.css">
-    <title>MNE-Distribuidora</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MNE — Mi Nuevo Espacio | Distribuidora</title>
+
+    <!-- Fuentes: Cormorant Garamond (títulos) + Inter (cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <!-- Reemplazá por la ruta a tu CSS compilado desde el SCSS -->
+    <link rel="stylesheet" href="./css/estilos.css" />
 </head>
+
 <body>
-    <header>
-        <nav class="navbar">
-            <ul class="nav-list">
-                <li class="nav-items">
-                    <a href="./index.html" class="nav-link">
-                </li>
+    <!-- ============================ HEADER ============================ -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="#" class="brand" aria-label="MNE — Mi Nuevo Espacio, Distribuidora">
+                <span class="brand-mark">MNE</span>
+                <span class="brand-text">
+                    <span class="brand-name">MI NUEVO ESPACIO</span>
+                    <span class="brand-sub">Distribuidora · By Dermatocosmiatra Verovais</span>
+                </span>
+            </a>
 
-                <li class="nav-items">
-                    <a href="../Frontend/pages/about.html" class="nav-link">
-                </li>
+            <nav class="main-nav" aria-label="Navegación principal">
+                <a href="./index.html">Inicio</a>
+                <a href="./pages/catalogo.html">Catálogo</a>
+                <a href="#contacto">Contacto</a><!--link al footer-->
+                <a href="./pages/about.html">Sobre mi</a>
+            </nav>
 
-                <li class="nav-items">
-                    <a href="./pages/catalogo.html" class="nav-link">
-                </li>
-
-                <li class="nav-items">
-                    <a href="./pages/comoComprar.html" class="nav-link">
-                </li>
-            </ul>
-        </nav>
+            <div class="header-actions">
+                <a href="./pages/crearCuenta.html" class="link-plain">Iniciar sesión</a>
+                <a href="./pages/crearCuenta.html" class="btn-outline">Crear cuenta</a>
+                <button class="cart-btn" aria-label="Ver carrito">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                    </svg>
+                </button>
+            </div>
+        </div>
     </header>
-  
 
-    <script src="./JS/index.js"></script>
+    <main id="inicio">
+        <!-- ============================ HERO ============================ -->
+        <section class="hero">
+            <div class="hero-card">
+                <img src="./assets/img/hero-banner.png"
+                    alt="Mujer con piel radiante rodeada de productos de dermocosmética" class="hero-img" />
+                <div class="hero-overlay">
+                    <p class="hero-eyebrow">By Dermatocosmiatra Verovais</p>
+                    <h1 class="hero-title">
+                        Descuentos exclusivos<br />para profesionales
+                    </h1>
+                    <p class="hero-subtitle">
+                        Beneficios reservados para usuarios con Cuenta Profesional
+                        activada en MNE.
+                    </p>
+                    <a href="./pages/crearCuenta.html" class="btn-primary">Solicitar cuenta profesional</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= MARCAS ======================= -->
+        <section class="brands" aria-label="Nuestras marcas">
+            <p class="brands-label">Trabajamos con las mejores marcas</p>
+            <div class="brands-logos">
+                <!-- Reemplazá estos placeholders por los logos reales de las dos marcas -->
+                <div class="brand-logo-placeholder">
+                    <img src="./assets/img/logo-sem.webp" alt="">
+                </div>
+                <div class="brand-logo-placeholder">Logo marca 2</div>
+            </div>
+        </section>
+
+        <!-- ======================= VALORES ======================= -->
+        <section class="values" id="nosotros">
+            <div class="value-card">
+                <span class="value-icon" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                        <path d="M2 21c0-3 1.85-5.36 5.08-6" />
+                    </svg>
+                </span>
+                <h3>Dermocosmética</h3>
+                <p>
+                    Fórmulas de origen natural formuladas con ingredientes de la más
+                    alta calidad, seguridad y eficacia comprobada.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <span class="value-icon" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2 2 7l10 5 10-5-10-5Z" />
+                        <path d="m2 17 10 5 10-5" />
+                        <path d="m2 12 10 5 10-5" />
+                    </svg>
+                </span>
+                <h3>Calidad Profesional</h3>
+                <p>
+                    Productos seleccionados y avalados por profesionales de la
+                    dermatocosmiatría para resultados reales.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <span class="value-icon" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                    </svg>
+                </span>
+                <h3>Libre de Crueldad</h3>
+                <p>
+                    Comprometidos con el cuidado responsable: productos cruelty-free,
+                    sin testeo en animales.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <span class="value-icon" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 2v6l-4.35 8.7A2 2 0 0 0 6.44 20h11.12a2 2 0 0 0 1.79-3.3L15 8V2" />
+                        <path d="M9 2h6" />
+                    </svg>
+                </span>
+                <h3>Testeado en Laboratorio</h3>
+                <p>
+                    Cada producto es evaluado bajo estrictos controles dermatológicos
+                    que garantizan su seguridad.
+                </p>
+            </div>
+        </section>
+
+        <!-- ======================= PRODUCTOS ======================= -->
+        <section class="products" id="catalogo">
+            <header class="products-header">
+                <h2>Nuestros productos</h2>
+                <p>
+                    Una selección de dermocosmética profesional pensada para el cuidado
+                    integral de la piel.
+                </p>
+            </header>
+
+            <div class="products-grid">
+                <!-- Reemplazá el src de cada imagen por la foto real de tu producto -->
+                <article class="product-card">
+                    <div class="product-media">
+                        <img src="./assets/img/productos-Sem/tonico.webp" alt="Producto MNE 1" onerror="
+                  this.style.display = 'none';
+                  this.parentElement.classList.add('is-empty');
+                " />
+                        <span class="product-media-hint">Foto del producto</span>
+                    </div>
+                    <h3 class="product-name">TONICO HIDRATANTE </h3>
+                    <p class="product-price">$39.000 Iva Inc.</p>
+                    <button class="btn-primary btn-block">Agregar al carrito</button>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-media">
+                        <img src="./assets/img/productos-Sem/MASCARA-CARBON-DETOX-ANTIAGE.webp" alt="Producto MNE 2"
+                            onerror="
+                  this.style.display = 'none';
+                  this.parentElement.classList.add('is-empty');
+                " />
+                        <span class="product-media-hint">Foto del producto</span>
+                    </div>
+                    <h3 class="product-name">MASCARA CARBON DETOX ANTIAGE</h3>
+                    <p class="product-price">$37.000 Iva Inc.</p>
+                    <button class="btn-primary btn-block">Agregar al carrito</button>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-media">
+                        <img src="./assets/img/productos-Sem/Desmaquillante.webp" alt="Producto MNE 3" onerror="
+                  this.style.display = 'none';
+                  this.parentElement.classList.add('is-empty');
+                " />
+                        <span class="product-media-hint">Foto del producto</span>
+                    </div>
+                    <h3 class="product-name">Desmaquillante Efecto Seda – con alto poder de arrastre</h3>
+                    <p class="product-price">$36.000 Iva Inc</p>
+                    <button class="btn-primary btn-block">Agregar al carrito</button>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-media">
+                        <img src="images/productos/producto-4.png" alt="Producto MNE 4" onerror="
+                  this.style.display = 'none';
+                  this.parentElement.classList.add('is-empty');
+                " />
+                        <span class="product-media-hint">Foto del producto</span>
+                    </div>
+                    <h3 class="product-name">Nombre del producto</h3>
+                    <p class="product-price">$0000</p>
+                    <button class="btn-primary btn-block">Agregar al carrito</button>
+                </article>
+            </div>
+
+            <div class="products-cta">
+                <a href="#catalogo" class="btn-outline">Ver catálogo completo</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================ FOOTER ============================ -->
+    <footer class="site-footer" id="contacto">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="brand-mark brand-mark--footer">MNE</span>
+                <p class="footer-tagline">
+                    Mi Nuevo Espacio · Distribuidora de dermocosmética profesional.
+                </p>
+
+                <div class="footer-social">
+                    <a href="#" aria-label="Instagram">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z" />
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="TikTok">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M16 8.245a6.5 6.5 0 0 0 3.5 1.02V6.5a3.5 3.5 0 0 1-3.5-3.5h-2.75v11.25a2.25 2.25 0 1 1-2.25-2.25c.086 0 .17.006.25.016V9.27A5 5 0 1 0 16 14.25V8.245Z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <nav class="footer-nav" aria-label="Navegación del pie">
+                <h4>Navegación</h4>
+                <a href="#catalogo">Catálogo</a>
+                <a href="#contacto">Contacto</a>
+                <a href="#nosotros">Sobre nosotros</a>
+            </nav>
+
+            <div class="footer-pay">
+                <h4>Métodos de pago</h4>
+                <ul class="pay-list">
+                    <li>VISA</li>
+                    <li>Mastercard</li>
+                    <li>Cabal</li>
+                    <li>Amex</li>
+                </ul>
+            </div>
+
+            <form class="footer-contact" aria-label="Formulario de contacto">
+                <h4>Escribinos</h4>
+                <label class="sr-only" for="footer-email">Email</label>
+                <input type="email" id="footer-email" placeholder="Tu email" />
+                <label class="sr-only" for="footer-msg">Mensaje</label>
+                <textarea id="footer-msg" rows="3" placeholder="Tu mensaje"></textarea>
+                <button type="submit" class="btn-primary btn-block">Enviar</button>
+            </form>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 MNE — Mi Nuevo Espacio. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 </body>
+
 </html>
