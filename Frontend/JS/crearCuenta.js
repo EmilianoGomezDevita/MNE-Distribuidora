@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
             formData.append("telefono", `${codPais} ${numTelefono}` );
 
             // Datos de la dirección
+            formData.append("nombreDireccion", document.getElementById("nombreDireccion").value.trim());
             formData.append("calle", document.getElementById("calle").value.trim());
             formData.append("numeroCalle", document.getElementById("numeroCalle").value.trim());
             formData.append("cp", document.getElementById("cp").value.trim());
@@ -78,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
 
-            fetch("api/auth/Registro", {
+            fetch("/api/auth/Registro", {
                 method: "POST",
                 body: formData
             })
