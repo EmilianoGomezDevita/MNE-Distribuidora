@@ -1162,5 +1162,46 @@ main.container.active .toggle-right {
     align-items: center; }
   main.container.active .toggle-right {
     display: none !important; } }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html,
+body {
+  background-color: #F8F8F7;
+  color: #121212;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased; }
+
+main > section.section-presentacion {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px; }
+  main > section.section-presentacion figure.presentacion-img,
+  main > section.section-presentacion article.presentacion-bio {
+    aspect-ratio: 1 / 1;
+    width: 100%; }
+    main > section.section-presentacion figure.presentacion-img img,
+    main > section.section-presentacion article.presentacion-bio img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 30px; }
+  main > section.section-presentacion article.presentacion-bio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 30px;
+    gap: 12px;
+    padding: 24px;
+    background-color: #d9d9d9; }
 
 /*# sourceMappingURL=estilos.css.map */
