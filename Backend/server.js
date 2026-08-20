@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors'
 import dotenv from 'dotenv';
 import authRoutes from './src/routes/authRoute.js';
+import router from './src/routes/prodRoute.js';
 
 
 dotenv.config();
@@ -17,6 +18,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/auth', authRoutes)
+
+app.use('/api/cat', router)
 
 app.listen(port, () => {
     console.log("Servidor corriendo en ", port)
