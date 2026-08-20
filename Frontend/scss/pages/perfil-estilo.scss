@@ -1,0 +1,187 @@
+// ==========================================================================
+// MNE — Perfil de usuario
+// Paleta minimalista, cálida y elegante
+// ========================================================================
+$bg-main: #F8F8F7;
+$bg-card: #FFFFFF;
+$text-primary: #121212;
+$text-secondary: #666666;
+$primary-color: #1A1A1A;
+$primary-hover: #333333;
+$primary-light: #EBEAE8;
+$border-color: #E2E2E0;
+$accent-warm: #EFE8E1;
+$accent-warm-text: #7D6B5D;
+$footer-bg: #1A1A1A;
+$footer-text: #C9C7C4;
+$radius-lg: 30px;
+$radius-md: 16px;
+$radius-sm: 10px;
+$radius-pill: 999px;
+$shadow-card: 0 18px 45px rgba(18, 18, 18, .07);
+$shadow-soft: 0 8px 22px rgba(18, 18, 18, .06);
+$font-head: 'Cormorant Garamond', Georgia, serif;
+$font-body: 'Inter', system-ui, -apple-system, sans-serif;
+$max-width: 1160px;
+$transition-base: all .25s ease;
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; background: $bg-main; }
+
+body {
+  min-width: 320px;
+  background: $bg-main;
+  color: $text-primary;
+  font-family: $font-body;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button, input, textarea { font: inherit; }
+
+h1, h2, h3, h4 { font-family: $font-head; line-height: 1.1; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.main-perfil {
+  width: min(100% - 48px, 760px);
+  min-height: 560px;
+  margin: 0 auto;
+  padding: 90px 0 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: fade-in .65s ease both;
+
+  &::before {
+    content: 'MI ESPACIO';
+    margin-bottom: 18px;
+    color: $accent-warm-text;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .25em;
+  }
+}
+.nombrePerfil {
+  width: 100%;
+  padding: 48px 56px 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $accent-warm;
+  border-radius: $radius-lg $radius-lg 0 0;
+  box-shadow: $shadow-card;
+
+  .nombre {
+    font-family: $font-head;
+    font-size: clamp(38px, 6vw, 64px);
+    font-weight: 600;
+    color: $text-primary;
+    text-align: center;
+    line-height: 1.1;
+
+    span {
+      font-family: inherit;
+    }
+  }
+}
+.info-cuenta {
+  width: 100%;
+  padding: 34px 56px 42px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 24px;
+  background: $bg-card;
+  border: 1px solid $border-color;
+  border-top: 0;
+  border-radius: 0 0 $radius-lg $radius-lg;
+  box-shadow: $shadow-card;
+
+  .dato-perfil {
+    font-family: $font-body;
+    font-size: 14px;
+    color: $text-secondary;
+    overflow-wrap: anywhere;
+
+    strong {
+      color: $text-primary;
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
+    span {
+      color: $text-secondary;
+    }
+
+    // Estilo tipo píldora exclusivamente para la etiqueta de tipo de cuenta
+    &:last-child {
+      justify-self: end;
+
+      span {
+        display: inline-block;
+        padding: 6px 14px;
+        border: 1px solid $border-color;
+        border-radius: $radius-pill;
+        background: $primary-light;
+        color: $text-primary;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+// Adaptación responsive
+@media (max-width: 760px) {
+  .nombrePerfil { 
+    padding: 38px 22px 28px; 
+  }
+  .info-cuenta { 
+    padding: 28px 22px 32px; 
+    grid-template-columns: 1fr; 
+    gap: 16px; 
+
+    .dato-perfil:last-child {
+      justify-self: start;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .header-inner, .footer-inner { width: min(100% - 32px, 1160px); }
+  .nombrePerifl { flex-direction: column; align-items: center; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-brand, .footer-contact { grid-column: auto; }
+}
+
+.fade-in { animation: fade-in .6s ease both; }
+@keyframes fade-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+@media (prefers-color-scheme: dark) {
+  // Se conserva la identidad clara del sitio también en dispositivos con dark mode.
+  html, body { background: $bg-main; color: $text-primary; }
+}
+
+// Uso opcional: agregá class="fade-in" a main-perfil.
+.main-perfil { animation: fade-in .65s ease both; }
+
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid $accent-warm-text; outline-offset: 3px; }
