@@ -83,8 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     formData.append("credencial", inputCredencial.files[0]);
                 }
             }
-
-            fetch("/api/auth/Registro", {
+            //api/auth/Registro
+            fetch("http://localhost:3000/api/auth/Registro", {
                 method: "POST",
                 body: formData
             })
@@ -122,12 +122,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const email = document.getElementById('email-sing-in').value.trim()
             const password = document.getElementById('pswrd-sing-in').value
-
-            fetch("/api/auth/Ingreso", {
+            //api/auth/Ingreso
+            fetch("http://localhost:3000/api/auth/Ingreso", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    'Authorization': `Bearer ${token}`
+                    ///'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({ email, password })
             })
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         // Guardamos el token para usarlo en Mi Perfil
                         localStorage.setItem("token", data.token)
                         alert("Bienvenido!")
-                        window.location.href = "/perfil.html"
+                        window.location.href = "./perfil.html"
                     } else {
                         alert(data.mensaje || "credenciales incorrectas")
                     }

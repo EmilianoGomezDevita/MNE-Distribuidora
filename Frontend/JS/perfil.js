@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function() {
          window.location.href = "./crearCuenta.html";
          return;
     }
-    fetch("/api/auth/perfil", {
+    //api/auth/perfil
+    fetch("http://localhost:3000/api/auth/perfil", {
         method: "GET",
         headers: {
             'Authorization': `Bearer ${token}`
