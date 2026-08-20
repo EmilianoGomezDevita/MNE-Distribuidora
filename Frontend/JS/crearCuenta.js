@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const registrarBtn = document.getElementById('btn-show-register')
     const container = document.getElementById('container')
     const ingresarBtn = document.getElementById('btn-show-login')
+
     //eventos de los botones para cambiar entre ingresar y registrarse
     registrarBtn.addEventListener('click', () => {
         container.classList.add("active");
@@ -11,10 +12,12 @@ document.addEventListener("DOMContentLoaded", function () {
     ingresarBtn.addEventListener('click', () => {
         container.classList.remove("active")
     })
+
     //Variables del form profesional
     const formProfesional = document.getElementById('form-profesionales')
     const radioSi = document.getElementById('es-profesional-si')
     const camposProfesional = document.querySelectorAll('#form-profesionales select, #form-profesionales input')
+
     //funcion que extiende el form para ver los campos de profesional y agrega required
     function actualizarVisibilidadProfesional() {
         const esPro = radioSi ? radioSi.checked : false
@@ -27,10 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
             campo.required = esPro;
         })
     }
+
     // Escuchar cambios
     document.querySelectorAll('input[name="es-profesional"]').forEach((radio) => {
         radio.addEventListener('change', actualizarVisibilidadProfesional)
     })
+    
     // Ejecutar al cargar por si está seleccionado de antes
     actualizarVisibilidadProfesional();
 
