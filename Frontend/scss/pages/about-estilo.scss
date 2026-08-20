@@ -83,3 +83,20 @@ main > section.section-presentacion {
         background-color: #d9d9d9; // Tu color gris de Figma
     }
 }
+
+@media (max-width: 768px) {
+    main > section.section-presentacion {
+        grid-template-columns: 1fr; // Pasa a 1 sola columna
+        gap: 20px;
+        margin: 20px auto;
+
+        figure.presentacion-img {
+            aspect-ratio: 4 / 3; // Menos alto en móvil
+        }
+
+        article.presentacion-bio {
+            aspect-ratio: auto; // Quita la restricción cuadrada para adaptar cualquier longitud de texto
+            padding: 32px 20px;
+        }
+    }
+}

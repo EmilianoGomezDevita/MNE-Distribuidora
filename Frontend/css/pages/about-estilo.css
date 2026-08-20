@@ -40,4 +40,15 @@ main > section.section-presentacion {
     padding: 24px;
     background-color: #d9d9d9; }
 
+@media (max-width: 768px) {
+  main > section.section-presentacion {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin: 20px auto; }
+    main > section.section-presentacion figure.presentacion-img {
+      aspect-ratio: 4 / 3; }
+    main > section.section-presentacion article.presentacion-bio {
+      aspect-ratio: auto;
+      padding: 32px 20px; } }
+
 /*# sourceMappingURL=about-estilo.css.map */
