@@ -7,13 +7,13 @@ async function identificarUsuario(req, res, next) {
     if (authHeader) {
         const partes = authHeader.split(' ');
         token = partes[1];
-        const { data: {dataUser}, error: errorUser } = await supabase.auth.getUser(token)
+        const { data: {user}, error: errorUser } = await supabase.auth.getUser(token)
 
-        if (errorUser) {
-            req.usuario = null
+        if (!errorUser && user) {
+            req.usuario = user
         }
         else {
-            req.usuario.user.id = dataUser
+            req.usuario = null
         }
     }
     next()
