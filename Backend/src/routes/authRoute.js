@@ -1,9 +1,12 @@
 import { Router } from "express";
-import { registrar } from "../controllers/authController.js";
+import { registrar, iniciar } from "../controllers/authController.js";
 import { upload } from "../middlewares/upload.js";
 
 const router = Router();
 
+
 router.post('/Registro',upload.single('credencial'), registrar);
+
+router.post('/Ingreso', iniciar)
 
 export default router;

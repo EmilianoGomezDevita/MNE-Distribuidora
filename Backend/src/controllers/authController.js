@@ -80,4 +80,25 @@ async function registrar(req, res) {
 
 }
 
-export { registrar };
+async function iniciar(req, res) {
+
+    const {email, password} = req.body;
+
+    const {data: dataLogIn, error: errorLogIn} = await supabase.auth.signInWithPassword({
+        email,
+        password,
+    })
+    if(errorLogIn){
+        return res.status(401).json({mensaje: "Error al iniciar sesion. correo o contraseña", error: errorLogIn.message})
+    }
+    return res.status(200).json({
+        mensaje: "inicio de sesion exitoso",
+        token: dataLogIn.session.access_token,
+        usuario: {
+            id: dataLogIn.user.id,
+            email: dataLogIn.user.email
+        }
+    })
+}
+
+export { registrar, iniciar };
