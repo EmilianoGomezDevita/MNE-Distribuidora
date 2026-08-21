@@ -1,0 +1,408 @@
+// =========================================================
+// Gestión de solicitudes profesionales — MNE
+// ========================================================================== 
+
+$bg-main: #f8f8f7;
+$bg-card: #ffffff;
+$text-primary: #121212;
+$text-secondary: #666666;
+$primary-color: #1a1a1a;
+$primary-hover: #333333;
+$primary-light: #ebeae8;
+$input-bg: #f4f4f3;
+$border-color: #e2e2e0;
+$accent-warm: #efe8e1;
+$accent-warm-text: #7d6b5d;
+$success: #2f7556;
+$success-bg: #e6f2eb;
+$danger: #a54646;
+$danger-bg: #f8e8e6;
+$white: #ffffff;
+$radius-lg: 30px;
+$radius-md: 16px;
+$radius-sm: 10px;
+$radius-pill: 999px;
+$shadow-card: 0 15px 35px rgba(18, 18, 18, 0.06);
+$shadow-hover: 0 20px 45px rgba(18, 18, 18, 0.1);
+$transition-base: 0.25s ease;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: $bg-main;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 8% 4%, rgba(239, 232, 225, 0.7), transparent 28rem),
+    $bg-main;
+  color: $text-primary;
+  font-family: 'Inter', Arial, sans-serif;
+  line-height: 1.5;
+}
+
+button {
+  font: inherit;
+}
+
+.admin-container {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 64px 0 80px;
+}
+
+.admin-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 42px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid $border-color;
+}
+
+.admin-header h1 {
+  margin: 0;
+  color: $text-primary;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+.subtitle {
+  max-width: 360px;
+  margin: 0;
+  color: $text-secondary;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  text-align: right;
+}
+
+.solicitudes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.solicitud-card {
+  display: flex;
+  min-height: 315px;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  background: $bg-card;
+  box-shadow: $shadow-card;
+  transition: transform $transition-base, box-shadow $transition-base, border-color $transition-base;
+}
+
+.solicitud-card:hover {
+  border-color: #d4cec8;
+  box-shadow: $shadow-hover;
+  transform: translateY(-4px);
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 24px 26px 20px;
+  border-bottom: 1px solid $border-color;
+}
+
+.user-info {
+  min-width: 0;
+}
+
+.user-name {
+  margin: 0 0 4px;
+  overflow: hidden;
+  color: $text-primary;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-email {
+  display: block;
+  overflow: hidden;
+  color: $text-secondary;
+  font-size: 0.8rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.badge-estado {
+  flex: 0 0 auto;
+  padding: 7px 12px;
+  border: 1px solid $border-color;
+  border-radius: $radius-pill;
+  background: $accent-warm;
+  color: $accent-warm-text;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.badge-estado:empty {
+  display: none;
+}
+
+.card-body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  padding: 24px 26px;
+}
+
+.info-item {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 14px;
+  border-right: 1px solid $border-color;
+}
+
+.info-item:last-child {
+  border-right: 0;
+}
+
+.info-item .label {
+  color: $accent-warm-text;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.info-item .value {
+  overflow: hidden;
+  color: $text-primary;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+  padding: 18px 26px 22px;
+  border-top: 1px solid $border-color;
+  background: #fcfcfb;
+}
+
+.card-actions button {
+  min-height: 40px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: $radius-pill;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: background-color $transition-base, color $transition-base, border-color $transition-base, transform $transition-base;
+}
+
+.card-actions button:active {
+  transform: scale(0.98);
+}
+
+.btn-doc {
+  padding: 0 16px;
+  border-color: $border-color !important;
+  background: transparent;
+  color: $text-primary;
+}
+
+.btn-doc:hover {
+  border-color: $primary-color !important;
+  background: $primary-light;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-aprobar,
+.btn-rechazar {
+  padding: 0 18px;
+}
+
+.btn-aprobar {
+  background: $primary-color;
+  color: $white;
+}
+
+.btn-aprobar:hover {
+  background: $primary-hover;
+}
+
+.btn-rechazar {
+  border-color: #e0c6c3 !important;
+  background: $danger-bg;
+  color: $danger;
+}
+
+.btn-rechazar:hover {
+  border-color: $danger !important;
+  background: $danger;
+  color: $white;
+}
+
+.empty-state {
+  display: grid;
+  min-height: 260px;
+  place-items: center;
+  padding: 36px;
+  border: 1px dashed #d4cec8;
+  border-radius: $radius-md;
+  background: rgba(255, 255, 255, 0.58);
+  color: $text-secondary;
+  text-align: center;
+}
+
+.empty-state p {
+  max-width: 360px;
+  margin: 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.hidden {
+  display: none !important;
+}
+
+button:focus-visible {
+  outline: 3px solid rgba(125, 107, 93, 0.35);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .admin-container {
+    width: min(100% - 28px, 560px);
+    padding: 34px 0 50px;
+  }
+
+  .admin-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 26px;
+    padding-bottom: 22px;
+  }
+
+  .subtitle {
+    max-width: 440px;
+    text-align: left;
+  }
+
+  .solicitudes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .card-header {
+    padding: 20px;
+  }
+
+  .user-name {
+    font-size: 1.65rem;
+  }
+
+  .card-body {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .info-item,
+  .info-item:last-child {
+    padding: 0 0 12px;
+    border-right: 0;
+    border-bottom: 1px solid $border-color;
+  }
+
+  .info-item:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .card-actions {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 16px 20px 20px;
+  }
+
+  .btn-doc,
+  .action-buttons,
+  .action-buttons button {
+    width: 100%;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  // Mantiene la identidad clara de MNE aunque el sistema esté en dark mode.
+  // Quitá este bloque si tu archivo global ya administra el tema oscuro.
+  body {
+    background: $bg-main;
+  }
+}
+
+@media print {
+  .admin-container {
+    width: 100%;
+    padding: 0;
+  }
+
+  .admin-header {
+    margin-bottom: 24px;
+  }
+
+  .card-actions {
+    display: none;
+  }
+
+  .solicitudes-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .solicitud-card {
+    break-inside: avoid;
+    box-shadow: none;
+  }
+}
