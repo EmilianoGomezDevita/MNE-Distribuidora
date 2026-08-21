@@ -11,7 +11,7 @@ async function listarSolicitudesPendientes(req, res) {
     estado,
     fechaSolicitud,
     usuarios (nombre, apellido, email),
-    Profesiones (nombre)
+    Profesiones (profesion)
   `,
     )
     .eq("estado", "pendiente");
