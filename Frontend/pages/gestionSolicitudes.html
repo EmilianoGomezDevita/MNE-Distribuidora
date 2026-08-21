@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Solicitudes | Admin MNE</title>
+  <!-- Fuentes e integración de estilos del sitio -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+  <main class="admin-container">
+    <header class="admin-header">
+      <h1>Solicitudes de Profesionales</h1>
+      <p class="subtitle">Revisá y gestioná los accesos pendientes para el catálogo profesional.</p>
+    </header>
+
+    <!-- Contenedor principal donde JS renderizará las tarjetas -->
+    <section class="solicitudes-grid" id="solicitudes-container">
+      
+      <!-- EJEMPLO DE ESTRUCTURA DINÁMICA (Lo que va a generar el JS): ---->
+      <article class="solicitud-card" data-id="12">
+        <div class="card-header">
+          <div class="user-info">
+             <h3 class="user-name"></h3><!--Gómez, Emiliano -->
+            <span class="user-email"></span>
+          </div>
+          <span class="badge-estado"></span>
+        </div>
+
+        <div class="card-body">
+          <div class="info-item">
+            <span class="label">Profesión</span>
+            <span class="value"></span>
+          </div>
+          <div class="info-item">
+            <span class="label">Matrícula</span>
+            <span class="value"></span>
+          </div>
+          <div class="info-item">
+            <span class="label">Fecha</span>
+            <span class="value"></span>
+          </div>
+        </div>
+
+        <div class="card-actions">
+          <button type="button" class="btn-doc" data-id="12" data-path="solicitudes/doc-12.pdf">
+            📄 Ver credencial
+          </button>
+          
+          <div class="action-buttons">
+            <button type="button" class="btn-aprobar" data-id="12">Aprobar</button>
+            <button type="button" class="btn-rechazar" data-id="12">Rechazar</button>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Mensaje para cuando no haya solicitudes pendientes -->
+    <div id="no-solicitudes" class="empty-state hidden">
+      <p>No hay solicitudes pendientes por revisar en este momento.</p>
+    </div>
+  </main>
+
+  <script src="../JS/gestionSolicitudes.js" type="module"></script>
+</body>
+</html>
