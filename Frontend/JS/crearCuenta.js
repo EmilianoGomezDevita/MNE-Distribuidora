@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
             //api/auth/Registro
-            fetch("http://localhost:3000/api/auth/Registro", {
+            fetch(`${API_URL}/api/auth/Registro`, {
                 method: "POST",
                 body: formData
             })
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const email = document.getElementById('email-sing-in').value.trim()
             const password = document.getElementById('pswrd-sing-in').value
             //api/auth/Ingreso
-            fetch("http://localhost:3000/api/auth/Ingreso", {
+            fetch(`${API_URL}/api/auth/Ingreso`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

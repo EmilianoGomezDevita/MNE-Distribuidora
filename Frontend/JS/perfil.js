@@ -1,3 +1,5 @@
+import { API_URL } from './config.js';
+
 document.addEventListener("DOMContentLoaded", function() {
     const token = localStorage.getItem('token')
     if(token === null){
@@ -5,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
          return;
     }
     //api/auth/perfil
-    fetch("http://localhost:3000/api/auth/perfil", {
+    fetch(`${API_URL}/api/auth/perfil`, {
         method: "GET",
         headers: {
             'Authorization': `Bearer ${token}`
