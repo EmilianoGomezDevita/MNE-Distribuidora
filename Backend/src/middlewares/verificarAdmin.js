@@ -9,7 +9,7 @@ async function verificarAdmin(req, res, next) {
     if(errorUser){
         return res.status(400).json({mensaje: "Error al intentar acceder a los datos", error: errorUser.message})
     }
-    if(dataUser.rol !== 'Admin'){
+    if(dataUser.rol !== 'admin'){
         return res.status(403).json({mensaje: "Acceso denegado: se requieren permisos de administrador"})
     }
 
