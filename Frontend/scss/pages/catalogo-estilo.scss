@@ -1,0 +1,386 @@
+// =========================================================
+// CATÁLOGO MNE — Mi Nuevo Espacio
+// Estilos para catalogo.html
+// El header y el footer se mantienen en estilos.scss.
+// =========================================================
+
+$catalog-bg: #f8f8f7;
+$catalog-surface: #ffffff;
+$catalog-surface-soft: #efe8e1;
+$catalog-text: #121212;
+$catalog-muted: #7d6b5d;
+$catalog-line: rgba(125, 107, 93, 0.2);
+$catalog-accent: #9c806c;
+$catalog-accent-dark: #725d4f;
+$catalog-shadow: 0 18px 45px rgba(69, 53, 43, 0.08);
+$catalog-radius: 14px;
+
+.catalogo-container {
+  width: min(100% - 2rem, 1180px);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(4rem, 8vw, 7rem);
+  color: $catalog-text;
+  background: $catalog-bg;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.catalogo-container,
+.catalogo-container * {
+  box-sizing: border-box;
+}
+
+// Encabezado de filtros
+.filtros-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid $catalog-line;
+}
+
+.serach-box {
+  display: flex;
+  align-items: center;
+  width: min(100%, 360px);
+  min-height: 46px;
+  overflow: hidden;
+  border: 1px solid $catalog-line;
+  border-radius: 999px;
+  background: $catalog-surface;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+
+  &:focus-within {
+    border-color: $catalog-accent;
+    box-shadow: 0 0 0 4px rgba(156, 128, 108, 0.12);
+  }
+
+  input {
+    min-width: 0;
+    flex: 1;
+    border: 0;
+    outline: 0;
+    padding: 0.8rem 0.5rem 0.8rem 1.25rem;
+    color: $catalog-text;
+    background: transparent;
+    font: inherit;
+    font-size: 0.84rem;
+
+    &::placeholder {
+      color: rgba(125, 107, 93, 0.72);
+    }
+  }
+}
+
+.btn-search {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  place-items: center;
+  border: 0;
+  color: $catalog-muted;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0;
+  transition: color 180ms ease, background 180ms ease;
+
+  &::before {
+    content: "";
+    width: 13px;
+    height: 13px;
+    border: 1.6px solid currentColor;
+    border-radius: 50%;
+    transform: translate(-2px, -2px);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 1.6px;
+    margin: 13px 0 0 12px;
+    border-radius: 2px;
+    background: currentColor;
+    transform: rotate(45deg);
+  }
+
+  &:hover {
+    color: $catalog-text;
+    background: $catalog-surface-soft;
+  }
+}
+
+.marcas-pill {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.btn-mmarca {
+  padding: 0.65rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: $catalog-muted;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.75rem;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease, transform 180ms ease;
+
+  &:hover {
+    color: $catalog-text;
+    border-color: $catalog-line;
+    background: $catalog-surface;
+    transform: translateY(-1px);
+  }
+
+  &.active {
+    color: $catalog-surface;
+    border-color: $catalog-text;
+    background: $catalog-text;
+  }
+}
+
+// Grilla de productos
+.grid-productos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.card-producto {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(125, 107, 93, 0.12);
+  border-radius: $catalog-radius;
+  background: $catalog-surface;
+  box-shadow: 0 4px 16px rgba(69, 53, 43, 0.025);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+
+  &:hover {
+    border-color: rgba(156, 128, 108, 0.35);
+    box-shadow: $catalog-shadow;
+    transform: translateY(-5px);
+
+    .card-img-container img {
+      transform: scale(1.045);
+    }
+  }
+}
+
+.card-img-container {
+  width: 100%;
+  height: 300px; // mismo alto para todas las imágenes
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #f8f8f7;
+
+  //.card-img-container {
+  .card-img-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+
+    //   &::after {
+    //     content: "";
+    //     position: absolute;
+    //     right: 12%;
+    //     bottom: 8%;
+    //     left: 12%;
+    //     height: 12%;
+    //     border-radius: 50%;
+    //     background: rgba(75, 57, 47, 0.08);
+    //     filter: blur(12px);
+    //   }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; // Hace que la foto ocupe todo el recuadro sin deformarse
+      object-position: center; // Centra el producto en la toma
+      transition: transform 350ms ease;
+    }
+    img#id-3, 
+    img#id-4{
+     transform: translateY(30px);
+    }
+  }
+}
+
+.card-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.15rem 1.15rem 1.25rem;
+}
+
+.prod-nombre,
+.prod-name {
+  display: -webkit-box;
+  min-height: 3.15em;
+  margin: 0 0 0.8rem;
+  overflow: hidden;
+  color: $catalog-text;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+  font-weight: 600;
+  line-height: 1.18;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.product-price {
+  margin: auto 0 1.15rem;
+  color: $catalog-accent-dark;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.btn-primary.btn-block {
+  width: 100%;
+  min-height: 43px;
+  border: 1px solid $catalog-text;
+  border-radius: 999px;
+  color: $catalog-surface;
+  background: $catalog-text;
+  cursor: pointer;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 180ms ease, background 180ms ease, transform 180ms ease;
+
+  &:hover {
+    color: $catalog-text;
+    background: transparent;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible,
+  .btn-mmarca:focus-visible,
+  .btn-search:focus-visible {
+    outline: 3px solid rgba(156, 128, 108, 0.4);
+    outline-offset: 3px;
+  }
+}
+
+// Estado vacío opcional para cuando el catálogo no encuentra resultados.
+.grid-productos:empty::before {
+  content: "No encontramos productos con esos filtros.";
+  grid-column: 1 / -1;
+  padding: 4rem 1rem;
+  color: $catalog-muted;
+  text-align: center;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.6rem;
+}
+
+@media (max-width: 980px) {
+  .grid-productos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .catalogo-container {
+    width: min(100% - 1.25rem, 600px);
+    padding-top: 2rem;
+  }
+
+  .filtros-bar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .serach-box {
+    width: 100%;
+  }
+
+  .marcas-pill {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.25rem;
+  }
+
+  .btn-mmarca {
+    flex: 0 0 auto;
+  }
+
+  .grid-productos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .card-info {
+    padding: 0.85rem;
+  }
+
+  .prod-nombre,
+  .prod-name {
+    min-height: 3.4em;
+    font-size: 1.08rem;
+  }
+
+  .product-price {
+    margin-bottom: 0.85rem;
+    font-size: 0.76rem;
+  }
+
+  .btn-primary.btn-block {
+    min-height: 40px;
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .grid-productos {
+    grid-template-columns: 1fr;
+  }
+
+  .card-img-container {
+    aspect-ratio: 1 / 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .card-producto,
+  .card-img-container img,
+  .btn-mmarca,
+  .btn-primary.btn-block,
+  .serach-box,
+  .btn-search {
+    transition: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+
+  // Mantiene el look cálido de MNE aunque el sistema esté en modo oscuro.
+  .catalogo-container {
+    color: $catalog-text;
+    background: $catalog-bg;
+  }
+}
