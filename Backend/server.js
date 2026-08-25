@@ -25,6 +25,5 @@ app.use('/api/cat', productosRoutes)
 app.use('/api/admin', adminRoutes)
 
 app.listen(port, () => {
-    console.log("Servidor corriendo en ", port)
-})
-
+    console.log("Servidor corriendo en ", port);
+});
