@@ -6,7 +6,7 @@ async function listarSolicitudesPendientes(req, res) {
         .select(
         `
         id_SP,
-        matricula,
+        DNI-CUIL,
         documentacion,
         estado,
         fechaSolicitud,

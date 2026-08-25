@@ -38,7 +38,7 @@ async function registrar(req, res) {
         }
         //<=====Subida de la info. profesional del usuario=============>\\
         if (req.body.esProfesional === "true") {
-            const { profesion, matricula, } = req.body
+            const { profesion, "DNI-CUIL": dniCuil } = req.body
             const { data: dataProfesion, error: errorProfesion } = await supabase
                 .from('Profesiones')
                 .select("id").eq('profesion', profesion).single()
@@ -62,7 +62,7 @@ async function registrar(req, res) {
                 .insert({
                     user_USP: id_U,
                     id_Prof: dataProfesion.id,
-                    matricula: matricula,
+                   "DNI-CUIL": dniCuil,
                     documentacion: dataStorage.path,
                     fechaSolicitud: new Date()
                 })
