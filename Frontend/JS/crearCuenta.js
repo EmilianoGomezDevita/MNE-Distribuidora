@@ -1,3 +1,5 @@
+import { API_URL } from './config.js';
+
 document.addEventListener("DOMContentLoaded", function () {
     //Variables de los botones del form para cambiar entre ingresar y registrarse
     const registrarBtn = document.getElementById('btn-show-register')
@@ -75,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (esPro) {
                 formData.append("profesion", document.getElementById("profesion").value);
-                formData.append("matricula", document.getElementById("matricula").value.trim());
+                formData.append("DNI/CUIL", document.getElementById("DNI/CUIL").value.trim());
 
                 // Adjuntamos el archivo binario explícitamente
                 const inputCredencial = document.getElementById("credencial");
