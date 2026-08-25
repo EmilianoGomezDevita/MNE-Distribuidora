@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const valores = card.querySelectorAll('.info-item .value');
         valores[0].textContent = solicitud.Profesiones.profesion;
-        valores[1].textContent = solicitud.DNI/CUIL;
+        valores[1].textContent = solicitud.DNI-CUIL;
         valores[2].textContent = formatearFecha(solicitud.fechaSolicitud);
 
         const btnDoc = card.querySelector('.btn-doc');
