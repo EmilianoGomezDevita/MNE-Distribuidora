@@ -35,8 +35,8 @@
       </nav>
 
       <div class="header-actions">
-        <a href="./pages/crearCuenta.html" class="link-plain">Iniciar sesión</a>
-        <a href="./pages/crearCuenta.html" class="btn-outline">Crear cuenta</a>
+        <a href="./crearCuenta.html" class="link-plain">Iniciar sesión</a>
+        <a href="./crearCuenta.html" class="btn-outline">Crear cuenta</a>
         <button class="cart-btn" aria-label="Ver carrito">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -58,8 +58,8 @@
 
       <div class="marcas-pill">
         <button class="btn-mmarca active" data-marca="todas">Todas</button>
-        <button class="btn-mmarca" data-marca="SEM">SEM BioCream</button>
-        <button class="btn-mmarca" data-marca="#">marca 2</button>
+        <button class="btn-mmarca" data-marca="SEM BioCream">SEM BioCream</button>
+        <button class="btn-mmarca" data-marca="U-DERM">U-DERM</button>
       </div>
     </section>
 
@@ -72,7 +72,7 @@
         <div class="card-info">
           <h3 class="prod-nombre">Desmaquillante Efecto Seda – con alto poder de arrastre</h3>
           <p class="product-price">$36.000 Iva Inc</p>
-          <button class="btn-primary btn-block">Agregar al carrito</button>
+          <button class="btn-primary btn-block" data-id="1">Agregar al carrito</button>
         </div>
       </article>
       <!--Card de producto 2-->
@@ -81,9 +81,9 @@
           <img src="../assets/img/productos-Sem/MASCARA-CARBON-DETOX-ANTIAGE.webp" alt="" id="img-3">
         </div>
         <div class="card-info">
-          <h3 class="prod-name">MASCARA CARBON DETOX ANTIAGE</h3>
+          <h3 class="prod-nombre">MASCARA CARBON DETOX ANTIAGE</h3>
           <p class="product-price">$37.000 Iva Inc.</p>
-          <button class="btn-primary btn-block">Agregar al carrito</button>
+          <button class="btn-primary btn-block" data-id="2">Agregar al carrito</button>
         </div>
       </article>
       <!--Card de producto 3-->
@@ -94,7 +94,7 @@
         <div class="card-info">
           <h3 class="prod-nombre">Gel de limpieza Facial</h3>
           <p class="product-price">$30.000 Iva Inc</p>
-          <button class="btn-primary btn-block">Agregar al carrito</button>
+          <button class="btn-primary btn-block" data-id="3">Agregar al carrito</button>
         </div>
       </article>
 
@@ -103,9 +103,9 @@
           <img src="../assets/img/productos-Sem/tonico.webp" alt="">
         </div>
         <div class="card-info">
-          <h3 class="prod-name">TONICO HIDRATANTE </h3>
+          <h3 class="prod-nombre">TONICO HIDRATANTE </h3>
           <p class="product-price">$39.000 Iva Inc.</p>
-          <button class="btn-primary btn-block">Agregar al carrito</button>
+          <button class="btn-primary btn-block" data-id="4">Agregar al carrito</button>
         </div>
       </article>
 
@@ -175,7 +175,7 @@
   </footer>
 
   <!-- Script del Catalogo -->
-  <script src="../JS/.js"></script>
+  <script type="module" src="../JS/catalogo.js"></script>
 </body>
 
 </html>
