@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (esPro) {
                 formData.append("profesion", document.getElementById("profesion").value);
-                formData.append("DNI/CUIL", document.getElementById("DNI/CUIL").value.trim());
+                formData.append("DNI-CUIL", document.getElementById("DNI-CUIL").value.trim());
 
                 // Adjuntamos el archivo binario explícitamente
                 const inputCredencial = document.getElementById("credencial");
