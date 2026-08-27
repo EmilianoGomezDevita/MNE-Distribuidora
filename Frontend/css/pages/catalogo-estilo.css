@@ -137,17 +137,14 @@
   overflow: hidden;
   background-color: #f8f8f7; }
   .card-img-container .card-img-container img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center; }
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background-color: #f2f0ec; }
     .card-img-container .card-img-container img img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      object-position: center;
-      transition: transform 350ms ease; }
+      object-fit: cover;
+      object-position: center; }
     .card-img-container .card-img-container img img#id-3,
     .card-img-container .card-img-container img img#id-4 {
       transform: translateY(30px); }
