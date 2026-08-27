@@ -187,12 +187,9 @@ $catalog-radius: 14px;
 
   //.card-img-container {
   .card-img-container img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-
+    aspect-ratio: 1 / 1; // cuadrado — podés probar 4/5 si preferís más alto que ancho
+    overflow: hidden;
+    background-color: #f2f0ec; // color de fondo mientras carga o si la imagen es más chica
     //   &::after {
     //     content: "";
     //     position: absolute;
@@ -208,13 +205,13 @@ $catalog-radius: 14px;
     img {
       width: 100%;
       height: 100%;
-      object-fit: contain; // Hace que la foto ocupe todo el recuadro sin deformarse
-      object-position: center; // Centra el producto en la toma
-      transition: transform 350ms ease;
+      object-fit: cover; // la imagen "rellena" el espacio, recortando lo que sobre
+      object-position: center;
     }
-    img#id-3, 
-    img#id-4{
-     transform: translateY(30px);
+
+    img#id-3,
+    img#id-4 {
+      transform: translateY(30px);
     }
   }
 }

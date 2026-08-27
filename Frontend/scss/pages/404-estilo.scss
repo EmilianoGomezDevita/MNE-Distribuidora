@@ -1,0 +1,210 @@
+// ============================================================
+// MNE · Página 404
+// Estilos únicamente para el contenido principal.
+// Header y footer utilizan los componentes globales del sitio.
+// ============================================================
+
+$error-bg: #f8f8f7;
+$error-surface: #ffffff;
+$error-ink: #121212;
+$error-muted: #7d6b5d;
+$error-soft: #efe8e1;
+$error-line: #e4ddd6;
+$error-shadow: 0 24px 70px rgba(46, 36, 28, 0.09);
+$error-radius: 1.5rem;
+$error-transition: 220ms ease;
+
+#error-404.error-container {
+  min-height: min(68vh, 42rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(4rem, 9vw, 8rem) 1.5rem;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(239, 232, 225, 0.7), transparent 38%),
+    $error-bg;
+  color: $error-ink;
+  overflow: hidden;
+}
+
+.error-content {
+  position: relative;
+  width: min(100%, 44rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(2.5rem, 7vw, 5rem) clamp(1.5rem, 6vw, 4.5rem);
+  background: rgba($error-surface, 0.94);
+  border: 1px solid rgba($error-line, 0.85);
+  border-radius: $error-radius;
+  box-shadow: $error-shadow;
+  isolation: isolate;
+
+  &::before,
+  &::after {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    border: 1px solid rgba($error-muted, 0.15);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &::before {
+    width: 12rem;
+    height: 12rem;
+    top: -7rem;
+    right: -5rem;
+  }
+
+  &::after {
+    width: 8rem;
+    height: 8rem;
+    bottom: -5rem;
+    left: -3rem;
+  }
+}
+
+.error-code {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: $error-muted;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(6rem, 18vw, 10rem);
+  font-weight: 600;
+  line-height: 0.72;
+  letter-spacing: -0.06em;
+  opacity: 0.92;
+}
+
+.error-title {
+  max-width: 34rem;
+  margin: 1.25rem 0 0;
+  color: $error-ink;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.1rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.error-text {
+  max-width: 30rem;
+  margin: 1.25rem 0 0;
+  color: $error-muted;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  text-wrap: balance;
+}
+
+.error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.error-actions .btn-primary,
+.error-actions .btn-outline {
+  min-width: 10.5rem;
+  min-height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.25rem;
+  border-radius: 999px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.07em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform $error-transition, background-color $error-transition,
+    border-color $error-transition, color $error-transition, box-shadow $error-transition;
+}
+
+.error-actions .btn-primary {
+  border: 1px solid $error-ink;
+  background: $error-ink;
+  color: $error-surface;
+  box-shadow: 0 8px 20px rgba(18, 18, 18, 0.12);
+
+  &:hover {
+    background: $error-muted;
+    border-color: $error-muted;
+    box-shadow: 0 10px 24px rgba(125, 107, 93, 0.2);
+    transform: translateY(-2px);
+  }
+}
+
+.error-actions .btn-outline {
+  border: 1px solid $error-line;
+  background: transparent;
+  color: $error-ink;
+
+  &:hover {
+    border-color: $error-muted;
+    background: $error-soft;
+    color: $error-ink;
+    transform: translateY(-2px);
+  }
+}
+
+.error-actions .btn-primary:focus-visible,
+.error-actions .btn-outline:focus-visible {
+  outline: 3px solid rgba(125, 107, 93, 0.35);
+  outline-offset: 4px;
+}
+
+@media (max-width: 560px) {
+  #error-404.error-container {
+    min-height: 70vh;
+    padding: 3rem 1rem;
+  }
+
+  .error-content {
+    padding: 3rem 1.25rem;
+    border-radius: 1.25rem;
+  }
+
+  .error-code {
+    font-size: clamp(5.5rem, 27vw, 8rem);
+  }
+
+  .error-actions {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 18rem;
+  }
+
+  .error-actions .btn-primary,
+  .error-actions .btn-outline {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .error-actions .btn-primary,
+  .error-actions .btn-outline {
+    transition: none;
+  }
+}
+
+@media print {
+  #error-404.error-container {
+    min-height: auto;
+    padding: 3rem 1rem;
+    background: $error-surface;
+  }
+
+  .error-content {
+    box-shadow: none;
+  }
+} 
