@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors'
 import dotenv from 'dotenv';
+import path from 'path';
 import authRoutes from './src/routes/authRoute.js';
 import adminRoutes from './src/routes/adminRoute.js'
 import productosRoutes from './src/routes/prodRoute.js';
@@ -23,6 +24,10 @@ app.use('/api/auth', authRoutes)
 app.use('/api/cat', productosRoutes)
 
 app.use('/api/admin', adminRoutes)
+
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(process.cwd(), '..', '/Frontend/pages/404.html'))
+})
 
 app.listen(port, () => {
     console.log("Servidor corriendo en ", port);
