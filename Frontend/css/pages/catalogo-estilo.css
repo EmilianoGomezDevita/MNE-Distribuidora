@@ -212,6 +212,42 @@
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 1.6rem; }
 
+.paginacion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  width: 100%; }
+  .paginacion .btn-pagina {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 0.75rem;
+    border: 1px solid rgba(125, 107, 93, 0.2);
+    border-radius: 999px;
+    color: #7d6b5d;
+    background: #ffffff;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 180ms ease; }
+    .paginacion .btn-pagina:hover {
+      color: #121212;
+      border-color: #121212;
+      transform: translateY(-1px); }
+    .paginacion .btn-pagina.active {
+      color: #ffffff;
+      border-color: #121212;
+      background: #121212;
+      font-weight: 600; }
+    .paginacion .btn-pagina:focus-visible {
+      outline: 2px solid #9c806c;
+      outline-offset: 2px; }
+
 @media (max-width: 980px) {
   .grid-productos {
     grid-template-columns: repeat(3, minmax(0, 1fr)); } }
