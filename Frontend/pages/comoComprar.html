@@ -1,14 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Como Comprar | MNE Distribuidora</title>
 </head>
 
 <body>
-
   <!-- ============================ HEADER ============================ -->
   <header class="site-header">
     <div class="header-inner">
@@ -20,16 +19,22 @@
         </span>
       </a>
 
-      <nav class="main-nav" aria-label="Navegación principal">
+      <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
         <a href="../index.html">Inicio</a>
         <a href="./pages/catalogo.html">Catálogo</a>
         <a href="#contacto">Contacto</a><!--link al footer-->
         <a href="./pages/about.html">Sobre mi</a>
+
+        <!-- Se visible en mobile adentro del menú -->
+        <div class="mobile-account-actions">
+          <a href="./crearCuenta.html" class="btn-outline">Iniciar sesión</a>
+          <a href="./crearCuenta.html" class="btn-outline">Crear cuenta</a>
+        </div>
       </nav>
 
       <div class="header-actions">
-        <a href="./pages/crearCuenta.html" class="link-plain">Iniciar sesión</a>
-        <a href="./pages/crearCuenta.html" class="btn-outline">Crear cuenta</a>
+        <a href="./crearCuenta.html" class="link-plain desktop-only">Iniciar sesión</a>
+        <a href="./crearCuenta.html" class="btn-outline desktop-only">Crear cuenta</a>
         <button class="cart-btn" aria-label="Ver carrito">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -38,47 +43,76 @@
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
           </svg>
         </button>
+        <!-- Botón Hamburguesa (solo visible en celular) -->
+        <button class="btn-hamburguesa" id="btn-hamburguesa" aria-label="abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
   </header>
   <!-- ============================ CONTENIDO PRINCIPAL ============================ -->
   <main class="info-container" id="info-nosotros">
     <section class="info-section">
-      
       <ul class="info-tree">
-        
         <!-- Bloque 1: Cómo comprar -->
         <li class="info-tree__item">
           <h2 class="info-tree__title">Cómo comprar en MNE Distribuidora</h2>
           <p class="info-tree__text">
-            MNE Distribuidora es una distribuidora de insumos cosméticos destinada al público general y a profesionales de la estética.
+            MNE Distribuidora es una distribuidora de insumos cosméticos
+            destinada al público general y a profesionales de la estética.
           </p>
         </li>
 
         <!-- Bloque 2: Pasos de solicitud -->
         <li class="info-tree__item">
-          <h2 class="info-tree__title">¿Cómo solicitar una Cuenta Profesional?</h2>
+          <h2 class="info-tree__title">
+            ¿Cómo solicitar una Cuenta Profesional?
+          </h2>
           <ol class="info-steps">
-            <li class="info-steps__item">Completá el formulario de solicitud de Registro Profesional.</li>
-            <li class="info-steps__item">Adjuntá la documentación que acredite tu actividad profesional.</li>
-            <li class="info-steps__item">Nuestro equipo verificará la información enviada.</li>
-            <li class="info-steps__item">Una vez aprobada tu solicitud, recibirás un correo electrónico con la confirmación para acceder a la tienda.</li>
+            <li class="info-steps__item">
+              Completá el formulario de solicitud de Registro Profesional.
+            </li>
+            <li class="info-steps__item">
+              Adjuntá la documentación que acredite tu actividad profesional.
+            </li>
+            <li class="info-steps__item">
+              Nuestro equipo verificará la información enviada.
+            </li>
+            <li class="info-steps__item">
+              Una vez aprobada tu solicitud, recibirás un correo electrónico
+              con la confirmación para acceder a la tienda.
+            </li>
           </ol>
         </li>
 
         <!-- Bloque 3: Destinatarios -->
         <li class="info-tree__item">
-          <h2 class="info-tree__title">¿Quiénes pueden solicitar una cuenta?</h2>
-          <p class="info-tree__text">La Cuenta Profesional está destinada a profesionales vinculados al área de la estética, como:</p>
+          <h2 class="info-tree__title">
+            ¿Quiénes pueden solicitar una cuenta?
+          </h2>
+          <p class="info-tree__text">
+            La Cuenta Profesional está destinada a profesionales vinculados al
+            área de la estética, como:
+          </p>
           <ul class="info-tags">
             <li class="info-tags__item">Cosmetólogas/os</li>
             <li class="info-tags__item">Cosmiatras</li>
             <li class="info-tags__item">Médicas/os</li>
             <li class="info-tags__item">Dermatólogas/os</li>
-            <li class="info-tags__item">Kinesiólogas/os especializados en estética</li>
+            <li class="info-tags__item">
+              Kinesiólogas/os especializados en estética
+            </li>
             <li class="info-tags__item">Esteticistas</li>
-            <li class="info-tags__item">Instituciones educativas del rubro</li>
-            <li class="info-tags__item">Otros profesionales relacionados con la estética y el cuidado de la piel</li>
+            <li class="info-tags__item">
+              Instituciones educativas del rubro
+            </li>
+            <li class="info-tags__item">
+              Otros profesionales relacionados con la estética y el cuidado de
+              la piel
+            </li>
           </ul>
         </li>
 
@@ -86,18 +120,26 @@
         <li class="info-tree__item">
           <h2 class="info-tree__title">Información importante</h2>
           <ul class="info-bullets">
-            <li class="info-bullets__item">La aprobación de la cuenta está sujeta a la validación de la documentación presentada.</li>
-            <li class="info-bullets__item">Nos reservamos el derecho de solicitar información adicional si fuera necesario.</li>
-            <li class="info-bullets__item">Una vez aprobada tu cuenta, podrás acceder a descuentos y productos exclusivos para profesionales.</li>
-            <li class="info-bullets__item info-bullets__item--highlight">Envíos a CABA por moto y fuera de CABA por Mercado Envíos.</li>
+            <li class="info-bullets__item">
+              La aprobación de la cuenta está sujeta a la validación de la
+              documentación presentada.
+            </li>
+            <li class="info-bullets__item">
+              Nos reservamos el derecho de solicitar información adicional si
+              fuera necesario.
+            </li>
+            <li class="info-bullets__item">
+              Una vez aprobada tu cuenta, podrás acceder a descuentos y
+              productos exclusivos para profesionales.
+            </li>
+            <li class="info-bullets__item info-bullets__item--highlight">
+              Envíos a CABA por moto y fuera de CABA por Mercado Envíos.
+            </li>
           </ul>
         </li>
-
       </ul>
-
     </section>
   </main>
-
 
   <!-- ============================ FOOTER ============================ -->
   <footer class="site-footer" id="contacto">
@@ -159,6 +201,7 @@
     </div>
   </footer>
 
+  <script type="module" src="../JS/components/header.js"></script>
 </body>
 
 </html>
