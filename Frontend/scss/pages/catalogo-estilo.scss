@@ -291,6 +291,53 @@ $catalog-radius: 14px;
   font-size: 1.6rem;
 }
 
+
+// Paginación del catálogo
+.paginacion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  width: 100%;
+
+  .btn-pagina {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 0.75rem;
+    border: 1px solid $catalog-line;
+    border-radius: 999px; // Botones redondos/pills
+    color: $catalog-muted;
+    background: $catalog-surface;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 180ms ease;
+
+    &:hover {
+      color: $catalog-text;
+      border-color: $catalog-text;
+      transform: translateY(-1px);
+    }
+
+    &.active {
+      color: $catalog-surface;
+      border-color: $catalog-text;
+      background: $catalog-text;
+      font-weight: 600;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $catalog-accent;
+      outline-offset: 2px;
+    }
+  }
+}
+
 @media (max-width: 980px) {
   .grid-productos {
     grid-template-columns: repeat(3, minmax(0, 1fr));

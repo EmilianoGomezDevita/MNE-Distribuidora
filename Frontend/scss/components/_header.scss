@@ -136,3 +136,98 @@ $max-width: 1160px;
         background-color: $primary-light;
     }
 }
+
+// Ocultar por defecto en desktop
+.btn-hamburguesa .mobile-account-actions {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    // 1. Ocultar la bajada del logo en mobile
+    .brand-sub {
+        display: none;
+    }
+
+    .brand-name {
+        display: none;
+    }
+
+    // 2. Ocultar links de cuenta en mobile
+    .header-actions .link-plain,
+    .header-actions .btn-outline {
+        display: none;
+    }
+
+    .desktop-only {
+        display: none !important;
+    }
+
+    // Formato adentro del desplegable
+    .mobile-account-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        width: 100%;
+        margin-top: 0.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid $border-color;
+
+        .btn-outline{
+            display: inline-flex;
+            justify-content: center;
+            width: 80%;
+            padding: 0.5rem 1rem;
+            border: 1px solid $text-primary;
+            border-radius: $radius-pill;
+        }
+    }
+
+    // 3. Mostrar botón hamburguesa corregido
+    .btn-hamburguesa {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+
+        span {
+            width: 100%;
+            height: 2px;
+            background-color: $text-primary;
+            border-radius: 2px;
+            transition: $transition-base;
+        }
+    }
+
+    // 4. Transformar el nav en menú desplegable
+    .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: $bg-card;
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem 0;
+        gap: 1.25rem;
+        box-shadow: $shadow-soft;
+        border-bottom: 1px solid $border-color;
+        display: none; // Oculto por defecto
+
+        &.active {
+            display: flex; // Se muestra al presionar
+        }
+
+        // Desactivar la línea animada de hover para los botones de cuenta
+        .mobile-account-actions a::after {
+            display: none;
+        }
+    }
+
+}
