@@ -76,12 +76,81 @@ async function addAlCarrito(req, res) {
     }
 }
 
+//FUNCIONA PARA RESTAR CANTIDAD DE UN ITEM
+async function restarItem(req, res) {
+    const idItem = req.params.id;
+    const idUsuario = req.usuario.id;
+    const { cant } = req.body;
 
+    try {
+        //paso 1: buscar el carrito del usuario
+        const { data: dataCarrito, error: errorBuscarCarrito } = await supabase
+            .from('Carritos')
+            .select('id')
+            .eq('id_User', idUsuario)
+            .maybeSingle();// a diferencia de .single(), no tira error si no hay ninguna fila
+
+        if (errorBuscarCarrito) {
+            throw new Error(errorBuscarCarrito.message)
+        }
+        if (!dataCarrito) {
+            return res.status(404).json({ mensaje: "No tenés ningún carrito, Primero debes agregar un producto al carrito" });
+        }
+        // Paso 2: ¿ya tenía este producto en el carrito?
+        const { data: itemExistente, error: errorConsultaCant } = await supabase
+            .from('itemsCarrito')
+            .select('id_IC, cantidad')
+            .eq('id_IC', idItem)
+            .eq('id_C', dataCarrito.id)
+
+            .maybeSingle()
+
+        if (errorConsultaCant) {
+            throw new Error(errorConsultaCant.message)
+        }
+        if (!itemExistente) {
+            return res.status(404).json({ mensaje: "El producto no existe en tu carrito" });
+        }
+        // Paso3: restar el item, pero SOLO si pertenece a este carrito
+        const nuevaCant = itemExistente.cantidad - cant;
+
+        if (nuevaCant <= 0) {
+            const { errorDelete } = await supabase
+                .from('itemsCarrito')
+                .delete()
+                .eq('id_IC', itemExistente.id_IC)
+
+            if (errorDelete) {
+                throw new Error(errorDelete.message)
+            }
+            return res.status(200).json({ mensaje: "Producto eliminado del carrito" })
+        } else {
+            const { error: errrorUpdate } = await supabase
+                .from('itemsCarrito')
+                .update({ cantidad: nuevaCant })
+                .eq('id_IC', idItem)
+                .eq('id_C', dataCarrito.id) // <- esta segunda condición es la clave de seguridad
+
+            if (errrorUpdate) {
+                throw new Error(errrorUpdate.message)
+            }
+
+            res.status(200).json({ mensaje: "Cantidad actualizada", cantidad: nuevaCant })
+        }
+
+
+    }
+    catch (err) {
+        return res.status(400).json({ mensaje: "Error al actualizar la cantidad", error: err.message })
+    }
+}
+//FUNCIONA PARA ELIMINAR ITEM DEL CARRITO
 async function eliminarItem(req, res) {
     const idItem = req.params.id;
     const idUsuario = req.usuario.id;
 
     try {
+        //paso 1: buscar el carrito del usuario
         const { data: dataCarrito, error: errorBuscarCarrito } = await supabase
             .from('Carritos')
             .select('id')
@@ -96,20 +165,20 @@ async function eliminarItem(req, res) {
         }
 
         // Paso 2: borrar el item, pero SOLO si pertenece a este carrito
-        const { error: errorDelete} = await supabase
-        .from('itemsCarrito')
-        .delete()
-        .eq('id_IC', idItem)
-        .eq('id_C', dataCarrito.id)
+        const { error: errorDelete } = await supabase
+            .from('itemsCarrito')
+            .delete()
+            .eq('id_IC', idItem)
+            .eq('id_C', dataCarrito.id)
 
-        if(errorDelete){
+        if (errorDelete) {
             throw new Error(errorDelete.message)
         }
-        return res.status(200).json({mensaje:"Producto eliminado del carrito"});
+        return res.status(200).json({ mensaje: "Producto eliminado del carrito" });
     }
-    catch(err){
-        return res.status(400).json({mensaje:"Error al eliminar del carrito", error: err.message})
+    catch (err) {
+        return res.status(400).json({ mensaje: "Error al eliminar del carrito", error: err.message })
     }
 }
 
-export { addAlCarrito };
+export { addAlCarrito, restarItem, eliminarItem };
