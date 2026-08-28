@@ -115,7 +115,7 @@ async function restarItem(req, res) {
         const nuevaCant = itemExistente.cantidad - cant;
 
         if (nuevaCant <= 0) {
-            const { errorDelete } = await supabase
+            const { error: errorDelete } = await supabase
                 .from('itemsCarrito')
                 .delete()
                 .eq('id_IC', itemExistente.id_IC)
