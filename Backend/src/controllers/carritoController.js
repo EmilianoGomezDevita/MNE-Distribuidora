@@ -69,7 +69,7 @@ async function addAlCarrito(req, res) {
         }
         res.status(201).json({mensaje: "Producto agregado al carrito"})
     }
-    
+
     catch(err){
         return res.status(400).json({mensaje: "Error al agregar al carrito", error: err.message})
     }
