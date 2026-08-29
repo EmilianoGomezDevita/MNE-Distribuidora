@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const container = document.getElementById('grid-productos');
     const template = container.querySelector('.card-producto');
 
-    const PRODUCTOS_POR_PAGINA = 8; // subilo a 12 si preferís
+    const PRODUCTOS_POR_PAGINA = 8;
 
-    let todosLosProductos = []; // guardamos la lista completa acá
+    let todosLosProductos = [];
     let paginaActual = 1;
 
     function formatearPrecio(numero) {
@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function crearTarjeta(producto) {
         const card = template.cloneNode(true);
-
         card.dataset.id = producto.id;
 
         const img = card.querySelector('.card-img-container img');
@@ -25,18 +24,17 @@ document.addEventListener("DOMContentLoaded", function () {
         img.alt = producto.nombre;
 
         const nombreEl = card.querySelector('.prod-nombre, .prod-name');
-        nombreEl.textContent = producto.nombre;
+        if (nombreEl) nombreEl.textContent = producto.nombre;
 
-        card.querySelector('.product-price').textContent =
-            `$${formatearPrecio(producto.precio)} Iva Inc.`;
+        const precioEl = card.querySelector('.product-price');
+        if (precioEl) precioEl.textContent = `$${formatearPrecio(producto.precio)} Iva Inc.`;
 
         const btnAgregar = card.querySelector('.btn-primary');
-        btnAgregar.dataset.id = producto.id;
+        if (btnAgregar) btnAgregar.dataset.id = producto.id;
 
         return card;
     }
 
-    // Solo dibuja los productos que corresponden a la página actual
     function renderizarPagina() {
         container.innerHTML = '';
 
@@ -54,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function renderizarControlesPaginacion() {
         let paginacionEl = document.getElementById('paginacion');
 
-        // Si el HTML todavía no tiene el contenedor, lo creamos una sola vez
         if (!paginacionEl) {
             paginacionEl = document.createElement('div');
             paginacionEl.id = 'paginacion';
@@ -64,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const totalPaginas = Math.ceil(todosLosProductos.length / PRODUCTOS_POR_PAGINA);
 
-        // Si todo entra en una sola página, no hace falta mostrar controles
         if (totalPaginas <= 1) {
             paginacionEl.innerHTML = '';
             return;
@@ -100,13 +96,41 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Delegación de eventos: "Agregar al carrito" y los botones de paginación,
-    // ambos escuchados desde el document (los botones de página se crean
-    // fuera del contenedor original, así que delegamos más arriba).
+    async function agregarProdAlCarrito(idProducto) {
+        if (!token) {
+            alert("Debés iniciar sesión primero.");
+            window.location.href = "./crearCuenta.html";
+            return;
+        }
+        try {
+            // La ruta real vive bajo /api/usuario, no /api/carrito
+            const res = await fetch(`${API_URL}/api/usuario/carrito`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id_Producto: Number(idProducto), cant: 1 })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.mensaje || "No se pudo agregar el producto");
+            }
+
+            alert("Producto agregado al carrito");
+        } catch (err) {
+            alert(err.message);
+        }
+    }
+
     document.addEventListener('click', function (event) {
         if (event.target.classList.contains('btn-primary')) {
             const idProducto = event.target.dataset.id;
-            console.log('Agregar al carrito, producto id:', idProducto);
+            if (idProducto) {
+                agregarProdAlCarrito(idProducto);
+            }
         }
 
         if (event.target.classList.contains('btn-pagina')) {
