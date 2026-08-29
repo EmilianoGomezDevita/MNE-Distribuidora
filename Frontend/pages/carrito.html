@@ -1,11 +1,183 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Fuentes: Cormorant Garamond (títulos) + Inter (cuerpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <!-- Reemplazá por la ruta a tu CSS compilado desde el SCSS -->
+  <link rel="stylesheet" href="../css/estilos.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrito | MNE-Distribuidora</title>
 </head>
+
 <body>
-  
+  <!-- Header consistente con el sitio -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="brand" aria-label="MNE — Mi Nuevo Espacio, Distribuidora">
+        <span class="brand-mark">MNE</span>
+        <span class="brand-text">
+          <span class="brand-name">MI NUEVO ESPACIO</span>
+          <span class="brand-sub">Distribuidora · By Dermatocosmiatra Verovais</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
+        <a href="../index.html">Inicio</a>
+        <a href="./pages/catalogo.html">Catálogo</a>
+        <a href="#contacto">Contacto</a><!--link al footer-->
+        <a href="./pages/about.html">Sobre mi</a>
+
+        <!-- Se visible en mobile adentro del menú -->
+        <div class="mobile-account-actions">
+          <a href="./crearCuenta.html" class="btn-outline">Iniciar sesión</a>
+          <a href="./crearCuenta.html" class="btn-outline">Crear cuenta</a>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <a href="./crearCuenta.html" class="link-plain desktop-only">Iniciar sesión</a>
+        <a href="./crearCuenta.html?form=registro" class="btn-outline desktop-only">Crear cuenta</a>
+        <a href="./perfil.html" class="link-plain desktop-only" id="header-perfil-link" style="display:none;">
+          <!-- ícono de círculo con persona -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
+          </svg>
+        </a>
+        <a href="./carrito.html" class="cart-btn" aria-label="Ver carrito">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1" />
+            <circle cx="20" cy="21" r="1" />
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+          </svg>
+        </a>
+        <!-- Botón Hamburguesa (solo visible en celular) -->
+        <button class="btn-hamburguesa" id="btn-hamburguesa" aria-label="abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="cart-container">
+    <h1 class="cart-title">Carrito de compras</h1>
+
+    <div class="cart-layout">
+      <!-- Columna Izquierda: Lista de Productos -->
+      <section class="cart-items-section" aria-label="Productos en el carrito">
+        <ul class="cart-list" id="carrito-items-container">
+          <!-- Item 1 -->
+          <li class="cart-item" data-id="1">
+            <div class="cart-item-img">
+              <img src="../assets/img/productos-Sem/Desmaquillante.webp" alt="Desmaquillante Efecto Seda" />
+            </div>
+
+            <div class="cart-item-details">
+              <div class="cart-item-header">
+                <h2 class="cart-item-title">
+                  Desmaquillante Efecto Seda – con alto poder de arrastre
+                </h2>
+                <button class="btn-remove" aria-label="Eliminar producto">
+                  &times;
+                </button>
+              </div>
+
+              <p class="cart-item-price">Precio: <span>$36.000</span></p>
+
+              <div class="cart-item-actions">
+                <div class="quantity-selector">
+                  <button type="button" class="btn-qty" aria-label="Disminuir cantidad">
+                    -
+                  </button>
+                  <input type="number" class="input-qty" value="1" min="1" readonly aria-label="Cantidad" />
+                  <button type="button" class="btn-qty" aria-label="Aumentar cantidad">
+                    +
+                  </button>
+                </div>
+
+                <p class="cart-item-subtotal">
+                  Subtotal: <span>$36.000</span>
+                </p>
+              </div>
+            </div>
+          </li>
+
+          <!-- Item 2 -->
+          <li class="cart-item" data-id="2">
+            <div class="cart-item-img">
+              <img src="../assets/img/productos-Sem/MASCARA-CARBON-DETOX-ANTIAGE.webp" alt="Máscara Carbón Detox" />
+            </div>
+
+            <div class="cart-item-details">
+              <div class="cart-item-header">
+                <h2 class="cart-item-title">Máscara Carbón Detox Antiage</h2>
+                <button class="btn-remove" aria-label="Eliminar producto">
+                  &times;
+                </button>
+              </div>
+
+              <p class="cart-item-price">Precio: <span>$37.000</span></p>
+
+              <div class="cart-item-actions">
+                <div class="quantity-selector">
+                  <button type="button" class="btn-qty" aria-label="Disminuir cantidad">
+                    -
+                  </button>
+                  <input type="number" class="input-qty" value="1" min="1" readonly aria-label="Cantidad" />
+                  <button type="button" class="btn-qty" aria-label="Aumentar cantidad">
+                    +
+                  </button>
+                </div>
+
+                <p class="cart-item-subtotal">
+                  Subtotal: <span>$37.000</span>
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <a href="./catalogo.html" class="btn-secondary link-back">&larr; Seguir comprando</a>
+      </section>
+
+      <!-- Columna Derecha: Resumen de Compra -->
+      <aside class="cart-summary" aria-label="Resumen de la orden">
+        <h2>Resumen de compra</h2>
+
+        <dl class="summary-details">
+          <div class="summary-row">
+            <dt>Subtotal</dt>
+            <dd>$</dd>
+          </div>
+          <div class="summary-row">
+            <dt>Envío</dt>
+            <dd>A calcular</dd>
+          </div>
+          <div class="summary-row summary-total">
+            <dt>Total</dt>
+            <dd>$</dd>
+          </div>
+        </dl>
+
+        <a href="./checkout.html" class="btn-primary btn-block">Continuar compra</a>
+      </aside>
+    </div>
+  </main>
+
+  <script type="module" src="../JS/components/header.js"></script>
+  <script type="module" src="../JS/carrito.js"></script>
 </body>
+
 </html>
