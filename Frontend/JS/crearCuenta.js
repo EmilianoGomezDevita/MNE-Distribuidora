@@ -1,6 +1,15 @@
 import { API_URL } from './config.js';
 
 document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get('form') === 'registro') {
+        container.classList.add('active');
+    }
+
+    if (params.get('profesional') === 'true') {
+        document.getElementById('es-profesional-si').checked = true;
+    }
     //Variables de los botones del form para cambiar entre ingresar y registrarse
     const registrarBtn = document.getElementById('btn-show-register')
     const container = document.getElementById('container')
@@ -139,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         // Guardamos el token para usarlo en Mi Perfil
                         localStorage.setItem("token", data.token)
                         alert("Bienvenido!")
-                        window.location.href = "./perfil.html"
+                        window.location.href = "./index.html"
                     } else {
                         alert(data.mensaje || "credenciales incorrectas")
                     }
