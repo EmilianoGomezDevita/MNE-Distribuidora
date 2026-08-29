@@ -138,7 +138,10 @@ $max-width: 1160px;
 }
 
 // Ocultar por defecto en desktop
-.btn-hamburguesa .mobile-account-actions {
+.btn-hamburguesa {
+    display: none;
+}
+.mobile-account-actions {
     display: none;
 }
 
