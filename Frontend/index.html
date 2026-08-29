@@ -44,15 +44,23 @@
 
             <div class="header-actions">
                 <a href="./pages/crearCuenta.html" class="link-plain desktop-only">Iniciar sesión</a>
-                <a href="./pages/crearCuenta.html" class="btn-outline desktop-only">Crear cuenta</a>
-                <button class="cart-btn" aria-label="Ver carrito">
+                <a href="./pages/crearCuenta.html?form=registro" class="btn-outline desktop-only">Crear cuenta</a>
+                <a href="./pages/perfil.html" class="link-plain desktop-only" id="header-perfil-link" style="display:none;">
+                    <!-- ícono de círculo con persona -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.6">
+                        <circle cx="12" cy="8" r="4" />
+                        <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
+                    </svg>
+                </a>
+                <a href="./carrito.html" class="cart-btn" aria-label="Ver carrito">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <circle cx="9" cy="21" r="1" />
                         <circle cx="20" cy="21" r="1" />
                         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
                     </svg>
-                </button>
+                </a>
                 <!-- Botón Hamburguesa (solo visible en celular) -->
                 <button class="btn-hamburguesa" id="btn-hamburguesa" aria-label="abrir menu">
                     <span></span>
@@ -63,7 +71,6 @@
             </div>
         </div>
     </header>
-
     <main id="inicio">
         <!-- ============================ HERO ============================ -->
         <section class="hero">
@@ -79,7 +86,8 @@
                         Beneficios reservados para usuarios con Cuenta Profesional
                         activada en MNE.
                     </p>
-                    <a href="./pages/crearCuenta.html" class="btn-primary">Solicitar cuenta profesional</a>
+                    <a href="./pages/crearCuenta.html?form=registro&profesional=true" class="btn-primary">Solicitar
+                        cuenta profesional</a>
                 </div>
             </div>
         </section>
