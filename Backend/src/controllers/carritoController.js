@@ -4,6 +4,11 @@ import { manejarError } from '../utils/manejoErrores.js';
 async function addAlCarrito(req, res) {
     const idUsuario = req.usuario.id;
     const { id_Producto, cant } = req.body;
+    //validación de cant, ANTES de cualquier consulta a la base
+    const cantNumero = Number(cant);
+    if(!Number.isInteger(cantNumero) || cantNumero <= 0){
+        return res.status(400).json({mensaje: "La cantidad debe ser un número mayor a 0"})
+    }
 
     try {
         // Paso 1: buscar si el usuario ya tiene un carrito
@@ -48,7 +53,7 @@ async function addAlCarrito(req, res) {
 
         // Paso 4: según el resultado del paso 3, insert o update sumando cantidad
         if (itemExistente) {
-            const nuevaCant = itemExistente.cantidad + cant;
+            const nuevaCant = itemExistente.cantidad + cantNumero;
             const { error: errrorUpdate } = await supabase
                 .from('itemsCarrito')
                 .update({ cantidad: nuevaCant })
@@ -63,7 +68,7 @@ async function addAlCarrito(req, res) {
                 .insert({
                     id_C: idCarrito,
                     id_prod: id_Producto,
-                    cantidad: cant
+                    cantidad: cantNumero
                 })
             if (errorInsert) {
                 throw new Error(errorInsert.message)
@@ -77,11 +82,16 @@ async function addAlCarrito(req, res) {
     }
 }
 
-//FUNCIONA PARA RESTAR CANTIDAD DE UN ITEM
+//FUNCION PARA RESTAR CANTIDAD DE UN ITEM
 async function restarItem(req, res) {
     const idItem = req.params.id;
     const idUsuario = req.usuario.id;
     const { cant } = req.body;
+
+    const cantNumero = Number(cant);
+    if(!Number.isInteger(cantNumero) || cantNumero >= 200){
+        return res.status(400).json({mensaje: "La cantidad debe ser un número mayor a 0"})
+    }
 
     try {
         //paso 1: buscar el carrito del usuario
@@ -113,7 +123,7 @@ async function restarItem(req, res) {
             return res.status(404).json({ mensaje: "El producto no existe en tu carrito" });
         }
         // Paso3: restar el item, pero SOLO si pertenece a este carrito
-        const nuevaCant = itemExistente.cantidad - cant;
+        const nuevaCant = itemExistente.cantidad - cantNumero;
 
         if (nuevaCant <= 0) {
             const { error: errorDelete } = await supabase
