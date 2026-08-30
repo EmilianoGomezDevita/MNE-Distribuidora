@@ -1,4 +1,5 @@
 import { supabase } from '../config/supabase.js'
+import { manejarError } from '../utils/manejoErrores.js';
 
 async function addAlCarrito(req, res) {
     const idUsuario = req.usuario.id;
@@ -72,7 +73,7 @@ async function addAlCarrito(req, res) {
     }
 
     catch (err) {
-        return res.status(400).json({ mensaje: "Error al agregar al carrito", error: err.message })
+        return manejarError(res, 400, "Error al agregar al carrito", err);
     }
 }
 
@@ -141,7 +142,7 @@ async function restarItem(req, res) {
 
     }
     catch (err) {
-        return res.status(400).json({ mensaje: "Error al actualizar la cantidad", error: err.message })
+        return manejarError(res, 400, "Error al actualizar la cantidad", err);
     }
 }
 //FUNCIONA PARA ELIMINAR ITEM DEL CARRITO
@@ -177,7 +178,7 @@ async function eliminarItem(req, res) {
         return res.status(200).json({ mensaje: "Producto eliminado del carrito" });
     }
     catch (err) {
-        return res.status(400).json({ mensaje: "Error al eliminar del carrito", error: err.message })
+        return manejarError(res, 400, "Error al eliminar del carrito", err);
     }
 }
 

@@ -1,4 +1,5 @@
 import { supabase } from "../config/supabase.js";
+import { manejarError } from "../utils/manejoErrores.js";
 
 async function ListarCarrito(req, res) {
     const { data: carrito, error: errorCarrito } = await supabase
@@ -8,7 +9,7 @@ async function ListarCarrito(req, res) {
         .maybeSingle();
 
     if (errorCarrito) {
-        return res.status(400).json({ mensaje: "Error al buscar el carrito", error: errorCarrito.message });
+        return manejarError(res, 400, "Error al buscar el carrito", errorCarrito);
     }
 
     if (!carrito) {
@@ -25,7 +26,7 @@ async function ListarCarrito(req, res) {
         .eq('id_C', carrito.id)
 
     if (errorListarCarrito) {
-        return res.status(400).json({ mensaje: "Error al lista el carrito", error: errorListarCarrito.message })
+        return manejarError(res, 400, "Error al listar el carrito", errorCarrito);
     }
 
     let esProfesional = false

@@ -1,4 +1,5 @@
 import { supabase } from "../config/supabase.js";
+import { manejarError } from "../utils/manejoErrores.js";
 
 async function listarSolicitudesPendientes(req, res) {
     const { data: dataSP, error: errorSP } = await supabase
@@ -17,7 +18,7 @@ async function listarSolicitudesPendientes(req, res) {
         .eq("estado", "pendiente");
 
     if (errorSP) {
-        return res.status(400).json({ mensaje: "Error al intentar acceder a los datos", error: errorSP.message })
+        return manejarError(res, 400, "Error al intentar acceder a los datos", errorSP)
     }
 
     return res.status(200).json({
@@ -70,8 +71,7 @@ async function actualizarSolicitud(req, res) {
                 .eq('id_SP', idSolicitud)
                 .single()
         }
-
-        res.status(400).json({ mensaje: "Error al completar la actualizacion", error: err.message })
+        return manejarError(res, 400, "Error al completar la actualizacion", err)
     }
 
 

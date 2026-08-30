@@ -1,4 +1,5 @@
 import { supabase } from "../config/supabase.js";
+import { manejarError } from "../utils/manejoErrores.js";
 
 
 async function ListarProductos(req, res) {
@@ -18,7 +19,7 @@ async function ListarProductos(req, res) {
     `);
 
     if (errorProds) {
-        return res.status(400).json({ mensaje: "Error al listar los productos", error: errorProds.message })
+        return manejarError(res, 400, "Error al listar los productos", errorProds);
     }
 
     let esProfesional = false

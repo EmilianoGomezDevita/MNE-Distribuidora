@@ -1,4 +1,5 @@
 import { supabase } from "../config/supabase.js";
+import { manejarError } from "../utils/manejoErrores.js";
 
 async function registrar(req, res) {
     const { email, password, nombre, apellido, telefono } = req.body;
@@ -11,7 +12,7 @@ async function registrar(req, res) {
         }
     })
     if (errorReg) {
-        return res.status(400).json({ mensaje: "Error al registrar", error: errorReg.message });
+        return manejarError(res, 400, "Error al registrar", errorReg)
     }
     const id_U = data.user.id;
     try {
@@ -75,7 +76,7 @@ async function registrar(req, res) {
     }
     catch (err) {
         await supabase.auth.admin.deleteUser(id_U)
-        res.status(400).json({ mensaje: "Error al completar el registro", error: err.message })
+        return manejarError(res, 400, "Error al completar el registro", err)
     }
 
 }
@@ -89,7 +90,7 @@ async function iniciar(req, res) {
         password,
     })
     if(errorLogIn){
-        return res.status(401).json({mensaje: "Error al iniciar sesion. correo o contraseña", error: errorLogIn.message})
+        return manejarError(res, 401, "Error al iniciar sesion. correo o contraseña", errorLogIn)
     }
     return res.status(200).json({
         mensaje: "inicio de sesion exitoso",

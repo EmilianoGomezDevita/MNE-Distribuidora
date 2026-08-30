@@ -1,4 +1,5 @@
 import { supabase } from "../config/supabase.js";
+import { manejarError } from "../utils/manejoErrores.js";
 
 async function perfil(req, res) {
     const { data: usuarioDB, error: errorPerfil} = await supabase
@@ -6,6 +7,7 @@ async function perfil(req, res) {
     .select("nombre, apellido, tipoCuenta").eq('id_U', req.usuario.id).single()
 
     if(errorPerfil){
+        return manejarError(res, 400, "Error al obtener la informacion del perfil", errorPerfil)
         return res.status(400).json({mensaje: "Error al obtener la informacion del perfil", error: errorPerfil.message})
     }
 
