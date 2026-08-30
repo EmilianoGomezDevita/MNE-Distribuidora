@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const container = document.getElementById('grid-productos');
     const template = container.querySelector('.card-producto');
+    const loadTxt = document.getElementById('load-txt')
 
     const PRODUCTOS_POR_PAGINA = 8;
 
@@ -75,6 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     async function cargarCatalogo() {
+        if (loadTxt) loadTxt.style.display = 'block'
+        await new Promise(resolve => setTimeout(resolve, 3000)); // ← línea temporal, solo para probar
         try {
             const headers = {};
             if (token) {
@@ -89,10 +92,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
             todosLosProductos = await res.json();
             paginaActual = 1;
+            if (loadTxt) loadTxt.style.display = 'none'
             renderizarPagina();
 
         } catch (error) {
             console.error('Error al cargar el catálogo:', error);
+            if (loadTxt) {
+                loadTxt.textContent = 'No se pudo cargar el catalogo. Intente de nuevo mas tarde'
+                loadTxt.style.display = 'block'
+            }
         }
     }
 
