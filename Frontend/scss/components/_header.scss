@@ -137,10 +137,45 @@ $max-width: 1160px;
     }
 }
 
+.perfil-dropdown {
+    position: relative; // clave: el menú se posiciona respecto a este contenedor
+
+    .perfil-dropdown-menu {
+        position: absolute;
+        top: 100%; // justo debajo del botón
+        right: 0; // alineado a la derecha, para no salirse de la pantalla
+        margin-top: 8px;
+        list-style: none;
+        padding: 8px 0;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        min-width: 160px;
+        z-index: 100;
+
+        &.hidden {
+            display: none;
+        }
+
+        li a,
+        li button {
+            display: block;
+            width: 100%;
+            padding: 10px 16px;
+            text-align: left;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font: inherit;
+        }
+    }
+}
+
 // Ocultar por defecto en desktop
 .btn-hamburguesa {
     display: none;
 }
+
 .mobile-account-actions {
     display: none;
 }
@@ -177,7 +212,7 @@ $max-width: 1160px;
         padding-top: 1rem;
         border-top: 1px solid $border-color;
 
-        .btn-outline{
+        .btn-outline {
             display: inline-flex;
             justify-content: center;
             width: 80%;

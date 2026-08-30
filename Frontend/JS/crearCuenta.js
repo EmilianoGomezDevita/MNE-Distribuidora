@@ -1,7 +1,13 @@
 import { API_URL } from './config.js';
 
 document.addEventListener("DOMContentLoaded", function () {
+    // Leer parámetros de la URL — DESPUÉS de declarar container
     const params = new URLSearchParams(window.location.search);
+    //Variables de los botones del form para cambiar entre ingresar y registrarse
+    const container = document.getElementById('container')
+    const registrarBtn = document.getElementById('btn-show-register')
+    const ingresarBtn = document.getElementById('btn-show-login')
+
 
     if (params.get('form') === 'registro') {
         container.classList.add('active');
@@ -10,10 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (params.get('profesional') === 'true') {
         document.getElementById('es-profesional-si').checked = true;
     }
-    //Variables de los botones del form para cambiar entre ingresar y registrarse
-    const registrarBtn = document.getElementById('btn-show-register')
-    const container = document.getElementById('container')
-    const ingresarBtn = document.getElementById('btn-show-login')
+
 
     //eventos de los botones para cambiar entre ingresar y registrarse
     registrarBtn.addEventListener('click', () => {
@@ -148,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         // Guardamos el token para usarlo en Mi Perfil
                         localStorage.setItem("token", data.token)
                         alert("Bienvenido!")
-                        window.location.href = "./index.html"
+                        window.location.href = "../index.html"
                     } else {
                         alert(data.mensaje || "credenciales incorrectas")
                     }
