@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     async function cargarCarrito() {
+        const subTotalElement = document.getElementById('carrito-subtotal')
         try {
             const res = await fetch(`${API_URL}/api/usuario/carrito`, {
                 headers: { 'Authorization': `Bearer ${token}` }
@@ -108,9 +109,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
 
-            if (totalElement) {
-                totalElement.textContent = `$${formatearPrecio(calcularTotal(items))}`;
+            const subTotalCalculado = calcularTotal(items)
+            if (subTotalElement) {
+                subTotalElement.textContent = `$${formatearPrecio(subTotalCalculado)}`;
             }
+
+            if (totalElement) {
+                totalElement.textContent = `$${formatearPrecio(subtotalCalculado)}`; // el envío todavía no se suma
+            }
+            if (items.length === 0) {
+                if (emptyState) emptyState.classList.remove('hidden');
+                if (subtotalElement) subtotalElement.textContent = '$0';
+                if (totalElement) totalElement.textContent = '$0';
+                return;
+            }
+
 
         } catch (error) {
             console.error('Error al cargar carrito:', error);
