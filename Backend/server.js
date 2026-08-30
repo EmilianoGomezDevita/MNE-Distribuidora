@@ -20,6 +20,8 @@ app.get('/', (req, res) => {
     res.json({mensaje: "API de MNE backend funcionando"})
 })
 
+app.use(express.static(path.join(process.cwd(), '..', 'Frontend')));
+
 app.use('/api/auth', authRoutes)
 
 app.use('/api/cat', productosRoutes)
