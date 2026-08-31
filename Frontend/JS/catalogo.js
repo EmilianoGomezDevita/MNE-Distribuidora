@@ -77,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function cargarCatalogo() {
         if (loadTxt) loadTxt.style.display = 'block'
-        await new Promise(resolve => setTimeout(resolve, 3000)); // ← línea temporal, solo para probar
         try {
             const headers = {};
             if (token) {
@@ -105,9 +104,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     async function agregarProdAlCarrito(idProducto) {
+        const toast = document.getElementById("toast");
         if (!token) {
-            alert("Debés iniciar sesión primero.");
-            window.location.href = "./crearCuenta.html";
+            // Reemplazo de alerta simple
+            Swal.fire({
+                title: 'Atención',
+                text: 'Debés iniciar sesión primero.',
+                icon: 'warning',
+                confirmButtonText: 'Ir a Iniciar Sesión',
+                confirmButtonColor: '#1A1A1A' // Podés usar variables de tu CSS
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "./crearCuenta.html";
+                }
+            });
             return;
         }
         try {
@@ -124,10 +134,21 @@ document.addEventListener("DOMContentLoaded", function () {
             const data = await res.json();
 
             if (!res.ok) {
-                throw new Error(data.mensaje || "No se pudo agregar el producto");
+                // throw new Error(data.mensaje || "No se pudo agregar el producto");
+                Swal.fire(data.mensaje);
+                return;
             }
 
-            alert("Producto agregado al carrito");
+            // Reiniciamos la animación si ya estaba corriendo
+            toast.classList.remove("show");
+            void toast.offsetWidth; // Truco para resetear animaciones CSS
+            toast.classList.add("show");
+
+            // La animación de CSS se encarga de ocultarlo, 
+            // pero lo limpiamos en JS después de 3s
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 3000);
         } catch (err) {
             alert(err.message);
         }
