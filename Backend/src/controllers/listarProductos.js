@@ -68,6 +68,7 @@ async function getProdPorId(req, res) {
                 id_categoria,
                 fechaVencimiento,
                 ImagenesProducto (url, orden)
+                Marcas (nombre)
             `)
             .eq("id", idProd)
             .single();
@@ -107,6 +108,7 @@ async function getProdPorId(req, res) {
             imagenes: dataProd.ImagenesProducto
                 ? dataProd.ImagenesProducto.sort((a, b) => a.orden - b.orden).map(img => img.url)
                 : [],
+            marca: dataProd.Marcas?.nombre || '',
         }
         return res.status(200).json(productoFinal);
     }
