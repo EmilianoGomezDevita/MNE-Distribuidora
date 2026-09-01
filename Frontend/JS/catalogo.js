@@ -33,6 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const btnAgregar = card.querySelector('.btn-primary');
         if (btnAgregar) btnAgregar.dataset.id = producto.id;
 
+        //hacemos que la tarjeta sea clickeable, salvo el botón de agregar
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function(event){
+            if(event.target.closest('btn-primary')) return; // el botón maneja su propio click
+            window.location.href = `./producto.html?id=${producto.id}`
+        });
+
         return card;
     }
 
