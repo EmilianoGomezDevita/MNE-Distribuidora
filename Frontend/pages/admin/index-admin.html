@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración | MNE</title>
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Estilos compilados -->
+  <link rel="stylesheet" href="../../css/estilos.css" />
+</head>
+<body data-modulo="index-admin" data-titulo="Panel de Gestion">
+
+  <div class="admin-layout">
+
+    <!-- ============================ SIDEBAR ============================ -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+        <div class="admin-sidebar-brand">
+            <span class="brand-mark">MNE</span>
+            <span class="admin-sidebar-label">Panel de administración</span>
+        </div>
+
+        <nav class="admin-sidebar-nav" aria-label="Navegación del panel">
+            <a href="./index-admin.html" class="admin-nav-link active" data-modulo="dashboard">
+                <!-- ícono opcional acá -->
+                Inicio
+            </a>
+            <a href="./gestionSolicitudes.html" class="admin-nav-link" data-modulo="solicitudes">
+                Solicitudes profesionales
+            </a>
+            <a href="./gestionProductos.html" class="admin-nav-link" data-modulo="productos">
+                Productos
+            </a>
+            <a href="./gestionProfesiones.html" class="admin-nav-link" data-modulo="profesiones">
+                Profesiones
+            </a>
+            <!-- agregá acá cada módulo nuevo que armes, mismo patrón -->
+        </nav>
+
+        <div class="admin-sidebar-footer">
+            <button type="button" class="admin-nav-link" id="admin-btn-cerrar-sesion">
+                Cerrar sesión
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================ MAIN CONTENT WRAPPER ============================ -->
+    <div class="admin-main-wrapper">
+
+      <!-- Topbar Superior -->
+      <header class="admin-topbar" id="admin-topbar">
+        <div class="topbar-left">
+          <button type="button" class="btn-toggle-sidebar" id="btn-toggle-sidebar" aria-label="Abrir menú de navegación">
+            <span></span><span></span><span></span>
+          </button>
+          <nav class="breadcrumbs" aria-label="Ruta de navegación">
+            <span class="breadcrumb-item">Admin</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item active">Inicio</span>
+          </nav>
+        </div>
+
+        <div class="topbar-right">
+          <div class="admin-user-info">
+            <span class="user-name">Verovais</span>
+            <small class="user-role">Administrador</small>
+          </div>
+        </div>
+      </header>
+
+      <!-- Contenido Principal (Dashboard / Inicio) -->
+      <main class="admin-container">
+        
+        <header class="admin-header">
+          <div class="admin-header-text">
+            <h1>Bienvenida, Verovais</h1>
+            <p>Resumen general del estado de tu tienda y solicitudes pendientes</p>
+          </div>
+        </header>
+
+        <!-- Tarjetas de Métricas / Resumen -->
+        <section class="admin-metrics-grid">
+          <article class="metric-card">
+            <h3>Solicitudes Pendientes</h3>
+            <p class="metric-value" id="metric-solicitudes-pendientes">0</p>
+            <a href="./gestionSolicitudes.html" class="metric-link">Revisar solicitudes &rarr;</a>
+          </article>
+
+          <article class="metric-card">
+            <h3>Total Productos</h3>
+            <p class="metric-value" id="metric-total-productos">0</p>
+            <a href="./gestionProductos.html" class="metric-link">Gestionar catálogo &rarr;</a>
+          </article>
+
+          <article class="metric-card">
+            <h3>Profesiones Registradas</h3>
+            <p class="metric-value" id="metric-total-profesiones">0</p>
+            <a href="./gestionProfesiones.html" class="metric-link">Ver lista &rarr;</a>
+          </article>
+        </section>
+
+        <!-- Accesos / Actividad Reciente -->
+        <section class="admin-dashboard-sections">
+          <div class="dashboard-card">
+            <h2>Acciones Rápidas</h2>
+            <div class="quick-actions">
+              <a href="./gestionProductos.html?action=nuevo" class="btn-primary">+ Crear nuevo producto</a>
+              <a href="./gestionSolicitudes.html" class="btn-secondary">Ver solicitudes entrantes</a>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Footer Interno del Admin -->
+      <footer class="admin-footer">
+        <p>© 2026 MNE Distribuidora — Sistema de Gestión Interno</p>
+      </footer>
+
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="../JS/admin/admin-index.js"></script>
+</body>
+</html>

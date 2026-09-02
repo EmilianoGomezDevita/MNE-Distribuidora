@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,43 @@
   <!-- Fuentes e integración de estilos del sitio -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="../../css/estilos.css">
 </head>
-<body>
 
+<body data-modulo="solicitudes" data-titulo="Solicitudes profesionales">
+  <!-- ============================ SIDEBAR ============================ -->
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <div class="admin-sidebar-brand">
+      <span class="brand-mark">MNE</span>
+      <span class="admin-sidebar-label">Panel de administración</span>
+    </div>
+
+    <nav class="admin-sidebar-nav" aria-label="Navegación del panel">
+      <a href="./index-admin.html" class="admin-nav-link" data-modulo="dashboard">
+        <!-- ícono opcional acá -->
+        Inicio
+      </a>
+      <a href="./gestionSolicitudes.html" class="admin-nav-link" data-modulo="solicitudes">
+        Solicitudes profesionales
+      </a>
+      <a href="./gestionProductos.html" class="admin-nav-link" data-modulo="productos">
+        Productos
+      </a>
+      <a href="./gestionProfesiones.html" class="admin-nav-link" data-modulo="profesiones">
+        Profesiones
+      </a>
+      <!-- agregá acá cada módulo nuevo que armes, mismo patrón -->
+    </nav>
+
+    <div class="admin-sidebar-footer">
+      <button type="button" class="admin-nav-link" id="admin-btn-cerrar-sesion">
+        Cerrar sesión
+      </button>
+    </div>
+  </aside>
   <main class="admin-container">
     <header class="admin-header">
       <h1>Solicitudes de Profesionales</h1>
@@ -20,12 +53,12 @@
 
     <!-- Contenedor principal donde JS renderizará las tarjetas -->
     <section class="solicitudes-grid" id="solicitudes-container">
-      
+
       <!-- EJEMPLO DE ESTRUCTURA DINÁMICA (Lo que va a generar el JS): ---->
       <article class="solicitud-card" data-id="12">
         <div class="card-header">
           <div class="user-info">
-             <h3 class="user-name"></h3><!--Gómez, Emiliano -->
+            <h3 class="user-name"></h3><!--Gómez, Emiliano -->
             <span class="user-email"></span>
           </div>
           <span class="badge-estado"></span>
@@ -50,7 +83,7 @@
           <button type="button" class="btn-doc" data-id="12" data-path="solicitudes/doc-12.pdf">
             📄 Ver credencial
           </button>
-          
+
           <div class="action-buttons">
             <button type="button" class="btn-aprobar" data-id="12">Aprobar</button>
             <button type="button" class="btn-rechazar" data-id="12">Rechazar</button>
@@ -67,5 +100,7 @@
   </main>
 
   <script src="../../JS/admin/gestionSolicitudes.js" type="module"></script>
+  <script type="module" src="../../JS/admin/header-admin.js"></script>
 </body>
+
 </html>

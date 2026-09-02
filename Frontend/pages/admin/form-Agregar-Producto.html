@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <!-- Estilos compilados -->
+  <link rel="stylesheet" href="../../css/estilos.css" />
+  <title>Agregar Producto | Gestión de Inventario</title>
+</head>
+
+<body>
+
+  <main class="contenedor">
+
+    <header>
+      <h1>Agregar producto</h1>
+      <p>Cargá un producto nuevo en la base de datos y luego sumale sus imágenes.</p>
+    </header>
+
+    <!-- ============ FORMULARIO: NUEVO PRODUCTO (tabla Productos) ============ -->
+    <section class="card">
+      <h2>Nuevo producto</h2>
+
+      <!-- action y method los definís vos según tu backend -->
+      <form id="form-producto" action="" method="POST">
+
+        <div class="campo">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombreProducto" name="nombreProducto" required placeholder="Nombre del producto">
+        </div>
+
+        <div class="campo">
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" name="descripcion" rows="3" required placeholder="Descripción del producto"></textarea>
+        </div>
+
+        <div class="fila">
+          <div class="campo">
+            <label for="stock">Stock</label>
+            <input type="number" id="stock"  required name="stock" min="0">
+          </div>
+
+          <div class="campo">
+            <label for="precio">Precio</label>
+            <input type="number" id="precio" required name="precio" min="0" step="0.01">
+          </div>
+
+          <div class="campo">
+            <label for="precioProfesional">Precio profesional</label>
+            <input type="number" id="precioProfesional" required name="precioProfesional" min="0" step="0.01">
+          </div>
+        </div>
+
+        <div class="fila">
+          <div class="campo">
+            <label for="id_marca">Marca</label>
+            <select id="id_marca" name="id_marca">
+              <option value="" disabled selected>Seleccionar marca…</option>
+              <option value="1">SEM BioCream</option>
+              <option value="2">U-DERM</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="id_categoria">Categoría</label>
+            <select id="id_categoria" name="id_categoria">
+              <option value="" disabled selected>Seleccionar categoría…</option>
+              <option value="1">Cremas</option>
+              <option value="2">Limpieza</option>
+              <option value="3">Acidos</option>
+              <option value="4">Serums</option>
+              <!-- Acá agregás tus opciones:
+              <option value="1">Categoría ejemplo</option>
+              -->
+            </select>
+          </div>
+        </div>
+
+        <div class="fila">
+          <div class="campo">
+            <label for="fechaVencimiento">Fecha de vencimiento</label>
+            <input type="date" id="fechaVencimiento" name="fechaVencimiento">
+          </div>
+
+          <div class="campo campo-checkbox">
+            <label for="estado">
+              <input type="checkbox" id="estado" name="estado" checked>
+              Producto activo
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-principal">Guardar producto</button>
+      </form>
+    </section>
+
+    <!-- ============ FORMULARIO: IMAGEN DEL PRODUCTO (tabla ImagenesProducto) ============ -->
+    <section class="card">
+      <h2>Imagen del producto</h2>
+      <p>Asociá una imagen a un producto existente.</p>
+
+      <form id="form-imagen" action="" method="POST">
+
+        <div class="campo">
+          <label for="id_prod">Producto *</label>
+          <select id="id_prod" name="id_prod" required>
+            <option value="">Seleccionar producto…</option>
+            <!-- Acá listás los productos que ya cargaste:
+            <option value="1">Producto ejemplo</option>
+            -->
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="url">URL de la imagen *</label>
+          <input type="url" id="url" name="url" required placeholder="https://…">
+        </div>
+
+        <div class="campo">
+          <label for="orden">Orden</label>
+          <input type="number" id="orden" name="orden" min="0" value="0">
+        </div>
+
+        <button type="submit" class="btn-principal">Guardar imagen</button>
+      </form>
+    </section>
+
+  </main>
+
+</body>
+
+</html>
