@@ -7,6 +7,7 @@
 // 2. Componentes globales (se cargan UNA sola vez)
 @import './components/header';
 @import './components/footer';
+@import './components/header-admin';
 // @import 'components/buttons';
 
 // 3. Vistas específicas
@@ -20,3 +21,6 @@
 @import './pages/carrito-estilo.scss';
 @import './pages/comoComprar-estilo.scss';
 @import './pages/producto-estilo.scss';
+@import './pages/index-admin-estilo.scss';
+@import './pages/gestionProductos-estilo.scss';
+@import './pages/form-agregarProducto-estilo.scss'

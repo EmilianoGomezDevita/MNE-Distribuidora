@@ -1,0 +1,171 @@
+// admin-productos.scss
+@use "admin-sidebar-header" as *;
+
+// resto de tus estilos
+
+$admin-bg: #f8f8f7;
+$admin-surface: #ffffff;
+$admin-ink: #171616;
+$admin-muted: #81766e;
+$admin-line: #e8e0d9;
+$admin-accent: #a98268;
+$admin-soft: #efe8e1;
+
+
+.table-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.search-box {
+    max-width: 360px;
+    flex: 1;
+}
+
+.search-box input {
+    width: 100%;
+    padding: .8rem 1rem;
+    border: 1px solid $admin-line;
+    border-radius: 999px;
+    background: $admin-surface;
+    color: $admin-ink;
+    outline: 0;
+}
+
+.search-box input:focus {
+    border-color: $admin-accent;
+    box-shadow: 0 0 0 3px rgba(169, 130, 104, .15);
+}
+
+.filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .45rem;
+}
+
+.pill-btn {
+    padding: .6rem .85rem;
+    border: 1px solid $admin-line;
+    border-radius: 999px;
+    background: $admin-surface;
+    color: $admin-muted;
+    font-size: .7rem;
+    cursor: pointer;
+}
+
+.pill-btn:hover,
+.pill-btn.active {
+    border-color: $admin-ink;
+    background: $admin-ink;
+    color: #fff;
+}
+
+.table-container {
+    overflow-x: auto;
+    border: 1px solid $admin-line;
+    border-radius: 1rem;
+    background: $admin-surface;
+}
+
+.admin-table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+}
+
+.admin-table th {
+    padding: .9rem 1rem;
+    background: $admin-soft;
+    color: $admin-muted;
+    font-size: .65rem;
+    letter-spacing: .08em;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.admin-table td {
+    padding: .9rem 1rem;
+    border-top: 1px solid $admin-line;
+    font-size: .8rem;
+}
+
+.th-select,
+.td-actions,
+.th-actions {
+    text-align: right;
+}
+
+.td-product {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    min-width: 260px;
+}
+
+.admin-prod-img {
+    width: 3.25rem;
+    height: 3.25rem;
+    flex: none;
+    border-radius: .55rem;
+    object-fit: contain;
+    background: $admin-bg;
+}
+
+.admin-prod-info {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+
+.admin-prod-name {
+    font-weight: 600;
+}
+
+.admin-prod-sub,
+.td-price,
+.td-stock {
+    color: $admin-muted;
+    font-size: .7rem;
+}
+
+.status-published {
+    background: #e6efe8;
+    color: #517258;
+}
+
+.status-out-of-stock {
+    background: #f3e4df;
+    color: #a36052;
+}
+
+.btn-icon {
+    width: 2rem;
+    height: 2rem;
+    margin-left: .3rem;
+    border: 1px solid $admin-line;
+    border-radius: .45rem;
+    background: transparent;
+    cursor: pointer;
+}
+
+.btn-icon:hover {
+    background: $admin-soft;
+}
+
+@media (max-width: 700px) {
+    .table-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .search-box {
+        max-width: none;
+    }
+
+    .filter-pills {
+        justify-content: flex-start;
+    }
+}

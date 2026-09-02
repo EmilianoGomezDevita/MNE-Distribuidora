@@ -1,0 +1,511 @@
+// ============================================================
+// Estilos para formulario de productos
+// Identidad: minimalista, cálida y elegante (cosmética premium)
+// ============================================================
+
+// -------------------------
+// Variables
+// -------------------------
+
+
+// Paleta nude / beige / carbón
+$nude-50:  #faf8f5;
+$nude-100: #f5f0e8;
+$nude-200: #efe8dd;
+$beige-300: #e6dcc8;
+$beige-400: #d4c4a8;
+$beige-500: #c9b99a;
+$charcoal: #2d2d2d;
+$charcoal-light: #3d3d3d;
+$white:    #ffffff;
+
+// Tipografías
+$font-heading: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+$font-body:    "DM Sans", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+// Espaciado
+$space-xs: 0.5rem;   // 8px
+$space-sm: 0.75rem;  // 12px
+$space-md: 1rem;     // 16px
+$space-lg: 1.5rem;   // 24px
+$space-xl: 2rem;     // 32px
+$space-2xl: 3rem;    // 48px
+$space-3xl: 4rem;    // 64px
+
+// Bordes y sombras
+$radius-sm: 0.5rem;   // 8px
+$radius-md: 0.75rem;  // 12px
+$radius-lg: 1rem;     // 16px
+$radius-xl: 1.25rem;  // 20px
+
+$shadow-soft:  0 2px 8px rgba($charcoal, 0.04);
+$shadow-card:  0 8px 24px rgba($charcoal, 0.06);
+$shadow-hover: 0 12px 32px rgba($charcoal, 0.08);
+
+// Layout
+$container-max: 720px;
+$header-height: 64px;
+
+// -------------------------
+// Reset suave
+// -------------------------
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-body;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.6;
+  color: $charcoal;
+  background-color: $nude-50;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+// -------------------------
+// Tipografía
+// -------------------------
+h1, h2, h3, h4 {
+  font-family: $font-heading;
+  font-weight: 500;
+  line-height: 1.2;
+  color: $charcoal;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+h2 {
+  font-size: clamp(1.375rem, 3vw, 1.75rem);
+}
+
+p {
+  color: lighten($charcoal, 20%);
+}
+
+a {
+  color: $charcoal;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $beige-500;
+  }
+}
+
+// -------------------------
+// Layout general
+// -------------------------
+.contenedor {
+  width: 100%;
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 $space-lg;
+}
+
+.pagina {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// -------------------------
+// Header reutilizable
+// -------------------------
+.header {
+  height: $header-height;
+  background-color: rgba($white, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid $nude-200;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  &__inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    font-family: $font-heading;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: $charcoal;
+  }
+
+  &__nav {
+    display: flex;
+    gap: $space-lg;
+    list-style: none;
+
+    a {
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      color: lighten($charcoal, 15%);
+
+      &:hover {
+        color: $charcoal;
+      }
+    }
+  }
+}
+
+// -------------------------
+// Contenido principal
+// -------------------------
+.principal {
+  flex: 1;
+  padding: $space-3xl 0;
+
+  @media (max-width: 640px) {
+    padding: $space-2xl 0;
+  }
+}
+
+.encabezado {
+  text-align: center;
+  margin-bottom: $space-2xl;
+
+  h1 {
+    margin-bottom: $space-sm;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}
+
+// -------------------------
+// Tarjetas / Cards
+// -------------------------
+.card {
+  background-color: $white;
+  border-radius: $radius-xl;
+  border: 1px solid $nude-200;
+  box-shadow: $shadow-card;
+  padding: $space-xl;
+  margin-bottom: $space-xl;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    box-shadow: $shadow-hover;
+  }
+
+  @media (max-width: 640px) {
+    padding: $space-lg;
+  }
+}
+
+.card-titulo {
+  font-family: $font-heading;
+  font-size: 1.5rem;
+  margin-bottom: $space-xs;
+}
+
+.card-subtitulo {
+  font-size: 0.875rem;
+  color: lighten($charcoal, 30%);
+  margin-bottom: $space-lg;
+}
+
+// -------------------------
+// Formularios
+// -------------------------
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+
+  label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: $charcoal;
+  }
+}
+
+.fila {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-lg;
+
+  &--dos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+input[type="text"],
+input[type="number"],
+input[type="url"],
+input[type="date"],
+textarea,
+select {
+  width: 100%;
+  padding: $space-sm $space-md;
+  font-family: $font-body;
+  font-size: 0.9375rem;
+  color: $charcoal;
+  background-color: $nude-50;
+  border: 1px solid $nude-200;
+  border-radius: $radius-md;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+
+  &::placeholder {
+    color: lighten($charcoal, 45%);
+  }
+
+  &:hover {
+    border-color: $beige-400;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $beige-500;
+    background-color: $white;
+    box-shadow: 0 0 0 3px rgba($beige-500, 0.15);
+  }
+}
+
+textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232d2d2d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right $space-md center;
+  padding-right: $space-xl;
+  cursor: pointer;
+}
+
+// Grupo para agregar marca/categoría nuevo
+.campo-agregar {
+  display: flex;
+  gap: $space-sm;
+  margin-top: $space-sm;
+
+  input {
+    flex: 1;
+  }
+}
+
+// Checkbox
+.campo-checkbox {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  padding-top: $space-md;
+
+  input[type="checkbox"] {
+    width: 1.125rem;
+    height: 1.125rem;
+    accent-color: $charcoal;
+    cursor: pointer;
+  }
+
+  label {
+    font-size: 0.9375rem;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    cursor: pointer;
+    color: $charcoal;
+  }
+}
+
+// -------------------------
+// Botones
+// -------------------------
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-sm;
+  padding: $space-sm $space-lg;
+  font-family: $font-body;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: $radius-md;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+}
+
+.btn-principal {
+  @extend .btn;
+  width: 100%;
+  padding: $space-md $space-lg;
+  background-color: $charcoal;
+  color: $white;
+  margin-top: $space-sm;
+
+  &:hover:not(:disabled) {
+    background-color: $charcoal-light;
+    box-shadow: $shadow-soft;
+  }
+}
+
+.btn-secundario {
+  @extend .btn;
+  background-color: $nude-200;
+  color: $charcoal;
+  border-color: $nude-200;
+
+  &:hover:not(:disabled) {
+    background-color: $beige-300;
+    border-color: $beige-300;
+  }
+}
+
+// -------------------------
+// Mensajes
+// -------------------------
+.mensaje {
+  padding: $space-md;
+  border-radius: $radius-md;
+  font-size: 0.875rem;
+  line-height: 1.5;
+
+  &--ok {
+    background-color: rgba($beige-500, 0.12);
+    border: 1px solid rgba($beige-500, 0.35);
+    color: darken($beige-500, 35%);
+  }
+
+  &--error {
+    background-color: rgba(#c45c5c, 0.08);
+    border: 1px solid rgba(#c45c5c, 0.25);
+    color: #8a3a3a;
+  }
+}
+
+// -------------------------
+// Imágenes de producto
+// -------------------------
+.imagen-producto {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: $nude-100;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: $space-lg;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+// -------------------------
+// Footer reutilizable
+// -------------------------
+.footer {
+  background-color: $white;
+  border-top: 1px solid $nude-200;
+  padding: $space-xl 0;
+  margin-top: auto;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-md;
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  &__copy {
+    font-size: 0.8125rem;
+    color: lighten($charcoal, 35%);
+  }
+
+  &__links {
+    display: flex;
+    gap: $space-lg;
+    list-style: none;
+
+    a {
+      font-size: 0.8125rem;
+      color: lighten($charcoal, 25%);
+
+      &:hover {
+        color: $charcoal;
+      }
+    }
+  }
+}
+
+// -------------------------
+// Utilidades responsive
+// -------------------------
+@media (max-width: 768px) {
+  .header__nav {
+    gap: $space-md;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
