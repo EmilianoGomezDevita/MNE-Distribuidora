@@ -98,7 +98,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn-principal">Guardar producto</button>
+        <!-- <button type="submit" class="btn-principal">Guardar producto</button> -->
       </form>
     </section>
 
@@ -110,7 +110,7 @@
       <form id="form-imagen" action="" method="POST">
 
         <div class="campo">
-          <label for="id_prod">Producto *</label>
+          <label for="id_prod">Producto</label>
           <select id="id_prod" name="id_prod" required>
             <option value="">Seleccionar producto…</option>
             <!-- Acá listás los productos que ya cargaste:
@@ -120,8 +120,8 @@
         </div>
 
         <div class="campo">
-          <label for="url">URL de la imagen *</label>
-          <input type="url" id="url" name="url" required placeholder="https://…">
+          <label for="imagenes">Fotos del producto</label>
+          <input type="file" name="imagenes" multiple accept="image/webp,image/jpeg,image/png" required>
         </div>
 
         <div class="campo">
