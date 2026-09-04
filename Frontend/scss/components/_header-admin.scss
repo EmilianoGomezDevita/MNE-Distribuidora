@@ -6,22 +6,25 @@ $admin-line: #e8e0d9;
 $admin-accent: #a98268;
 $admin-soft: #efe8e1;
 
+$sidebar-width: 260px; // Ajustá este valor al ancho exacto de tu sidebar
+
 .admin-layout {
+    display: flex;
     min-height: 100vh;
-    background: $admin-bg;
-    color: $admin-ink;
+    width: 100%;
     font-family: Inter, Arial, sans-serif;
 }
 
 .admin-sidebar {
     position: fixed;
-    inset: 0 auto 0 0;
-    z-index: 20;
-    width: 260px;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem 1rem;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: $sidebar-width;
     background: $admin-ink;
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 1.5rem;
     color: #fff;
 }
 
@@ -76,10 +79,14 @@ $admin-soft: #efe8e1;
     padding-top: 1rem;
     border-top: 1px solid rgba(255, 255, 255, .16);
 }
-
+// Evita que la sidebar sobreponga el contenido de las páginas
 .admin-main-wrapper {
+    margin-left: $sidebar-width; // <--- Desplaza el contenido principal a la derecha
+    width: calc(100% - #{$sidebar-width});
     min-height: 100vh;
-    margin-left: 260px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f8f6; // Tu fondo crema claro
 }
 
 .admin-topbar,
@@ -136,9 +143,8 @@ $admin-soft: #efe8e1;
 }
 
 .admin-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 3rem 2.5rem 5rem;
+    padding: 2rem ;
+    flex: 1;
 }
 
 .admin-header {
