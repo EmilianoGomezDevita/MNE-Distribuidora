@@ -15,92 +15,122 @@
 </head>
 
 <body data-modulo="solicitudes" data-titulo="Solicitudes profesionales">
-  <!-- ============================ SIDEBAR ============================ -->
-  <aside class="admin-sidebar" id="admin-sidebar">
-    <div class="admin-sidebar-brand">
-      <span class="brand-mark">MNE</span>
-      <span class="admin-sidebar-label">Panel de administración</span>
-    </div>
 
-    <nav class="admin-sidebar-nav" aria-label="Navegación del panel">
-      <a href="./index-admin.html" class="admin-nav-link" data-modulo="dashboard">
-        <!-- ícono opcional acá -->
-        Inicio
-      </a>
-      <a href="./gestionSolicitudes.html" class="admin-nav-link" data-modulo="solicitudes">
-        Solicitudes profesionales
-      </a>
-      <a href="./gestionProductos.html" class="admin-nav-link" data-modulo="productos">
-        Productos
-      </a>
-      <a href="./gestionProfesiones.html" class="admin-nav-link" data-modulo="profesiones">
-        Profesiones
-      </a>
-      <!-- agregá acá cada módulo nuevo que armes, mismo patrón -->
-    </nav>
+  <div class="admin-layout">
 
-    <div class="admin-sidebar-footer">
-      <button type="button" class="admin-nav-link" id="admin-btn-cerrar-sesion">
-        Cerrar sesión
-      </button>
-    </div>
-  </aside>
-  <main class="admin-container">
-    <header class="admin-header">
-      <h1>Solicitudes de Profesionales</h1>
-      <p class="subtitle">Revisá y gestioná los accesos pendientes para el catálogo profesional.</p>
-    </header>
+    <!-- ============================ SIDEBAR ============================ -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="admin-sidebar-brand">
+        <span class="brand-mark">MNE</span>
+        <span class="admin-sidebar-label">Panel de administración</span>
+      </div>
 
-    <!-- Contenedor principal donde JS renderizará las tarjetas -->
-    <section class="solicitudes-grid" id="solicitudes-container">
+      <nav class="admin-sidebar-nav" aria-label="Navegación del panel">
+        <a href="./index-admin.html" class="admin-nav-link" data-modulo="dashboard">
+          <!-- ícono opcional acá -->
+          Inicio
+        </a>
+        <a href="./gestionSolicitudes.html" class="admin-nav-link" data-modulo="solicitudes">
+          Solicitudes profesionales
+        </a>
+        <a href="./gestionProductos.html" class="admin-nav-link" data-modulo="productos">
+          Productos
+        </a>
+        <a href="./gestionProfesiones.html" class="admin-nav-link" data-modulo="profesiones">
+          Profesiones
+        </a>
+        <!-- agregá acá cada módulo nuevo que armes, mismo patrón -->
+      </nav>
 
-      <!-- EJEMPLO DE ESTRUCTURA DINÁMICA (Lo que va a generar el JS): ---->
-      <article class="solicitud-card" data-id="12">
-        <div class="card-header">
-          <div class="user-info">
-            <h3 class="user-name"></h3><!--Gómez, Emiliano -->
-            <span class="user-email"></span>
-          </div>
-          <span class="badge-estado"></span>
-        </div>
+      <div class="admin-sidebar-footer">
+        <button type="button" class="admin-nav-link" id="admin-btn-cerrar-sesion">
+          Cerrar sesión
+        </button>
+      </div>
+    </aside>
 
-        <div class="card-body">
-          <div class="info-item">
-            <span class="label">Profesión</span>
-            <span class="value"></span>
-          </div>
-          <div class="info-item">
-            <span class="label">Matrícula</span>
-            <span class="value"></span>
-          </div>
-          <div class="info-item">
-            <span class="label">Fecha</span>
-            <span class="value"></span>
-          </div>
-        </div>
+    <!-- ============================ MAIN CONTENT WRAPPER ============================ -->
+    <div class="admin-main-wrapper">
 
-        <div class="card-actions">
-          <button type="button" class="btn-doc" data-id="12" data-path="solicitudes/doc-12.pdf">
-            📄 Ver credencial
+      <!-- Topbar Superior -->
+      <header class="admin-topbar" id="admin-topbar">
+        <!-- <div class="topbar-left">
+          <button type="button" class="btn-toggle-sidebar" id="btn-toggle-sidebar"
+            aria-label="Abrir menú de navegación">
+            <span></span><span></span><span></span>
           </button>
+          <nav class="breadcrumbs" aria-label="Ruta de navegación">
+            <span class="breadcrumb-item">Admin</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item active">Inicio</span>
+          </nav>
+        </div> -->
 
-          <div class="action-buttons">
-            <button type="button" class="btn-aprobar" data-id="12">Aprobar</button>
-            <button type="button" class="btn-rechazar" data-id="12">Rechazar</button>
+        <div class="topbar-right">
+          <div class="admin-user-info">
+            <span class="user-name">Verovais</span>
+            <small class="user-role">Administrador</small>
           </div>
         </div>
-      </article>
+      </header>
+      <main class="admin-container">
+        <header class="admin-header">
+          <h1>Solicitudes de Profesionales</h1>
+          <p class="subtitle">Revisá y gestioná los accesos pendientes para el catálogo profesional.</p>
+        </header>
 
-    </section>
+        <!-- Contenedor principal donde JS renderizará las tarjetas -->
+        <section class="solicitudes-grid" id="solicitudes-container">
 
-    <!-- Mensaje para cuando no haya solicitudes pendientes -->
-    <div id="no-solicitudes" class="empty-state hidden">
-      <p>No hay solicitudes pendientes por revisar en este momento.</p>
+          <!-- EJEMPLO DE ESTRUCTURA DINÁMICA (Lo que va a generar el JS): ---->
+          <article class="solicitud-card" data-id="12">
+            <div class="card-header">
+              <div class="user-info">
+                <h3 class="user-name"></h3><!--Gómez, Emiliano -->
+                <span class="user-email"></span>
+              </div>
+              <span class="badge-estado"></span>
+            </div>
+
+            <div class="card-body">
+              <div class="info-item">
+                <span class="label">Profesión</span>
+                <span class="value"></span>
+              </div>
+              <div class="info-item">
+                <span class="label">Matrícula</span>
+                <span class="value"></span>
+              </div>
+              <div class="info-item">
+                <span class="label">Fecha</span>
+                <span class="value"></span>
+              </div>
+            </div>
+
+            <div class="card-actions">
+              <button type="button" class="btn-doc" data-id="12" data-path="solicitudes/doc-12.pdf">
+                📄 Ver credencial
+              </button>
+
+              <div class="action-buttons">
+                <button type="button" class="btn-aprobar" data-id="12">Aprobar</button>
+                <button type="button" class="btn-rechazar" data-id="12">Rechazar</button>
+              </div>
+            </div>
+          </article>
+
+        </section>
+
+        <!-- Mensaje para cuando no haya solicitudes pendientes -->
+        <div id="no-solicitudes" class="empty-state hidden">
+          <p>No hay solicitudes pendientes por revisar en este momento.</p>
+        </div>
+      </main>
+
+      <script src="../../JS/admin/gestionSolicitudes.js" type="module"></script>
+      <script type="module" src="../../JS/admin/header-admin.js"></script>
     </div>
-  </main>
-
-  <script src="../../JS/admin/gestionSolicitudes.js" type="module"></script>
-  <script type="module" src="../../JS/admin/header-admin.js"></script>
+  </div>
 </body>
 
 </html>

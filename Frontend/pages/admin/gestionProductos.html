@@ -15,159 +15,170 @@
 </head>
 
 <body data-modulo="productos" data-titulo="Gestion de productos">
-    <!-- ============================ SIDEBAR ============================ -->
-    <aside class="admin-sidebar" id="admin-sidebar">
-        <div class="admin-sidebar-brand">
-            <span class="brand-mark">MNE</span>
-            <span class="admin-sidebar-label">Panel de administración</span>
-        </div>
+    <div class="admin-layout">
 
-        <nav class="admin-sidebar-nav" aria-label="Navegación del panel">
-            <a href="./index-admin.html" class="admin-nav-link" data-modulo="dashboard">
-                <!-- ícono opcional acá -->
-                Inicio
-            </a>
-            <a href="./gestionSolicitudes.html" class="admin-nav-link" data-modulo="solicitudes">
-                Solicitudes profesionales
-            </a>
-            <a href="./gestionProductos.html" class="admin-nav-link" data-modulo="productos">
-                Productos
-            </a>
-            <a href="./gestionProfesiones.html" class="admin-nav-link" data-modulo="profesiones">
-                Profesiones
-            </a>
-            <!-- agregá acá cada módulo nuevo que armes, mismo patrón -->
-        </nav>
-
-        <div class="admin-sidebar-footer">
-            <button type="button" class="admin-nav-link" id="admin-btn-cerrar-sesion">
-                Cerrar sesión
-            </button>
-        </div>
-    </aside>
-
-    <!-- ============================ HEADER ============================ -->
-    <header class="admin-header" id="admin-header">
-        <button class="admin-btn-hamburguesa" id="admin-btn-hamburguesa" aria-label="Abrir menú">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-        <h1 class="admin-header-title" id="admin-header-title">
-            <!-- cada página admin pisa este texto: "Solicitudes", "Productos", etc. -->
-            Panel de administración
-        </h1>
-
-        <div class="admin-header-user">
-            <span class="admin-header-user-email" id="admin-header-user-email">
-                <!-- se completa por JS con el email del admin logueado -->
-            </span>
-        </div>
-    </header>
-
-    <main class="admin-container">
-
-        <!-- Encabezado de la sección -->
-        <header class="admin-header">
-            <div class="admin-header-text">
-                <h1>Productos</h1>
-                <p>Gestioná el inventario, precios y disponibilidad de tu tienda</p>
+        <!-- ============================ SIDEBAR ============================ -->
+        <aside class="admin-sidebar" id="admin-sidebar">
+            <div class="admin-sidebar-brand">
+                <span class="brand-mark">MNE</span>
+                <span class="admin-sidebar-label">Panel de administración</span>
             </div>
-            <div class="admin-header-actions">
-                <button type="button" class="btn-primary" id="btn-nuevo-producto">
-                    + Agregar producto
+
+            <nav class="admin-sidebar-nav" aria-label="Navegación del panel">
+                <a href="./index-admin.html" class="admin-nav-link" data-modulo="dashboard">
+                    <!-- ícono opcional acá -->
+                    Inicio
+                </a>
+                <a href="./gestionSolicitudes.html" class="admin-nav-link" data-modulo="solicitudes">
+                    Solicitudes profesionales
+                </a>
+                <a href="./gestionProductos.html" class="admin-nav-link" data-modulo="productos">
+                    Productos
+                </a>
+                <a href="./gestionProfesiones.html" class="admin-nav-link" data-modulo="profesiones">
+                    Profesiones
+                </a>
+                <!-- agregá acá cada módulo nuevo que armes, mismo patrón -->
+            </nav>
+
+            <div class="admin-sidebar-footer">
+                <button type="button" class="admin-nav-link" id="admin-btn-cerrar-sesion">
+                    Cerrar sesión
                 </button>
             </div>
-        </header>
+        </aside>
 
-        <!-- Filtros y Búsqueda -->
-        <section class="table-toolbar">
-            <div class="search-box">
-                <input type="text" id="input-search-admin" placeholder="Buscar por nombre o ID..."
-                    aria-label="Buscar productos">
-            </div>
+        <!-- ============================ MAIN CONTENT WRAPPER ============================ -->
+        <div class="admin-main-wrapper">
 
-            <div class="filter-pills">
-                <button type="button" class="pill-btn active" data-estado="todos">Todos</button>
-                <button type="button" class="pill-btn" data-estado="publicado">Publicados</button>
-                <button type="button" class="pill-btn" data-estado="borrador">Borradores</button>
-                <button type="button" class="pill-btn" data-estado="sin-stock">Sin Stock</button>
-            </div>
-        </section>
+            <!-- Topbar Superior -->
+            <header class="admin-topbar" id="admin-topbar">
+                <!-- <div class="topbar-left">
+                    <button type="button" class="btn-toggle-sidebar" id="btn-toggle-sidebar"
+                        aria-label="Abrir menú de navegación">
+                        <span></span><span></span><span></span>
+                    </button>
+                    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+                        <span class="breadcrumb-item">Admin</span>
+                        <span class="breadcrumb-separator">/</span>
+                        <span class="breadcrumb-item active">Inicio</span>
+                    </nav>
+                </div> -->
 
-        <!-- Tabla de Productos -->
-        <section class="table-container">
-            <table class="admin-table">
-                <thead>
-                    <tr>
-                        <th scope="col" class="th-select">
-                            <input type="checkbox" id="select-all-products"
-                                aria-label="Seleccionar todos los productos">
-                        </th>
-                        <th scope="col">Producto</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col" class="th-actions">Acciones</th>
-                    </tr>
-                </thead>
+                <div class="topbar-right">
+                    <div class="admin-user-info">
+                        <span class="user-name">Verovais</span>
+                        <small class="user-role">Administrador</small>
+                    </div>
+                </div>
+            </header>
 
-                <tbody id="admin-table-body">
-                    <!-- Fila de Ejemplo 1 -->
-                    <tr data-id="1">
-                        <td>
-                            <input type="checkbox" class="select-product" aria-label="Seleccionar producto">
-                        </td>
-                        <td class="td-product">
-                            <img src="../assets/img/productos-Sem/Desmaquillante.webp" alt="" class="admin-prod-img">
-                            <div class="admin-prod-info">
-                                <span class="admin-prod-name">Desmaquillante Efecto Seda</span>
-                                <small class="admin-prod-sub">SEM BioCream</small>
-                            </div>
-                        </td>
-                        <td class="td-price">$36.000</td>
-                        <td class="td-stock">24 u.</td>
-                        <td>
-                            <span class="status-badge status-published">Publicado</span>
-                        </td>
-                        <td class="td-actions">
-                            <button type="button" class="btn-icon btn-edit" aria-label="Editar producto">✏️</button>
-                            <button type="button" class="btn-icon btn-delete"
-                                aria-label="Eliminar producto">🗑️</button>
-                        </td>
-                    </tr>
+            <main class="admin-container">
 
-                    <!-- Fila de Ejemplo 2 -->
-                    <tr data-id="2">
-                        <td>
-                            <input type="checkbox" class="select-product" aria-label="Seleccionar producto">
-                        </td>
-                        <td class="td-product">
-                            <img src="../assets/img/productos-Sem/MASCARA-CARBON-DETOX-ANTIAGE.webp" alt=""
-                                class="admin-prod-img">
-                            <div class="admin-prod-info">
-                                <span class="admin-prod-name">Máscara Carbón Detox</span>
-                                <small class="admin-prod-sub">SEM BioCream</small>
-                            </div>
-                        </td>
-                        <td class="td-price">$37.000</td>
-                        <td class="td-stock">0 u.</td>
-                        <td>
-                            <span class="status-badge status-out-of-stock">Sin Stock</span>
-                        </td>
-                        <td class="td-actions">
-                            <button type="button" class="btn-icon btn-edit" aria-label="Editar producto">✏️</button>
-                            <button type="button" class="btn-icon btn-delete"
-                                aria-label="Eliminar producto">🗑️</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </main>
+                <!-- Encabezado de la sección -->
+                <header class="admin-header">
+                    <div class="admin-header-text">
+                        <h1>Productos</h1>
+                        <p>Gestioná el inventario, precios y disponibilidad de tu tienda</p>
+                    </div>
+                    <div class="admin-header-actions">
+                        <button type="button" class="btn-primary" id="btn-nuevo-producto" onclick="window.location.href='./form-Agregar-Producto.html'">
+                            + Agregar producto
+                        </button>
+                    </div>
+                </header>
 
-    <script type="module" src="../../JS/admin/header-admin.js"></script>
+                <!-- Filtros y Búsqueda -->
+                <section class="table-toolbar">
+                    <div class="search-box">
+                        <input type="text" id="input-search-admin" placeholder="Buscar por nombre o ID..."
+                            aria-label="Buscar productos">
+                    </div>
+
+                    <div class="filter-pills">
+                        <button type="button" class="pill-btn active" data-estado="todos">Todos</button>
+                        <button type="button" class="pill-btn" data-estado="publicado">Publicados</button>
+                        <button type="button" class="pill-btn" data-estado="borrador">Borradores</button>
+                        <button type="button" class="pill-btn" data-estado="sin-stock">Sin Stock</button>
+                    </div>
+                </section>
+
+                <!-- Tabla de Productos -->
+                <section class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="th-select">
+                                    <input type="checkbox" id="select-all-products"
+                                        aria-label="Seleccionar todos los productos">
+                                </th>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col" class="th-actions">Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="admin-table-body">
+                            <!-- Fila de Ejemplo 1 -->
+                            <tr data-id="1">
+                                <td>
+                                    <input type="checkbox" class="select-product" aria-label="Seleccionar producto">
+                                </td>
+                                <td class="td-product">
+                                    <img src="../assets/img/productos-Sem/Desmaquillante.webp" alt=""
+                                        class="admin-prod-img">
+                                    <div class="admin-prod-info">
+                                        <span class="admin-prod-name">Desmaquillante Efecto Seda</span>
+                                        <small class="admin-prod-sub">SEM BioCream</small>
+                                    </div>
+                                </td>
+                                <td class="td-price">$36.000</td>
+                                <td class="td-stock">24 u.</td>
+                                <td>
+                                    <span class="status-badge status-published">Publicado</span>
+                                </td>
+                                <td class="td-actions">
+                                    <button type="button" class="btn-icon btn-edit"
+                                        aria-label="Editar producto">✏️</button>
+                                    <button type="button" class="btn-icon btn-delete"
+                                        aria-label="Eliminar producto">🗑️</button>
+                                </td>
+                            </tr>
+
+                            <!-- Fila de Ejemplo 2 -->
+                            <tr data-id="2">
+                                <td>
+                                    <input type="checkbox" class="select-product" aria-label="Seleccionar producto">
+                                </td>
+                                <td class="td-product">
+                                    <img src="../assets/img/productos-Sem/MASCARA-CARBON-DETOX-ANTIAGE.webp" alt=""
+                                        class="admin-prod-img">
+                                    <div class="admin-prod-info">
+                                        <span class="admin-prod-name">Máscara Carbón Detox</span>
+                                        <small class="admin-prod-sub">SEM BioCream</small>
+                                    </div>
+                                </td>
+                                <td class="td-price">$37.000</td>
+                                <td class="td-stock">0 u.</td>
+                                <td>
+                                    <span class="status-badge status-out-of-stock">Sin Stock</span>
+                                </td>
+                                <td class="td-actions">
+                                    <button type="button" class="btn-icon btn-edit"
+                                        aria-label="Editar producto">✏️</button>
+                                    <button type="button" class="btn-icon btn-delete"
+                                        aria-label="Eliminar producto">🗑️</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </main>
+        </div>
+    </div>    
+            <script type="module" src="../../JS/admin/header-admin.js"></script>
 </body>
 
 </html>
