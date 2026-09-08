@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CDN SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,7 +32,7 @@
       <h2>Nuevo producto</h2>
 
       <!-- action y method los definís vos según tu backend -->
-      <form id="form-producto" action="" method="POST">
+      <form id="form-producto" enctype="multipart/form-data" action="" method="POST">
 
         <div class="campo">
           <label for="nombre">Nombre</label>
@@ -39,13 +41,14 @@
 
         <div class="campo">
           <label for="descripcion">Descripción</label>
-          <textarea id="descripcion" name="descripcion" rows="3" required placeholder="Descripción del producto"></textarea>
+          <textarea id="descripcion" name="descripcion" rows="3" required
+            placeholder="Descripción del producto"></textarea>
         </div>
 
         <div class="fila">
           <div class="campo">
             <label for="stock">Stock</label>
-            <input type="number" id="stock"  required name="stock" min="0">
+            <input type="number" id="stock" required name="stock" min="0">
           </div>
 
           <div class="campo">
@@ -98,43 +101,18 @@
           </div>
         </div>
 
-        <!-- <button type="submit" class="btn-principal">Guardar producto</button> -->
-      </form>
-    </section>
 
-    <!-- ============ FORMULARIO: IMAGEN DEL PRODUCTO (tabla ImagenesProducto) ============ -->
-    <section class="card">
-      <h2>Imagen del producto</h2>
-      <p>Asociá una imagen a un producto existente.</p>
 
-      <form id="form-imagen" action="" method="POST">
-
-        <div class="campo">
-          <label for="id_prod">Producto</label>
-          <select id="id_prod" name="id_prod" required>
-            <option value="">Seleccionar producto…</option>
-            <!-- Acá listás los productos que ya cargaste:
-            <option value="1">Producto ejemplo</option>
-            -->
-          </select>
-        </div>
 
         <div class="campo">
           <label for="imagenes">Fotos del producto</label>
-          <input type="file" name="imagenes" multiple accept="image/webp,image/jpeg,image/png" required>
+          <input type="file" id="imagenes" name="imagenes" multiple accept="image/webp,image/jpeg,image/png">
         </div>
-
-        <div class="campo">
-          <label for="orden">Orden</label>
-          <input type="number" id="orden" name="orden" min="0" value="0">
-        </div>
-
-        <button type="submit" class="btn-principal">Guardar imagen</button>
+        <button type="submit" class="btn-principal">Guardar producto</button>
       </form>
     </section>
-
   </main>
-
+  <script type="module" src="../../JS/admin/form-add-productos.js"></script>
 </body>
 
 </html>
