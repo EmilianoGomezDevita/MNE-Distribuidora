@@ -6,10 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const container = document.getElementById('grid-productos');
     const template = container.querySelector('.card-producto');
     const loadTxt = document.getElementById('load-txt')
+    const barraBuscar = document.getElementById('input-search')
 
     const PRODUCTOS_POR_PAGINA = 8;
 
     let todosLosProductos = [];
+    let productosFiltrados = [];
     let paginaActual = 1;
 
     function formatearPrecio(numero) {
@@ -35,8 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         //hacemos que la tarjeta sea clickeable, salvo el botón de agregar
         card.style.cursor = 'pointer';
-        card.addEventListener('click', function(event){
-            if(event.target.closest('btn-primary')) return; // el botón maneja su propio click
+        card.addEventListener('click', function (event) {
+            if (event.target.closest('btn-primary')) return; // el botón maneja su propio click
             window.location.href = `./producto.html?id=${producto.id}`
         });
 
@@ -48,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const inicio = (paginaActual - 1) * PRODUCTOS_POR_PAGINA;
         const fin = inicio + PRODUCTOS_POR_PAGINA;
-        const productosDeEstaPagina = todosLosProductos.slice(inicio, fin);
+        const productosDeEstaPagina = productosFiltrados.slice(inicio, fin);
 
         productosDeEstaPagina.forEach(producto => {
             container.appendChild(crearTarjeta(producto));
@@ -67,7 +69,8 @@ document.addEventListener("DOMContentLoaded", function () {
             container.insertAdjacentElement('afterend', paginacionEl);
         }
 
-        const totalPaginas = Math.ceil(todosLosProductos.length / PRODUCTOS_POR_PAGINA);
+        const totalPaginas = Math.ceil(productosFiltrados.length / PRODUCTOS_POR_PAGINA);
+        
 
         if (totalPaginas <= 1) {
             paginacionEl.innerHTML = '';
@@ -81,6 +84,27 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         paginacionEl.innerHTML = botonesHTML;
     }
+
+    function aplicarFiltro() {
+        const txt = barraBuscar.value.toLowerCase().trim()
+
+        if (txt === '') {
+            productosFiltrados = [...todosLosProductos]
+        }
+
+        else {
+            productosFiltrados = todosLosProductos.filter(producto => {
+                return producto.nombre.toLowerCase().includes(txt)
+            })
+        }
+        paginaActual = 1; //vuelve a la pag 1 luego ed buscar
+        renderizarPagina();
+    }
+
+    if (barraBuscar) {
+        barraBuscar.addEventListener('input', aplicarFiltro)
+    }
+
 
     async function cargarCatalogo() {
         if (loadTxt) loadTxt.style.display = 'block'
@@ -97,6 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             todosLosProductos = await res.json();
+            productosFiltrados = [...todosLosProductos]
             paginaActual = 1;
             if (loadTxt) loadTxt.style.display = 'none'
             renderizarPagina();
@@ -109,6 +134,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     }
+
+
 
     async function agregarProdAlCarrito(idProducto) {
         const toast = document.getElementById("toast");
