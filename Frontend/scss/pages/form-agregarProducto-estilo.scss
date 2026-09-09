@@ -1,511 +1,203 @@
-// ============================================================
-// Estilos para formulario de productos
-// Identidad: minimalista, cálida y elegante (cosmética premium)
-// ============================================================
+// ------------------------------------------------------------
+// Tokens de marca (paleta nude / beige / carbón)
+// ------------------------------------------------------------
+$admin-bg:          #f8f7f5; // blanco hueso — fondo general
+$admin-surface:      #ffffff; // superficie de tarjetas y paneles
+$admin-soft:         #efe8e1; // beige suave — fondos sutiles, badges neutros
+$admin-soft-strong:  #e3d6ca; // beige acentuado — hover / bordes destacados
+$admin-line:         #e6ded6; // líneas y bordes
+$admin-ink:          #1c1a18; // carbón — texto principal
+$admin-muted:        #7d7367; // texto secundario
+$admin-accent:       #8c705c; // acento cálido — hovers, focus, enlaces
 
-// -------------------------
-// Variables
-// -------------------------
+$admin-success:      #4f7a5c;
+$admin-success-bg:   #e7f0e9;
+$admin-danger:       #a5574a;
+$admin-danger-bg:    #f7e9e5;
 
-
-// Paleta nude / beige / carbón
-$nude-50:  #faf8f5;
-$nude-100: #f5f0e8;
-$nude-200: #efe8dd;
-$beige-300: #e6dcc8;
-$beige-400: #d4c4a8;
-$beige-500: #c9b99a;
-$charcoal: #2d2d2d;
-$charcoal-light: #3d3d3d;
-$white:    #ffffff;
-
-// Tipografías
-$font-heading: "Cormorant Garamond", "Playfair Display", Georgia, serif;
-$font-body:    "DM Sans", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-
-// Espaciado
-$space-xs: 0.5rem;   // 8px
-$space-sm: 0.75rem;  // 12px
-$space-md: 1rem;     // 16px
-$space-lg: 1.5rem;   // 24px
-$space-xl: 2rem;     // 32px
-$space-2xl: 3rem;    // 48px
-$space-3xl: 4rem;    // 64px
-
-// Bordes y sombras
-$radius-sm: 0.5rem;   // 8px
-$radius-md: 0.75rem;  // 12px
-$radius-lg: 1rem;     // 16px
-$radius-xl: 1.25rem;  // 20px
-
-$shadow-soft:  0 2px 8px rgba($charcoal, 0.04);
-$shadow-card:  0 8px 24px rgba($charcoal, 0.06);
-$shadow-hover: 0 12px 32px rgba($charcoal, 0.08);
-
-// Layout
-$container-max: 720px;
-$header-height: 64px;
-
-// -------------------------
-// Reset suave
-// -------------------------
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: $font-body;
-  font-size: 0.9375rem; // 15px
-  line-height: 1.6;
-  color: $charcoal;
-  background-color: $nude-50;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-// -------------------------
 // Tipografía
-// -------------------------
-h1, h2, h3, h4 {
-  font-family: $font-heading;
-  font-weight: 500;
-  line-height: 1.2;
-  color: $charcoal;
-}
+$font-heading: 'Cormorant Garamond', Georgia, serif;
+$font-body:    'Inter', Arial, sans-serif;
 
-h1 {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-}
+// Radios y sombras (compartidos por todas las páginas del admin)
+$radius-sm:   .6rem;
+$radius-md:   .9rem;
+$radius-lg:   1.25rem;
+$radius-pill: 999px;
 
-h2 {
-  font-size: clamp(1.375rem, 3vw, 1.75rem);
-}
+$shadow-card:  0 16px 40px rgba(28, 26, 24, .06);
+$shadow-hover: 0 20px 48px rgba(28, 26, 24, .10);
 
-p {
-  color: lighten($charcoal, 20%);
-}
+$transition-base: .2s ease;
 
-a {
-  color: $charcoal;
-  text-decoration: none;
-  transition: color 0.2s ease;
-
-  &:hover {
-    color: $beige-500;
-  }
-}
+$sidebar-width: 260px; // Ajustá este valor al ancho exacto de tu sidebar
+// ============================================================
+// FORMULARIO: AGREGAR PRODUCTO
+// Estilos propios de esta página (tarjeta de formulario).
+// El cascarón (sidebar, topbar, contenedor, header) ahora vive
+// en header-admin, igual que en el resto del panel admin —
+// antes esta página no usaba el layout compartido y tenía su
+// propio header/footer (.header, .footer) que ni siquiera estaban
+// presentes en el HTML: quedaban como CSS muerto. Se eliminaron.
+// ============================================================
 
 // -------------------------
-// Layout general
-// -------------------------
-.contenedor {
-  width: 100%;
-  max-width: $container-max;
-  margin: 0 auto;
-  padding: 0 $space-lg;
-}
-
-.pagina {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-// -------------------------
-// Header reutilizable
-// -------------------------
-.header {
-  height: $header-height;
-  background-color: rgba($white, 0.85);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid $nude-200;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-
-  &__inner {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  &__logo {
-    font-family: $font-heading;
-    font-size: 1.25rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: $charcoal;
-  }
-
-  &__nav {
-    display: flex;
-    gap: $space-lg;
-    list-style: none;
-
-    a {
-      font-size: 0.8125rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 500;
-      color: lighten($charcoal, 15%);
-
-      &:hover {
-        color: $charcoal;
-      }
-    }
-  }
-}
-
-// -------------------------
-// Contenido principal
-// -------------------------
-.principal {
-  flex: 1;
-  padding: $space-3xl 0;
-
-  @media (max-width: 640px) {
-    padding: $space-2xl 0;
-  }
-}
-
-.encabezado {
-  text-align: center;
-  margin-bottom: $space-2xl;
-
-  h1 {
-    margin-bottom: $space-sm;
-  }
-
-  p {
-    font-size: 0.9375rem;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-}
-
-// -------------------------
-// Tarjetas / Cards
+// Tarjeta de formulario
 // -------------------------
 .card {
-  background-color: $white;
-  border-radius: $radius-xl;
-  border: 1px solid $nude-200;
-  box-shadow: $shadow-card;
-  padding: $space-xl;
-  margin-bottom: $space-xl;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-
-  &:hover {
-    box-shadow: $shadow-hover;
-  }
-
-  @media (max-width: 640px) {
-    padding: $space-lg;
-  }
+    max-width: 760px;
+    margin: 0 auto;
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+    border: 1px solid $admin-line;
+    border-radius: $radius-lg;
+    background: $admin-surface;
+    box-shadow: $shadow-card;
 }
 
-.card-titulo {
-  font-family: $font-heading;
-  font-size: 1.5rem;
-  margin-bottom: $space-xs;
-}
-
-.card-subtitulo {
-  font-size: 0.875rem;
-  color: lighten($charcoal, 30%);
-  margin-bottom: $space-lg;
+.card h2 {
+    margin: 0 0 .35rem;
+    color: $admin-ink;
+    font-family: $font-heading;
+    font-size: 1.6rem;
+    font-weight: 600;
 }
 
 // -------------------------
-// Formularios
+// Formulario
 // -------------------------
-.formulario {
-  display: flex;
-  flex-direction: column;
-  gap: $space-lg;
+#form-producto {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+    margin-top: 1.5rem;
 }
 
 .campo {
-  display: flex;
-  flex-direction: column;
-  gap: $space-xs;
+    display: flex;
+    flex-direction: column;
+    gap: .45rem;
+}
 
-  label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+.campo label {
+    color: $admin-ink;
+    font-size: .74rem;
     font-weight: 600;
-    color: $charcoal;
-  }
+    letter-spacing: .07em;
+    text-transform: uppercase;
 }
 
 .fila {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: $space-lg;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
 
-  &--dos {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-  }
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+    }
 }
 
 input[type="text"],
 input[type="number"],
-input[type="url"],
 input[type="date"],
 textarea,
 select {
-  width: 100%;
-  padding: $space-sm $space-md;
-  font-family: $font-body;
-  font-size: 0.9375rem;
-  color: $charcoal;
-  background-color: $nude-50;
-  border: 1px solid $nude-200;
-  border-radius: $radius-md;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    width: 100%;
+    padding: .75rem .95rem;
+    border: 1px solid $admin-line;
+    border-radius: $radius-md;
+    background: $admin-bg;
+    color: $admin-ink;
+    font-family: $font-body;
+    font-size: .92rem;
+    transition: border-color $transition-base, box-shadow $transition-base, background-color $transition-base;
 
-  &::placeholder {
-    color: lighten($charcoal, 45%);
-  }
+    &::placeholder {
+        color: $admin-muted;
+    }
 
-  &:hover {
-    border-color: $beige-400;
-  }
+    &:hover {
+        border-color: $admin-soft-strong;
+    }
 
-  &:focus {
-    outline: none;
-    border-color: $beige-500;
-    background-color: $white;
-    box-shadow: 0 0 0 3px rgba($beige-500, 0.15);
-  }
+    &:focus {
+        outline: none;
+        border-color: $admin-accent;
+        background: $admin-surface;
+        box-shadow: 0 0 0 3px rgba($admin-accent, .15);
+    }
 }
 
 textarea {
-  resize: vertical;
-  min-height: 96px;
+    min-height: 96px;
+    resize: vertical;
 }
 
 select {
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232d2d2d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right $space-md center;
-  padding-right: $space-xl;
-  cursor: pointer;
+    padding-right: 2rem;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231c1a18' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    cursor: pointer;
 }
 
-// Grupo para agregar marca/categoría nuevo
-.campo-agregar {
-  display: flex;
-  gap: $space-sm;
-  margin-top: $space-sm;
-
-  input {
-    flex: 1;
-  }
-}
-
-// Checkbox
+// Checkbox "Producto activo"
 .campo-checkbox {
-  display: flex;
-  align-items: center;
-  gap: $space-sm;
-  padding-top: $space-md;
-
-  input[type="checkbox"] {
-    width: 1.125rem;
-    height: 1.125rem;
-    accent-color: $charcoal;
-    cursor: pointer;
-  }
-
-  label {
-    font-size: 0.9375rem;
-    text-transform: none;
-    letter-spacing: 0;
-    font-weight: 400;
-    cursor: pointer;
-    color: $charcoal;
-  }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .6rem;
+    padding-top: .5rem;
 }
 
-// -------------------------
-// Botones
-// -------------------------
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: $space-sm;
-  padding: $space-sm $space-lg;
-  font-family: $font-body;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-radius: $radius-md;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  &:active:not(:disabled) {
-    transform: translateY(1px);
-  }
-}
-
-.btn-principal {
-  @extend .btn;
-  width: 100%;
-  padding: $space-md $space-lg;
-  background-color: $charcoal;
-  color: $white;
-  margin-top: $space-sm;
-
-  &:hover:not(:disabled) {
-    background-color: $charcoal-light;
-    box-shadow: $shadow-soft;
-  }
-}
-
-.btn-secundario {
-  @extend .btn;
-  background-color: $nude-200;
-  color: $charcoal;
-  border-color: $nude-200;
-
-  &:hover:not(:disabled) {
-    background-color: $beige-300;
-    border-color: $beige-300;
-  }
-}
-
-// -------------------------
-// Mensajes
-// -------------------------
-.mensaje {
-  padding: $space-md;
-  border-radius: $radius-md;
-  font-size: 0.875rem;
-  line-height: 1.5;
-
-  &--ok {
-    background-color: rgba($beige-500, 0.12);
-    border: 1px solid rgba($beige-500, 0.35);
-    color: darken($beige-500, 35%);
-  }
-
-  &--error {
-    background-color: rgba(#c45c5c, 0.08);
-    border: 1px solid rgba(#c45c5c, 0.25);
-    color: #8a3a3a;
-  }
-}
-
-// -------------------------
-// Imágenes de producto
-// -------------------------
-.imagen-producto {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  background-color: $nude-100;
-  border-radius: $radius-lg;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-  padding: $space-lg;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-  }
-}
-
-// -------------------------
-// Footer reutilizable
-// -------------------------
-.footer {
-  background-color: $white;
-  border-top: 1px solid $nude-200;
-  padding: $space-xl 0;
-  margin-top: auto;
-
-  &__inner {
+.campo-checkbox label {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: $space-md;
+    gap: .6rem;
+    color: $admin-ink;
+    font-size: .92rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    cursor: pointer;
+}
+
+.campo-checkbox input[type="checkbox"] {
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: $admin-ink;
+    cursor: pointer;
+}
+
+// Botón principal — mismo lenguaje visual (píldora oscura,
+// mayúsculas) que .btn-primary en el resto del admin.
+.btn-principal {
+    align-self: flex-start;
+    min-height: 48px;
+    margin-top: .25rem;
+    padding: .8rem 1.6rem;
+    border: 1px solid $admin-ink;
+    border-radius: $radius-pill;
+    background: $admin-ink;
+    color: $admin-surface;
+    font-size: .76rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background $transition-base, border-color $transition-base, transform $transition-base;
+
+    &:hover {
+        border-color: $admin-accent;
+        background: $admin-accent;
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
 
     @media (max-width: 640px) {
-      flex-direction: column;
-      text-align: center;
+        align-self: stretch;
     }
-  }
-
-  &__copy {
-    font-size: 0.8125rem;
-    color: lighten($charcoal, 35%);
-  }
-
-  &__links {
-    display: flex;
-    gap: $space-lg;
-    list-style: none;
-
-    a {
-      font-size: 0.8125rem;
-      color: lighten($charcoal, 25%);
-
-      &:hover {
-        color: $charcoal;
-      }
-    }
-  }
-}
-
-// -------------------------
-// Utilidades responsive
-// -------------------------
-@media (max-width: 768px) {
-  .header__nav {
-    gap: $space-md;
-  }
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }

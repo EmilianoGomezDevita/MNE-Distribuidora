@@ -1,371 +1,162 @@
-// ============================================================
-// VARIABLES LOCALES — el archivo compila de forma independiente
-// ============================================================
-$admin-bg: #f8f8f7;
-$admin-surface: #ffffff;
-$admin-soft: #efe8e1;
-$admin-soft-strong: #e3d6ca;
-$admin-ink: #171514;
-$admin-muted: #766c65;
-$admin-line: #e5ddd6;
-$admin-accent: #7d6b5d;
+// ------------------------------------------------------------
+// Tokens de marca (paleta nude / beige / carbón)
+// ------------------------------------------------------------
+$admin-bg:          #f8f7f5; // blanco hueso — fondo general
+$admin-surface:      #ffffff; // superficie de tarjetas y paneles
+$admin-soft:         #efe8e1; // beige suave — fondos sutiles, badges neutros
+$admin-soft-strong:  #e3d6ca; // beige acentuado — hover / bordes destacados
+$admin-line:         #e6ded6; // líneas y bordes
+$admin-ink:          #1c1a18; // carbón — texto principal
+$admin-muted:        #7d7367; // texto secundario
+$admin-accent:       #8c705c; // acento cálido — hovers, focus, enlaces
 
-// ============================================================
-// HEADER / TOPBAR
-// Copiar esta sección al SCSS compartido de header y sidebar.
-// ============================================================
+$admin-success:      #4f7a5c;
+$admin-success-bg:   #e7f0e9;
+$admin-danger:       #a5574a;
+$admin-danger-bg:    #f7e9e5;
 
-.admin-topbar {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  min-height: 76px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding: 1rem clamp(1.25rem, 3vw, 2.75rem);
-  border-bottom: 1px solid $admin-line;
-  background: rgba(248, 248, 247, .94);
-  backdrop-filter: blur(16px);
-}
+// Tipografía
+$font-heading: 'Cormorant Garamond', Georgia, serif;
+$font-body:    'Inter', Arial, sans-serif;
 
-.topbar-left,
-.topbar-right {
-  display: flex;
-  align-items: center;
-}
+// Radios y sombras (compartidos por todas las páginas del admin)
+$radius-sm:   .6rem;
+$radius-md:   .9rem;
+$radius-lg:   1.25rem;
+$radius-pill: 999px;
 
-.topbar-left {
-  min-width: 0;
-  gap: 1.25rem;
-}
+$shadow-card:  0 16px 40px rgba(28, 26, 24, .06);
+$shadow-hover: 0 20px 48px rgba(28, 26, 24, .10);
 
-.topbar-right {
-  flex-shrink: 0;
-}
+$transition-base: .2s ease;
 
-.btn-toggle-sidebar {
-  display: inline-flex;
-  width: 42px;
-  height: 42px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 0;
-  border: 1px solid $admin-line;
-  border-radius: 50%;
-  color: $admin-ink;
-  background: $admin-surface;
-  cursor: pointer;
-  transition: background .18s ease, border-color .18s ease, transform .18s ease;
-}
-
-.btn-toggle-sidebar span {
-  width: 16px;
-  height: 1px;
-  background: currentColor;
-}
-
-.btn-toggle-sidebar:hover {
-  border-color: $admin-accent;
-  background: $admin-soft;
-  transform: translateY(-1px);
-}
-
-.breadcrumbs {
-  display: flex;
-  min-width: 0;
-  align-items: center;
-  gap: .65rem;
-  color: $admin-muted;
-  font-size: .8rem;
-}
-
-.breadcrumb-item {
-  white-space: nowrap;
-}
-
-.breadcrumb-item.active {
-  color: $admin-ink;
-  font-weight: 600;
-}
-
-.breadcrumb-separator {
-  color: $admin-soft-strong;
-}
-
-.admin-user-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: .05rem;
-}
-
-.user-name {
-  font-size: .85rem;
-  font-weight: 600;
-}
-
-.user-role {
-  color: $admin-muted;
-  font-size: .7rem;
-}
-
+$sidebar-width: 260px; // Ajustá este valor al ancho exacto de tu sidebar
 // ============================================================
 // DASHBOARD / INDEX ADMIN
+// Estilos propios de esta página. El cascarón (sidebar, topbar,
+// .admin-container, .admin-header, botones) vive en header-admin.
 // ============================================================
 
-.admin-main-wrapper {
-  min-width: 0;
-  min-height: 100vh;
-}
-
-.admin-container {
-  width: min(100% - 3rem, 1180px);
-  margin: 0 auto;
-  padding: clamp(2.5rem, 6vw, 5rem) 0 4rem;
-}
-
-.admin-header {
-  margin-bottom: 2.5rem;
-}
-
-.admin-header-text {
-  max-width: 700px;
-}
-
-.admin-header h1 {
-  margin: 0;
-  color: $admin-ink;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2.8rem, 6vw, 5rem);
-  font-weight: 600;
-  letter-spacing: -.055em;
-  line-height: .92;
-}
-
-.admin-header p {
-  max-width: 580px;
-  margin: 1rem 0 0;
-  color: $admin-muted;
-  font-size: .95rem;
-}
-
 .admin-metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
 }
 
 .metric-card {
-  position: relative;
-  display: flex;
-  min-height: 240px;
-  flex-direction: column;
-  overflow: hidden;
-  padding: 1.5rem;
-  border: 1px solid $admin-line;
-  border-radius: 1.25rem;
-  background: $admin-surface;
-  box-shadow: 0 18px 50px rgba(52, 40, 31, .07);
-  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+    position: relative;
+    display: flex;
+    min-height: 230px;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 1.5rem;
+    border: 1px solid $admin-line;
+    border-radius: $radius-lg;
+    background: $admin-surface;
+    box-shadow: $shadow-card;
+    transition: border-color $transition-base, box-shadow $transition-base, transform $transition-base;
 }
 
 .metric-card::after {
-  position: absolute;
-  right: -3rem;
-  bottom: -3rem;
-  width: 10rem;
-  height: 10rem;
-  border: 1px solid rgba(125, 107, 93, .12);
-  border-radius: 50%;
-  content: '';
+    position: absolute;
+    right: -3rem;
+    bottom: -3rem;
+    width: 10rem;
+    height: 10rem;
+    border: 1px solid rgba($admin-accent, .14);
+    border-radius: 50%;
+    content: '';
 }
 
 .metric-card:hover {
-  border-color: $admin-soft-strong;
-  box-shadow: 0 22px 55px rgba(52, 40, 31, .12);
-  transform: translateY(-3px);
+    border-color: $admin-soft-strong;
+    box-shadow: $shadow-hover;
+    transform: translateY(-3px);
 }
 
 .metric-card h3 {
-  position: relative;
-  z-index: 1;
-  max-width: 190px;
-  margin: 0;
-  color: $admin-muted;
-  font-size: .74rem;
-  font-weight: 600;
-  letter-spacing: .08em;
-  line-height: 1.4;
-  text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+    max-width: 190px;
+    margin: 0;
+    color: $admin-muted;
+    font-size: .74rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    line-height: 1.4;
+    text-transform: uppercase;
 }
 
 .metric-value {
-  position: relative;
-  z-index: 1;
-  margin: auto 0 1.5rem;
-  color: $admin-ink;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(4rem, 7vw, 6rem);
-  font-weight: 600;
-  letter-spacing: -.07em;
-  line-height: .75;
+    position: relative;
+    z-index: 1;
+    margin: auto 0 1.5rem;
+    color: $admin-ink;
+    font-family: $font-heading;
+    font-size: clamp(3.6rem, 6vw, 5.5rem);
+    font-weight: 600;
+    letter-spacing: -.06em;
+    line-height: .8;
 }
 
 .metric-link {
-  position: relative;
-  z-index: 1;
-  align-self: flex-start;
-  color: $admin-accent;
-  font-size: .78rem;
-  font-weight: 600;
-  transition: color .18s ease;
+    position: relative;
+    z-index: 1;
+    align-self: flex-start;
+    color: $admin-accent;
+    font-size: .78rem;
+    font-weight: 600;
+    transition: color $transition-base;
 }
 
 .metric-link:hover {
-  color: $admin-ink;
+    color: $admin-ink;
 }
 
 .admin-dashboard-sections {
-  margin-top: 1rem;
+    margin-top: 1rem;
 }
 
 .dashboard-card {
-  padding: clamp(1.5rem, 4vw, 2.25rem);
-  border: 1px solid $admin-line;
-  border-radius: 1.25rem;
-  background: $admin-soft;
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+    border: 1px solid $admin-line;
+    border-radius: $radius-lg;
+    background: $admin-soft;
 }
 
 .dashboard-card h2 {
-  margin: 0 0 1.25rem;
-  color: $admin-ink;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  font-weight: 600;
-  letter-spacing: -.04em;
-  line-height: 1;
+    margin: 0 0 1.25rem;
+    color: $admin-ink;
+    font-family: $font-heading;
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 600;
+    letter-spacing: -.03em;
+    line-height: 1;
 }
 
 .quick-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .75rem;
-}
-
-.btn-primary,
-.btn-secondary {
-  display: inline-flex;
-  min-height: 48px;
-  align-items: center;
-  justify-content: center;
-  padding: .75rem 1.25rem;
-  border: 1px solid $admin-ink;
-  border-radius: 999px;
-  font-size: .76rem;
-  font-weight: 600;
-  transition: background .18s ease, border-color .18s ease, color .18s ease, transform .18s ease;
-}
-
-.btn-primary {
-  color: $admin-surface;
-  background: $admin-ink;
-}
-
-.btn-secondary {
-  color: $admin-ink;
-  background: transparent;
-}
-
-.btn-primary:hover,
-.btn-secondary:hover {
-  border-color: $admin-accent;
-  color: $admin-surface;
-  background: $admin-accent;
-  transform: translateY(-2px);
-}
-
-.admin-footer {
-  width: min(100% - 3rem, 1180px);
-  margin: 0 auto;
-  padding: 1.5rem 0 2rem;
-  border-top: 1px solid $admin-line;
-  color: $admin-muted;
-  font-size: .72rem;
-}
-
-.admin-footer p {
-  margin: 0;
-}
-
-.btn-toggle-sidebar:focus-visible,
-.metric-link:focus-visible,
-.btn-primary:focus-visible,
-.btn-secondary:focus-visible {
-  outline: 2px solid $admin-accent;
-  outline-offset: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
 }
 
 @media (max-width: 800px) {
-  .admin-metrics-grid {
-    grid-template-columns: 1fr;
-  }
+    .admin-metrics-grid {
+        grid-template-columns: 1fr;
+    }
 
-  .metric-card {
-    min-height: 190px;
-  }
+    .metric-card {
+        min-height: 190px;
+    }
 }
 
 @media (max-width: 560px) {
-  .admin-topbar {
-    min-height: 68px;
-    padding-inline: 1rem;
-  }
+    .quick-actions {
+        flex-direction: column;
+    }
 
-  .breadcrumbs {
-    gap: .4rem;
-    font-size: .72rem;
-  }
-
-  .user-role {
-    display: none;
-  }
-
-  .admin-container {
-    width: min(100% - 2rem, 1180px);
-    padding-top: 2.5rem;
-  }
-
-  .admin-header {
-    margin-bottom: 1.75rem;
-  }
-
-  .admin-header h1 {
-    font-size: clamp(2.7rem, 14vw, 4rem);
-  }
-
-  .quick-actions {
-    flex-direction: column;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    width: 100%;
-  }
-
-  .admin-footer {
-    width: min(100% - 2rem, 1180px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .metric-card,
-  .btn-primary,
-  .btn-secondary,
-  .btn-toggle-sidebar {
-    transition: none;
-  }
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
 }

@@ -1,14 +1,49 @@
-@use 'admin-sidebar-header' as *;
+// ------------------------------------------------------------
+// Tokens de marca (paleta nude / beige / carbón)
+// ------------------------------------------------------------
+$admin-bg:          #f8f7f5; // blanco hueso — fondo general
+$admin-surface:      #ffffff; // superficie de tarjetas y paneles
+$admin-soft:         #efe8e1; // beige suave — fondos sutiles, badges neutros
+$admin-soft-strong:  #e3d6ca; // beige acentuado — hover / bordes destacados
+$admin-line:         #e6ded6; // líneas y bordes
+$admin-ink:          #1c1a18; // carbón — texto principal
+$admin-muted:        #7d7367; // texto secundario
+$admin-accent:       #8c705c; // acento cálido — hovers, focus, enlaces
 
+$admin-success:      #4f7a5c;
+$admin-success-bg:   #e7f0e9;
+$admin-danger:       #a5574a;
+$admin-danger-bg:    #f7e9e5;
 
-$admin-bg: #f8f8f7;
-$admin-surface: #ffffff;
-$admin-ink: #171616;
-$admin-muted: #81766e;
-$admin-line: #e8e0d9;
-$admin-accent: #a98268;
-$admin-soft: #efe8e1;
+// Tipografía
+$font-heading: 'Cormorant Garamond', Georgia, serif;
+$font-body:    'Inter', Arial, sans-serif;
 
+// Radios y sombras (compartidos por todas las páginas del admin)
+$radius-sm:   .6rem;
+$radius-md:   .9rem;
+$radius-lg:   1.25rem;
+$radius-pill: 999px;
+
+$shadow-card:  0 16px 40px rgba(28, 26, 24, .06);
+$shadow-hover: 0 20px 48px rgba(28, 26, 24, .10);
+
+$transition-base: .2s ease;
+
+$sidebar-width: 260px; // Ajustá este valor al ancho exacto de tu sidebar
+// ============================================================
+// GESTIÓN DE PRODUCTOS
+// Estilos propios de esta página (toolbar, tabla, badges).
+// ============================================================
+// FIX: el @use apuntaba a 'admin-sidebar-header', un partial que
+// no existe en el proyecto (el archivo real es _header-admin.scss,
+// que Sass expone como 'header-admin'). Con el nombre incorrecto
+// esta hoja no compilaba.
+
+.admin-header-actions {
+    display: flex;
+    flex-shrink: 0;
+}
 
 .table-toolbar {
     display: flex;
@@ -19,23 +54,24 @@ $admin-soft: #efe8e1;
 }
 
 .search-box {
-    max-width: 360px;
     flex: 1;
+    max-width: 360px;
 }
 
 .search-box input {
     width: 100%;
-    padding: .8rem 1rem;
+    padding: .8rem 1.1rem;
     border: 1px solid $admin-line;
-    border-radius: 999px;
+    border-radius: $radius-pill;
     background: $admin-surface;
     color: $admin-ink;
     outline: 0;
+    transition: border-color $transition-base, box-shadow $transition-base;
 }
 
 .search-box input:focus {
     border-color: $admin-accent;
-    box-shadow: 0 0 0 3px rgba(169, 130, 104, .15);
+    box-shadow: 0 0 0 3px rgba($admin-accent, .15);
 }
 
 .filter-pills {
@@ -45,13 +81,16 @@ $admin-soft: #efe8e1;
 }
 
 .pill-btn {
-    padding: .6rem .85rem;
+    padding: .6rem .95rem;
     border: 1px solid $admin-line;
-    border-radius: 999px;
+    border-radius: $radius-pill;
     background: $admin-surface;
     color: $admin-muted;
     font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .01em;
     cursor: pointer;
+    transition: background $transition-base, border-color $transition-base, color $transition-base;
 }
 
 .pill-btn:hover,
@@ -64,8 +103,9 @@ $admin-soft: #efe8e1;
 .table-container {
     overflow-x: auto;
     border: 1px solid $admin-line;
-    border-radius: 1rem;
+    border-radius: $radius-lg;
     background: $admin-surface;
+    box-shadow: $shadow-card;
 }
 
 .admin-table {
@@ -75,7 +115,7 @@ $admin-soft: #efe8e1;
 }
 
 .admin-table th {
-    padding: .9rem 1rem;
+    padding: .9rem 1.1rem;
     background: $admin-soft;
     color: $admin-muted;
     font-size: .65rem;
@@ -85,9 +125,9 @@ $admin-soft: #efe8e1;
 }
 
 .admin-table td {
-    padding: .9rem 1rem;
+    padding: .95rem 1.1rem;
     border-top: 1px solid $admin-line;
-    font-size: .8rem;
+    font-size: .82rem;
 }
 
 .th-select,
@@ -107,15 +147,15 @@ $admin-soft: #efe8e1;
     width: 3.25rem;
     height: 3.25rem;
     flex: none;
-    border-radius: .55rem;
-    object-fit: contain;
+    border-radius: $radius-sm;
     background: $admin-bg;
+    object-fit: contain; // imagen completa, sin recortes
 }
 
 .admin-prod-info {
     display: flex;
     flex-direction: column;
-    gap: .25rem;
+    gap: .2rem;
 }
 
 .admin-prod-name {
@@ -126,17 +166,26 @@ $admin-soft: #efe8e1;
 .td-price,
 .td-stock {
     color: $admin-muted;
-    font-size: .7rem;
+    font-size: .72rem;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: .3rem .7rem;
+    border-radius: $radius-pill;
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .03em;
 }
 
 .status-published {
-    background: #e6efe8;
-    color: #517258;
+    background: $admin-success-bg;
+    color: $admin-success;
 }
 
 .status-out-of-stock {
-    background: #f3e4df;
-    color: #a36052;
+    background: $admin-danger-bg;
+    color: $admin-danger;
 }
 
 .btn-icon {
@@ -144,19 +193,21 @@ $admin-soft: #efe8e1;
     height: 2rem;
     margin-left: .3rem;
     border: 1px solid $admin-line;
-    border-radius: .45rem;
+    border-radius: $radius-sm;
     background: transparent;
     cursor: pointer;
+    transition: background $transition-base, border-color $transition-base;
 }
 
 .btn-icon:hover {
+    border-color: $admin-soft-strong;
     background: $admin-soft;
 }
 
 @media (max-width: 700px) {
     .table-toolbar {
-        align-items: stretch;
         flex-direction: column;
+        align-items: stretch;
     }
 
     .search-box {
@@ -165,5 +216,11 @@ $admin-soft: #efe8e1;
 
     .filter-pills {
         justify-content: flex-start;
+    }
+}
+
+@media (max-width: 560px) {
+    .admin-header-actions .btn-primary {
+        width: 100%;
     }
 }

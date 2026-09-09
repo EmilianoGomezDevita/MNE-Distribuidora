@@ -1,93 +1,51 @@
-* {
-  box-sizing: border-box; }
-
-html {
-  min-height: 100%;
-  background: #f8f8f7; }
-
-body {
-  min-width: 320px;
-  min-height: 100vh;
-  margin: 0;
-  background: radial-gradient(circle at 8% 4%, rgba(239, 232, 225, 0.7), transparent 28rem), #f8f8f7;
-  color: #121212;
-  font-family: 'Inter', Arial, sans-serif;
-  line-height: 1.5; }
-
-button {
-  font: inherit; }
-
-.admin-container {
-  width: min(1180px, calc(100% - 40px));
-  margin: 0 auto;
-  padding: 64px 0 80px; }
-
-.admin-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 42px;
-  padding-bottom: 28px;
-  border-bottom: 1px solid #e2e2e0; }
-
-.admin-header h1 {
-  margin: 0;
-  color: #121212;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2.4rem, 5vw, 4.4rem);
-  font-weight: 700;
-  letter-spacing: -0.035em;
-  line-height: 0.95; }
-
 .subtitle {
   max-width: 360px;
   margin: 0;
-  color: #666666;
-  font-size: 0.9rem;
+  color: #7d7367;
+  font-size: .9rem;
   line-height: 1.65;
   text-align: right; }
 
 .solicitudes-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px; }
+  gap: 1.35rem; }
 
 .solicitud-card {
   display: flex;
-  min-height: 315px;
+  min-height: 305px;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid #e2e2e0;
-  border-radius: 16px;
+  border: 1px solid #e6ded6;
+  border-radius: 1.25rem;
   background: #ffffff;
-  box-shadow: 0 15px 35px rgba(18, 18, 18, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+  box-shadow: 0 16px 40px rgba(28, 26, 24, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
 
 .solicitud-card:hover {
-  border-color: #d4cec8;
-  box-shadow: 0 20px 45px rgba(18, 18, 18, 0.1);
+  border-color: #e3d6ca;
+  box-shadow: 0 20px 48px rgba(28, 26, 24, 0.1);
   transform: translateY(-4px); }
 
 .card-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 18px;
-  padding: 24px 26px 20px;
-  border-bottom: 1px solid #e2e2e0; }
+  gap: 1.1rem;
+  padding: 1.5rem 1.6rem 1.25rem;
+  border-bottom: 1px solid #e6ded6; }
 
 .user-info {
   min-width: 0; }
 
-.user-name {
-  margin: 0 0 4px;
+.card-header .user-name {
+  margin: 0 0 .25rem;
   overflow: hidden;
-  color: #121212;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.85rem;
+  color: #1c1a18;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.8rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -.02em;
   line-height: 1;
   text-overflow: ellipsis;
   white-space: nowrap; }
@@ -95,21 +53,21 @@ button {
 .user-email {
   display: block;
   overflow: hidden;
-  color: #666666;
-  font-size: 0.8rem;
+  color: #7d7367;
+  font-size: .8rem;
   text-overflow: ellipsis;
   white-space: nowrap; }
 
 .badge-estado {
   flex: 0 0 auto;
-  padding: 7px 12px;
-  border: 1px solid #e2e2e0;
+  padding: .45rem .75rem;
+  border: 1px solid #e6ded6;
   border-radius: 999px;
   background: #efe8e1;
-  color: #7d6b5d;
-  font-size: 0.68rem;
+  color: #8c705c;
+  font-size: .68rem;
   font-weight: 600;
-  letter-spacing: 0.07em;
+  letter-spacing: .07em;
   line-height: 1;
   text-transform: uppercase; }
 
@@ -119,31 +77,32 @@ button {
 .card-body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  padding: 24px 26px; }
+  gap: .9rem;
+  padding: 1.5rem 1.6rem; }
 
 .info-item {
   display: flex;
   min-width: 0;
   flex-direction: column;
-  gap: 6px;
-  padding-right: 14px;
-  border-right: 1px solid #e2e2e0; }
+  gap: .35rem;
+  padding-right: .9rem;
+  border-right: 1px solid #e6ded6; }
 
 .info-item:last-child {
+  padding-right: 0;
   border-right: 0; }
 
 .info-item .label {
-  color: #7d6b5d;
-  font-size: 0.68rem;
+  color: #8c705c;
+  font-size: .68rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: .1em;
   text-transform: uppercase; }
 
 .info-item .value {
   overflow: hidden;
-  color: #121212;
-  font-size: 0.92rem;
+  color: #1c1a18;
+  font-size: .92rem;
   font-weight: 500;
   text-overflow: ellipsis;
   white-space: nowrap; }
@@ -152,96 +111,77 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 1rem;
   margin-top: auto;
-  padding: 18px 26px 22px;
-  border-top: 1px solid #e2e2e0;
-  background: #fcfcfb; }
+  padding: 1.1rem 1.6rem 1.35rem;
+  border-top: 1px solid #e6ded6;
+  background: #f8f7f5; }
 
 .card-actions button {
   min-height: 40px;
-  cursor: pointer;
+  padding: 0 1.1rem;
   border: 1px solid transparent;
   border-radius: 999px;
-  font-size: 0.7rem;
+  font-size: .7rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease; }
+  letter-spacing: .04em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease; }
 
 .card-actions button:active {
   transform: scale(0.98); }
 
 .btn-doc {
-  padding: 0 16px;
-  border-color: #e2e2e0 !important;
+  border-color: #e6ded6 !important;
   background: transparent;
-  color: #121212; }
+  color: #1c1a18; }
 
 .btn-doc:hover {
-  border-color: #1a1a1a !important;
-  background: #ebeae8; }
+  border-color: #1c1a18 !important;
+  background: #efe8e1; }
 
 .action-buttons {
   display: flex;
-  gap: 8px; }
-
-.btn-aprobar,
-.btn-rechazar {
-  padding: 0 18px; }
+  gap: .5rem; }
 
 .btn-aprobar {
-  background: #1a1a1a;
-  color: #ffffff; }
+  background: #1c1a18;
+  color: #fff; }
 
 .btn-aprobar:hover {
-  background: #333333; }
+  background: #8c705c; }
 
 .btn-rechazar {
-  border-color: #e0c6c3 !important;
-  background: #f8e8e6;
-  color: #a54646; }
+  border-color: rgba(165, 87, 74, 0.35) !important;
+  background: #f7e9e5;
+  color: #a5574a; }
 
 .btn-rechazar:hover {
-  border-color: #a54646 !important;
-  background: #a54646;
-  color: #ffffff; }
+  border-color: #a5574a !important;
+  background: #a5574a;
+  color: #fff; }
 
 .empty-state {
   display: grid;
   min-height: 260px;
   place-items: center;
-  padding: 36px;
-  border: 1px dashed #d4cec8;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.58);
-  color: #666666;
+  padding: 2.25rem;
+  border: 1px dashed #e3d6ca;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.6);
+  color: #7d7367;
   text-align: center; }
 
 .empty-state p {
   max-width: 360px;
   margin: 0;
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 1.5rem;
-  line-height: 1.2; }
+  line-height: 1.25; }
 
-.hidden {
-  display: none !important; }
-
-button:focus-visible {
-  outline: 3px solid rgba(125, 107, 93, 0.35);
-  outline-offset: 3px; }
-
-@media (max-width: 760px) {
-  .admin-container {
-    width: min(100% - 28px, 560px);
-    padding: 34px 0 50px; }
-
+@media (max-width: 800px) {
   .admin-header {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 14px;
-    margin-bottom: 26px;
-    padding-bottom: 22px; }
+    align-items: flex-start; }
 
   .subtitle {
     max-width: 440px;
@@ -251,30 +191,30 @@ button:focus-visible {
     grid-template-columns: 1fr; } }
 @media (max-width: 520px) {
   .card-header {
-    padding: 20px; }
+    padding: 1.25rem; }
 
-  .user-name {
-    font-size: 1.65rem; }
+  .card-header .user-name {
+    font-size: 1.6rem; }
 
   .card-body {
     grid-template-columns: 1fr;
-    gap: 15px;
-    padding: 20px; }
+    gap: .9rem;
+    padding: 1.25rem; }
 
   .info-item,
   .info-item:last-child {
-    padding: 0 0 12px;
+    padding: 0 0 .75rem;
     border-right: 0;
-    border-bottom: 1px solid #e2e2e0; }
+    border-bottom: 1px solid #e6ded6; }
 
   .info-item:last-child {
     padding-bottom: 0;
     border-bottom: 0; }
 
   .card-actions {
-    align-items: stretch;
     flex-direction: column;
-    padding: 16px 20px 20px; }
+    align-items: stretch;
+    padding: 1rem 1.25rem 1.25rem; }
 
   .btn-doc,
   .action-buttons,
@@ -283,31 +223,21 @@ button:focus-visible {
 
   .action-buttons {
     flex-direction: column; } }
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important; } }
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #f8f8f7; } }
 @media print {
+  .admin-sidebar,
+  .admin-topbar,
+  .card-actions {
+    display: none; }
+
   .admin-container {
     width: 100%;
     padding: 0; }
-
-  .admin-header {
-    margin-bottom: 24px; }
-
-  .card-actions {
-    display: none; }
 
   .solicitudes-grid {
     grid-template-columns: 1fr 1fr; }
 
   .solicitud-card {
-    break-inside: avoid;
-    box-shadow: none; } }
+    box-shadow: none;
+    break-inside: avoid; } }
 
 /*# sourceMappingURL=gestionSolicitudes-estilo.css.map */
