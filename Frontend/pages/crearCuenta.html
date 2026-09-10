@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CDN SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../css/estilos.css">
     <title>Ingresar o Registrarse | MNE-Distribuidora</title>
@@ -16,8 +19,8 @@
             <form action="api/auth/Registro" enctype="multipart/form-data" method="post" class="formulario-cuenta"
                 id="formulario-cuenta">
                 <img src="../assets/img/logo.webp"
-                alt="logo de MNE-Distribuidora, que contiene el nombre de la marca, monocromático en negro sobre blanco con una tipografía serif muy elegante y minimalista."
-                class="img-logo">
+                    alt="logo de MNE-Distribuidora, que contiene el nombre de la marca, monocromático en negro sobre blanco con una tipografía serif muy elegante y minimalista."
+                    class="img-logo">
                 <h1 class="titulo">Crear Cuenta</h1>
                 <!--Info personal-->
                 <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
@@ -34,7 +37,8 @@
                 <!--Info direccion-->
                 <span>Ingresar Direccion</span>
 
-                <input type="text" name="nombreDireccion" id="nombreDireccion" placeholder="nombre de la direccion" required>
+                <input type="text" name="nombreDireccion" id="nombreDireccion" placeholder="nombre de la direccion"
+                    required>
                 <input type="text" name="calle" id="calle" placeholder="Calle" required>
                 <input type="text" inputmode="numeric" name="numeroCalle" id="numeroCalle" placeholder="Numero de calle"
                     required>
@@ -80,8 +84,8 @@
         <div class="container-forma iniciar-sesion">
             <form action="" class="formulario-cuenta" id="form-login">
                 <img src="../assets/img/logo.webp"
-                alt="logo de MNE-Distribuidora, que contiene el nombre de la marca, monocromático en negro sobre blanco con una tipografía serif muy elegante y minimalista."
-                class="img-logo">
+                    alt="logo de MNE-Distribuidora, que contiene el nombre de la marca, monocromático en negro sobre blanco con una tipografía serif muy elegante y minimalista."
+                    class="img-logo">
                 <h1 class="titulo">Iniciar sesion</h1>
                 <!--iniciar sesion-->
                 <input type="email" name="email" id="email-sing-in" placeholder="Email">

@@ -72,7 +72,10 @@ async function registrar(req, res) {
                 throw new Error(errorEsProf.message);
             }
         }
-        res.status(201).json({ mensaje: "Resgistro con exito" });
+        res.status(201).json({ 
+            mensaje: "Resgistro con exito",
+            token: data.session?.access_token//devuelve el token para iniciar sesion al crear la cuenta
+        });
     }
     catch (err) {
         await supabase.auth.admin.deleteUser(id_U)

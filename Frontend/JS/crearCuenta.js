@@ -103,14 +103,47 @@ document.addEventListener("DOMContentLoaded", function () {
                 body: formData
             })
                 .then((Response) => {
-                    if (Response.ok) {
-                        alert("Cuenta creada con exito!!!")
-                    } else {
-                        alert("Hubo un problema al registrar la cuenta")
+                    if (!Response.ok) throw new Error("Error al registrar")
+                    return Response.json();// Parsea el JSON y lo pasa al siguiente .then
+                })
+                .then(data => {
+                    if (data.token) {
+                        localStorage.setItem('token', data.token)
+                        //mensaje de exito
+                        Swal.fire({
+                            title: 'Bienvenido!',
+                            text: 'Tu cuenta fue creada exitosamente',
+                            icon: 'success',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#1A1A1A'
+                        }).then((result) => {
+                            //redireccion unicamente cuadno el usuairo hace click en continuar
+                            if (result.isConfirmed) {
+                                window.location.href = "../index.html"
+                            }
+                        })
+                    }
+                    else {
+                        // Manejo por si la cuenta se creó pero por algún motivo el token no vino
+                        Swal.fire({
+                            title: 'Cuenta creada',
+                            text: 'Por favor, iniciá sesión nuevamente.',
+                            icon: 'info',
+                            confirmButtonText: 'Ir a login',
+                            confirmButtonColor: '#1A1A1A'
+                        }).then(() => {
+                            window.location.href = "./crearCuenta.html";
+                        });
                     }
                 })
                 .catch((error) => {
-                    console.error("Error en la peticion:", error)
+                    // 3. Capturar errores HTTP o fallos de red
+                    Swal.fire({
+                        title: 'Error',
+                        text: error.message || 'Hubo un problema al registrar la cuenta.',
+                        icon: 'error',
+                        confirmButtonColor: '#1A1A1A'
+                    });
                 })
                 .finally(() => {
                     btnEnviarSignUp.disabled = false
@@ -150,14 +183,36 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (data.token) {
                         // Guardamos el token para usarlo en Mi Perfil
                         localStorage.setItem("token", data.token)
-                        alert("Bienvenido!")
-                        window.location.href = "../index.html"
+                        //reemplazo de alert() por Swal.fire({})
+                        Swal.fire({
+                            title: 'Bienvenido de nuevo!',
+                            text: 'Has iniciado sesion correctamente',
+                            icon: 'success',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#1A1A1A'
+                        }).then((result) => {
+                            //redireccion unicamente cuadno el usuairo hace click en continuar
+                            if (result.isConfirmed) {
+                                window.location.href = "../index.html"
+                            }
+                        })
                     } else {
-                        alert(data.mensaje || "credenciales incorrectas")
+                        Swal.fire({
+                            title: 'Error',
+                            text: data.mensaje || "credenciales incorrectas",
+                            icon: 'error',
+                            confirmButtonColor: '#1A1A1A'
+                        })
                     }
                 })
                 .catch(error => {
-                    console.error("Error en el login", error)
+                    // 3. Capturar errores HTTP o fallos de red
+                    Swal.fire({
+                        title: 'Error',
+                        text: error.message || 'Hubo un problema al iniciar sesion.',
+                        icon: 'error',
+                        confirmButtonColor: '#1A1A1A'
+                    });
                 })
                 .finally(() => {
                     btnEnviarSignIn.disabled = false
