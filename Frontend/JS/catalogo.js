@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let todosLosProductos = [];
     let productosFiltrados = [];
     let paginaActual = 1;
+    let idsFavoritos = new Set(); // IDs de productos que el usuario ya marcó como favoritos
+
 
     function formatearPrecio(numero) {
         return numero.toLocaleString('es-AR');
@@ -35,14 +37,88 @@ document.addEventListener("DOMContentLoaded", function () {
         const btnAgregar = card.querySelector('.btn-primary');
         if (btnAgregar) btnAgregar.dataset.id = producto.id;
 
+        const btnFav = card.querySelector('.btn-favorito')
+        if (btnFav) {
+            btnFav.dataset.id = producto.id
+            if (idsFavoritos.has(producto.id)) {
+                btnFav.classList.add('active')
+            }
+        }
+
         //hacemos que la tarjeta sea clickeable, salvo el botón de agregar
         card.style.cursor = 'pointer';
         card.addEventListener('click', function (event) {
-            if (event.target.closest('btn-primary')) return; // el botón maneja su propio click
-            window.location.href = `./producto.html?id=${producto.id}`
+            if (event.target.closest('.btn-primary') || event.target.closest('.btn-favorito')) return;
+            window.location.href = `./producto.html?id=${producto.id}`;
         });
 
         return card;
+    }
+
+    // Trae los favoritos actuales del usuario (si hay sesión) ANTES de renderizar,
+    // así los corazones ya aparecen pintados desde el primer render, sin parpadeo.
+    async function cargarFavoritos() {
+        if (!token) return; // sin sesión, no hay favoritos que cargar
+
+        try {
+            const res = await fetch(`${API_URL}/api/usuario/favoritos`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            if (!res.ok) return; // si falla, simplemente no marcamos ningún corazón
+
+            const favoritos = await res.json();
+            idsFavoritos = new Set(favoritos.map(fav => fav.id_prod ?? fav.id));
+        } catch (error) {
+            console.error('Error al cargar favoritos:', error);
+        }
+    }
+
+    async function toggleFavorito(idProducto, btnFav) {
+        if (!token) {
+            Swal.fire({
+                title: 'Atención',
+                text: 'Debés iniciar sesión para guardar favoritos.',
+                icon: 'warning',
+                confirmButtonText: 'Ir a Iniciar Sesión',
+                confirmButtonColor: '#1A1A1A'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "./crearCuenta.html";
+                }
+            });
+            return;
+        }
+
+        try {
+            const res = await fetch(`${API_URL}/api/usuario/favoritos`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id_producto: Number(idProducto) })
+            })
+
+            const data = await res.json()
+
+            if (!res.ok) {
+                throw new Error(data.mensaje || "No se pudo actualizar favoritos");
+            }
+
+            // Actualizamos el ícono según lo que respondió el backend,
+            // en vez de "adivinar" el nuevo estado del lado del frontend.
+            const idNum = Number(idProducto);
+            if (data.mensaje.includes('eliminado')) {
+                idsFavoritos.delete(idNum)
+                btnFav.classList.remove('activo')
+            } else {
+                idsFavoritos.add(idNum)
+                btnFav.classList.add('activo')
+            }
+        } catch (error) {
+            Swal.fire(error.mensaje)
+        }
     }
 
     function renderizarPagina() {
@@ -70,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const totalPaginas = Math.ceil(productosFiltrados.length / PRODUCTOS_POR_PAGINA);
-        
+
 
         if (totalPaginas <= 1) {
             paginacionEl.innerHTML = '';
@@ -146,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 text: 'Debés iniciar sesión primero.',
                 icon: 'warning',
                 confirmButtonText: 'Ir a Iniciar Sesión',
-                confirmButtonColor: '#1A1A1A' // Podés usar variables de tu CSS
+                confirmButtonColor: '#1A1A1A'
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = "./crearCuenta.html";
@@ -196,6 +272,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
+        const btnFav = event.target.closest('.btn-favorito');
+        if (btnFav) {
+            toggleFavorito(btnFav.dataset.id, btnFav);
+        }
+
         if (event.target.classList.contains('btn-pagina')) {
             paginaActual = Number(event.target.dataset.pagina);
             renderizarPagina();
@@ -203,5 +284,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    cargarCatalogo();
+    // Cargamos favoritos ANTES del catálogo, para que el primer render ya tenga los corazones correctos
+
+    cargarFavoritos().then(cargarCatalogo)
 });
