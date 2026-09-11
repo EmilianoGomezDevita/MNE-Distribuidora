@@ -34,8 +34,8 @@ app.use('/api/usuario', carritoRoute)
 app.use('/api/usuario', FavsRoute)
 
 app.use((req, res) => {
-    res.status(404).sendFile(path.join(process.cwd(), '..', '/Frontend/pages/404.html'))
-})
+    res.status(404).sendFile(path.join(process.cwd(), '..', 'Frontend', 'pages', '404.html'));
+});
 
 app.listen(port, () => {
     console.log("Servidor corriendo en ", port);

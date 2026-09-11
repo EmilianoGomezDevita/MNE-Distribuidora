@@ -63,7 +63,7 @@ async function listaFavoritos(req, res) {
         .from('Favs')
         .select(`
             id,
-            Productos (id, nombre, precio, precioProfesional, ImagenesProducto (url, orden))
+            Productos(id, nombre, precio, precioProfesional,Marcas(nombre), ImagenesProducto(url, orden))
         `)
         .eq('id_U', idUsuario)
 
@@ -71,10 +71,6 @@ async function listaFavoritos(req, res) {
         return manejarError(res, 400, "Error al listar los favoritos", errorFavs);
     }
 
-    // if (!dataFavs) {
-    //     return res.status(200).json([]); // nunca agregó nada, carrito "vacío"
-    // }
-    ///Verificamos si es profesional
     let esProfesional = false;
 
     if (req.usuario) {
@@ -93,8 +89,10 @@ async function listaFavoritos(req, res) {
     //map() del producto
     const favoritos = dataFavs.map(fav => {
         return {
-            id: fav.id_prod,
+            id: fav.id,
+            id_producto: fav.Productos.id,
             nombre: fav.Productos.nombre,
+            marca: fav.Productos.Marcas?.nombre || '',
             precio: esProfesional ? fav.Productos.precioProfesional : fav.Productos.precio,
             imagen: fav.Productos.ImagenesProducto.find(img => img.orden === 1)?.url
         }
