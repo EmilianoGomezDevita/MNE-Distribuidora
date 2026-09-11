@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Si no hay sesión, no tiene sentido mostrar nada de este panel
     if (!token) {
-        window.location.href = "./crearCuenta.html";
+        window.location.href = "../crearCuenta.html";
         return;
     }
 
