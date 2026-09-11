@@ -4,7 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+  <!-- Fuentes: Cormorant Garamond (títulos) + Inter (cuerpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <!-- Reemplazá por la ruta a tu CSS compilado desde el SCSS -->
+  <link rel="stylesheet" href="../css/estilos.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Favoritos | MNE-Distribuidora</title>
 </head>
 
 <body>
@@ -65,8 +75,72 @@
       </div>
     </div>
   </header>
+  <main class="page-favoritos">
 
+    <!-- Encabezado de la sección -->
+    <section class="favs-hero">
+      <div class="favs-hero-inner">
+        <h1 class="favs-title">Mis favoritos</h1>
+        <p class="favs-subtitle">Guardaste <span id="favs-count">0</span> productos</p>
+        <!-- favs-count: tu JS actualiza el número según los items cargados -->
+      </div>
+    </section>
+
+    <!-- ============================ LISTA DE FAVORITOS ============================ -->
+    <section class="favs-lista-section">
+      <div class="favs-lista-inner">
+
+        <ul class="favs-grid" id="lista-favoritos">
+
+          <!-- ============================================================
+             EJEMPLO DE CARD (replicar este <li> por cada producto desde JS).
+             Podés borrarlo: queda a modo de referencia de estructura.
+        ============================================================ -->
+          <li class="fav-card" data-id="123"><!-- data-id = id del producto en tu tabla -->
+            <button class="fav-remove" type="button" aria-label="Quitar de favoritos" title="Quitar de favoritos">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  fill="currentColor" />
+              </svg>
+            </button>
+
+            <a href="./producto.html?id=123" class="fav-card-link">
+              <figure class="fav-card-img">
+                <img src="../img/productos/ejemplo.jpg" alt="Nombre del producto" loading="lazy">
+              </figure>
+              <div class="fav-card-info">
+                <span class="fav-card-marca">MARCA</span>
+                <h2 class="fav-card-nombre">Nombre del producto</h2>
+                <p class="fav-card-precio">$ 12.500</p>
+              </div>
+            </a>
+
+            <button class="fav-add-cart btn-dark" type="button">Agregar al carrito</button>
+          </li>
+          <!-- ============================ FIN EJEMPLO ============================ -->
+
+        </ul>
+
+        <!-- ============================ ESTADO VACÍO ============================ -->
+        <div class="favs-vacio hidden" id="favs-vacio">
+          <svg class="favs-vacio-icon" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+          <h2 class="favs-vacio-title">Aún no tenés favoritos</h2>
+          <p class="favs-vacio-text">Explorá el catálogo y guardá los productos que más te gusten.</p>
+          <a href="./catalogo.html" class="btn-dark">Ir al catálogo</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
   <script type="module" src="../JS/components/header.js"></script>
+  <script type="module" src="../JS/favs.js"></script>
 </body>
 
 </html>
