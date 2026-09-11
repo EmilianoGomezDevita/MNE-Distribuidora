@@ -8,7 +8,6 @@ async function perfil(req, res) {
 
     if(errorPerfil){
         return manejarError(res, 400, "Error al obtener la informacion del perfil", errorPerfil)
-        return res.status(400).json({mensaje: "Error al obtener la informacion del perfil", error: errorPerfil.message})
     }
 
     return res.status(200).json({
