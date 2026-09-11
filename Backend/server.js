@@ -6,6 +6,7 @@ import authRoutes from './src/routes/authRoute.js';
 import adminRoutes from './src/routes/adminRoute.js'
 import productosRoutes from './src/routes/prodRoute.js';
 import carritoRoute from './src/routes/carritoRoute.js'
+import FavsRoute from './src/routes/favsRoute.js'
 
 
 dotenv.config();
@@ -29,6 +30,8 @@ app.use('/api/cat', productosRoutes)
 app.use('/api/admin', adminRoutes)
 
 app.use('/api/usuario', carritoRoute)
+
+app.use('/api/usuario', FavsRoute)
 
 app.use((req, res) => {
     res.status(404).sendFile(path.join(process.cwd(), '..', '/Frontend/pages/404.html'))
