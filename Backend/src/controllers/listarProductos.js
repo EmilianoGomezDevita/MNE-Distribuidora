@@ -15,7 +15,8 @@ async function ListarProductos(req, res) {
         id_categoria,
         fechaVencimiento,
         ImagenesProducto (url, orden)
-    `);
+    `)
+    .eq('estado', true);
 
     if (errorProds) {
         return manejarError(res, 400, "Error al listar los productos", errorProds);
