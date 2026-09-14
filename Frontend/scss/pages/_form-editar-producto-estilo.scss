@@ -36,7 +36,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.contenedor {
+.form-editar-producto-page {
   max-width: 56rem;
   margin: 0 auto;
   padding: 0 $space-md;
@@ -76,40 +76,134 @@ body {
       padding-bottom: $space-xs;
     }
   }
-}
 
-// Estilos globales de formularios en edición
-form {
-  display: flex;
-  flex-direction: column;
-  gap: $space-md;
-
-  .fila {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: $space-md;
-  }
-
-  .campo {
+  // Estilos globales de formularios en edición
+  form {
     display: flex;
     flex-direction: column;
-    gap: $space-xs;
+    gap: $space-md;
 
-    label {
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: $on-surface-variant;
+    .fila {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: $space-md;
     }
 
-    // Estilos para inputs, selects y textareas
-    input[type="text"],
-    input[type="number"],
-    input[type="date"],
-    input[type="url"],
-    select,
-    textarea {
+    .campo {
+      display: flex;
+      flex-direction: column;
+      gap: $space-xs;
+
+      label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: $on-surface-variant;
+      }
+
+      // Estilos para inputs, selects y textareas
+      input[type="text"],
+      input[type="number"],
+      input[type="date"],
+      input[type="url"],
+      select,
+      textarea {
+        width: 100%;
+        padding: $space-sm $space-md;
+        border-radius: $radius-default;
+        background-color: $surface-container-low;
+        color: $on-surface;
+        font-family: inherit;
+        font-size: 0.95rem;
+        border: 1px solid transparent;
+        outline: none;
+        box-sizing: border-box;
+        transition: all 0.2s ease;
+
+        &:focus {
+          background-color: $surface-container-lowest;
+          border-color: $primary;
+          box-shadow: 0 0 0 3px rgba(120, 84, 52, 0.15);
+        }
+      }
+
+      // Regla directa para la caja de texto de descripción
+      #descripcion,
+      textarea {
+        min-height: 6rem;
+        resize: vertical;
+        line-height: 1.4;
+      }
+    }
+
+    .btn-principal {
+      align-self: flex-start;
+      background-color: $primary;
+      color: $on-primary;
+      border-radius: $radius-full;
+      padding: $space-sm $space-lg;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: $primary-hover;
+      }
+    }
+  }
+
+  #form-buscar-producto {
+    #buscar-producto {
+      max-width: 100%;
+    }
+  }
+
+  #form-editar-producto {
+    .campo-radio {
+      justify-content: flex-end;
+
+      .label-grupo {
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: $on-surface-variant;
+      }
+
+      label {
+        display: inline-flex;
+        align-items: center;
+        gap: $space-xs;
+        text-transform: none;
+        font-weight: 400;
+        font-size: 0.95rem;
+        color: $on-surface;
+        cursor: pointer;
+        margin-right: $space-md;
+
+        input[type="radio"] {
+          accent-color: $primary;
+          width: 1.1rem;
+          height: 1.1rem;
+          cursor: pointer;
+        }
+      }
+    }
+
+    // Campos de entrada específicos del formulario de alta
+    #nombreProducto,
+    #descripcion-editarProd,
+    #stock,
+    #precio,
+    #precioProfesional,
+    #id_marca,
+    #id_categoria,
+    #fechaVencimiento {
       width: 100%;
       padding: $space-sm $space-md;
       border-radius: $radius-default;
@@ -129,196 +223,102 @@ form {
       }
     }
 
-    // Regla directa para la caja de texto de descripción
-    #descripcion,
-    textarea {
-      min-height: 6rem;
+    #descripcion-editarProd {
       resize: vertical;
-      line-height: 1.4;
     }
   }
 
-  .btn-principal {
-    align-self: flex-start;
-    background-color: $primary;
-    color: $on-primary;
-    border-radius: $radius-full;
-    padding: $space-sm $space-lg;
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+  // Galería de imágenes
+  #lista-imagenes {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 $space-md 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: $space-md;
 
-    &:hover {
-      background-color: $primary-hover;
-    }
-  }
-}
-
-#form-buscar-producto {
-  #buscar-producto {
-    max-width: 100%;
-  }
-}
-
-#form-editar-producto {
-  .campo-radio {
-    justify-content: flex-end;
-
-    .label-grupo {
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: $on-surface-variant;
-    }
-
-    label {
-      display: inline-flex;
-      align-items: center;
-      gap: $space-xs;
-      text-transform: none;
-      font-weight: 400;
-      font-size: 0.95rem;
-      color: $on-surface;
-      cursor: pointer;
-      margin-right: $space-md;
-
-      input[type="radio"] {
-        accent-color: $primary;
-        width: 1.1rem;
-        height: 1.1rem;
-        cursor: pointer;
-      }
-    }
-  }
-
-  // Campos de entrada específicos del formulario de alta
-  #nombreProducto,
-  #descripcion-editarProd,
-  #stock,
-  #precio,
-  #precioProfesional,
-  #id_marca,
-  #id_categoria,
-  #fechaVencimiento {
-    width: 100%;
-    padding: $space-sm $space-md;
-    border-radius: $radius-default;
-    background-color: $surface-container-low;
-    color: $on-surface;
-    font-family: inherit;
-    font-size: 0.95rem;
-    border: 1px solid transparent;
-    outline: none;
-    box-sizing: border-box;
-    transition: all 0.2s ease;
-
-    &:focus {
-      background-color: $surface-container-lowest;
-      border-color: $primary;
-      box-shadow: 0 0 0 3px rgba(120, 84, 52, 0.15);
-    }
-  }
-
-  #descripcion-editarProd {
-    resize: vertical;
-  }
-}
-
-// Galería de imágenes
-#lista-imagenes {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 $space-md 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: $space-md;
-
-  .item-imagen {
-    background-color: $surface-container-low;
-    border-radius: $radius-default;
-    padding: $space-sm;
-    display: flex;
-    flex-direction: column;
-    gap: $space-sm;
-
-    figure {
-      margin: 0;
-      width: 100%;
-      height: 140px;
-      border-radius: $radius-sm;
-      overflow: hidden;
-      background-color: $surface-container-highest;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-
-    &__info {
+    .item-imagen {
+      background-color: $surface-container-low;
+      border-radius: $radius-default;
+      padding: $space-sm;
       display: flex;
       flex-direction: column;
-      gap: $space-xs;
+      gap: $space-sm;
 
-      label {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: $on-surface-variant;
+      figure {
+        margin: 0;
+        width: 100%;
+        height: 140px;
+        border-radius: $radius-sm;
+        overflow: hidden;
+        background-color: $surface-container-highest;
 
-        input[type="number"] {
-          width: 4rem;
-          padding: $space-xs;
-          border-radius: $radius-sm;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
       }
 
-      .btn-secundario {
-        background-color: $secondary-container;
-        color: $on-secondary-container;
-        border-radius: $radius-full;
-        padding: $space-xs $space-md;
-        font-size: 0.75rem;
-        font-weight: 600;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
+      &__info {
+        display: flex;
+        flex-direction: column;
+        gap: $space-xs;
 
-        &:hover {
-          background-color: $secondary-hover;
-          color: $surface-container-lowest;
+        label {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: $on-surface-variant;
+
+          input[type="number"] {
+            width: 4rem;
+            padding: $space-xs;
+            border-radius: $radius-sm;
+          }
         }
 
-        &.btn-eliminar-imagen {
-          background-color: $error-container;
-          color: $on-error-container;
+        .btn-secundario {
+          background-color: $secondary-container;
+          color: $on-secondary-container;
+          border-radius: $radius-full;
+          padding: $space-xs $space-md;
+          font-size: 0.75rem;
+          font-weight: 600;
+          border: none;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
 
           &:hover {
-            background-color: $error-hover;
+            background-color: $secondary-hover;
             color: $surface-container-lowest;
+          }
+
+          &.btn-eliminar-imagen {
+            background-color: $error-container;
+            color: $on-error-container;
+
+            &:hover {
+              background-color: $error-hover;
+              color: $surface-container-lowest;
+            }
           }
         }
       }
     }
   }
-}
 
-#sin-imagenes {
-  &.texto-secundario {
-    color: $on-surface-variant;
-    font-size: 0.9rem;
-    font-style: italic;
+  #sin-imagenes {
+    &.texto-secundario {
+      color: $on-surface-variant;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
   }
-}
 
-.hidden {
-  display: none !important;
+  .hidden {
+    display: none !important;
+  }
 }

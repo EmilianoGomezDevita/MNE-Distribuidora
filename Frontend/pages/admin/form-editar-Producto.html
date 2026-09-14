@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CDN SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <!-- Estilos compilados -->
+    <link rel="stylesheet" href="../../css/estilos.css" />
+    <title>Editar Producto | Gestión de Inventario</title>
+</head>
+
+<body>
+
+    <main class="form-editar-producto-page">
+
+        <header>
+            <h1>Editar producto</h1>
+            <p>Modificá los datos del producto y guardá los cambios.</p>
+        </header>
+
+        <!-- ============ BUSCADOR: ELEGIR QUÉ PRODUCTO EDITAR ============ -->
+        <section class="card">
+            <h2>Buscar producto</h2>
+
+            <form id="form-buscar-producto" action="" method="GET">
+                <div class="campo">
+                    <label for="buscar-producto">Producto</label>
+                    <select id="buscar-producto" name="id" required>
+                        <option value="" disabled selected>Seleccionar producto…</option>
+                        <!--
+            Acá tu JS/backend carga un <option> por producto:
+            <option value="1">Nombre del producto</option>
+          -->
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-principal">Cargar datos</button>
+            </form>
+        </section>
+
+        <!-- ============ FORMULARIO: EDITAR PRODUCTO (tabla Productos) ============ -->
+        <!-- El id del producto viaja en el input hidden #id-producto -->
+        <section class="card">
+            <h2>Datos del producto</h2>
+
+            <form id="form-editar-producto" action="" method="POST">
+                <!-- Completar con el id del producto que se está editando -->
+                <input type="hidden" id="id-producto" name="id" value="">
+
+                <div class="campo">
+                    <label for="nombreProducto">Nombre</label>
+                    <input type="text" id="nombreProducto" name="nombreProducto" required
+                        placeholder="Nombre del producto" value="">
+                </div>
+
+                <div class="campo">
+                    <label for="descripcion-editarProd">Descripción</label>
+                    <textarea id="descripcion-editarProd" name="descripcion" rows="3" required
+                        placeholder="Descripción del producto"></textarea>
+                </div>
+
+
+                <div class="fila">
+                    <div class="campo">
+                        <label for="stock">Stock</label>
+                        <input type="number" id="stock" name="stock" min="0" required value="">
+                    </div>
+
+                    <div class="campo">
+                        <label for="precio">Precio</label>
+                        <input type="number" id="precio" name="precio" min="0" step="0.01" required value="">
+                    </div>
+
+                    <div class="campo">
+                        <label for="precioProfesional">Precio profesional</label>
+                        <input type="number" id="precioProfesional" name="precioProfesional" min="0" step="0.01"
+                            required value="">
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="campo">
+                        <label for="id_marca">Marca</label>
+                        <select id="id_marca" name="id_marca">
+                            <option value="" disabled>Seleccionar marca…</option>
+                            <!--
+              Mismas opciones que en "Agregar producto".
+              Marcá la actual con selected: <option value="1" selected>SEM BioCream</option>
+            -->
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="id_categoria">Categoría</label>
+                        <select id="id_categoria" name="id_categoria">
+                            <option value="" disabled>Seleccionar categoría…</option>
+                            <!-- Igual que marcas: opciones con selected en la actual -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="campo">
+                        <label for="fechaVencimiento">Fecha de vencimiento</label>
+                        <input type="date" id="fechaVencimiento" name="fechaVencimiento" value="">
+                    </div>
+
+                    <div class="campo campo-radio">
+                        <span class="label-grupo">Estado del producto</span>
+                        <label>
+                            <input type="radio" name="estado" value="true" checked>
+                            Activo
+                        </label>
+                        <label>
+                            <input type="radio" name="estado" value="false">
+                            Inactivo
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-principal">Guardar cambios</button>
+            </form>
+        </section>
+
+        <!-- ============ IMÁGENES DEL PRODUCTO (tabla ImagenesProducto) ============ -->
+        <section class="card">
+            <h2>Imágenes del producto</h2>
+
+            <!-- Lista de imágenes actuales: tu JS/backend genera un <li> por cada una -->
+            <ul id="lista-imagenes" class="lista-imagenes">
+                <!--
+      Ejemplo de ítem generado por JS:
+      <li class="item-imagen" data-id="3">
+        <figure>
+          <img src="https://…" alt="Imagen del producto">
+        </figure>
+        <div class="item-imagen__info">
+          <label>
+            Orden
+            <input type="number" name="orden" min="0" value="0">
+          </label>
+          <button type="button" class="btn-secundario btn-guardar-orden">Guardar orden</button>
+          <button type="button" class="btn-secundario btn-eliminar-imagen">Eliminar</button>
+        </div>
+      </li>
+      -->
+            </ul>
+
+            <p id="sin-imagenes" class="texto-secundario hidden">Este producto todavía no tiene imágenes.</p>
+
+            <!-- Agregar una imagen nueva al producto -->
+            <form id="form-agregar-imagen" action="" method="POST">
+                <!-- Completar con el id del producto -->
+                <input type="hidden" name="id_prod" value="">
+
+                <div class="fila">
+                    <div class="campo">
+                        <label for="url-imagen">URL de la imagen</label>
+                        <input type="url" id="url-imagen" name="url" required placeholder="https://…">
+                    </div>
+
+                    <div class="campo">
+                        <label for="orden-imagen">Orden</label>
+                        <input type="number" id="orden-imagen" name="orden" min="0" value="0">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-principal">Agregar imagen</button>
+            </form>
+        </section>
+
+    </main>
+
+    <script type="module" src="../../JS/admin/form-update-productos.js"></script>
+</body>
+
+</html>
