@@ -10,7 +10,7 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
 
-    <!-- Reemplazá por la ruta a tu CSS compilado desde el SCSS -->
+    <!-- Ruta al CSS compilado -->
     <link rel="stylesheet" href="../css/estilos.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi perfil | MNE-Distribuidora</title>
@@ -34,7 +34,7 @@
                 <a href="#contacto">Contacto</a><!--link al footer-->
                 <a href="./about.html">Sobre mi</a>
 
-                <!-- Se visible en mobile adentro del menú -->
+                <!-- Visible en mobile adentro del menú -->
                 <div class="mobile-account-actions">
                     <a href="./crearCuenta.html" class="btn-outline">Iniciar sesión</a>
                     <a href="./crearCuenta.htm?form=registro" class="btn-outline">Crear cuenta</a>
@@ -76,19 +76,53 @@
         </div>
     </header>
 
-    <main class="main-perfil">
-        <div class="nombrePerfil">
-            <h3 class="nombre"><span id="nombre"></span> <span id="apellido"></span></h3>
-        </div>
+    <!-- ============================ MAIN CON SIDEBAR ============================ -->
+    <main class="main-perfil ">
+        
+        <!-- SIDEBAR DE CUENTA -->
+        <aside class="perfil-sidebar" aria-label="Menú de cuenta">
+            <div class="perfil-sidebar-profile">
+                <span class="perfil-sidebar-avatar" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <circle cx="12" cy="8" r="4" />
+                        <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
+                    </svg>
+                </span>
+                <div class="perfil-sidebar-profile-text">
+                    <span class="perfil-sidebar-name">Mi cuenta</span>
+                    <a href="./perfil.html" class="perfil-sidebar-edit">Editar perfil</a>
+                </div>
+            </div>
 
-        <div class="info-cuenta">
-            <p class="dato-perfil">
-                <strong>Email:</strong> <span id="email"></span>
-            </p>
-            <p class="dato-perfil">
-                <strong>Tipo de cuenta:</strong> <span id="tipoCuenta"></span>
-            </p>
-        </div>
+            <nav class="perfil-sidebar-nav" aria-label="Secciones de mi cuenta">
+                <a href="./perfil.html" class="perfil-sidebar-link active" aria-current="page">Mi perfil</a>
+                <a href="./favs.html" class="perfil-sidebar-link">Favoritos</a>
+                <a href="./pedidos.html" class="perfil-sidebar-link">Mis pedidos</a>
+            </nav>
+
+            <div class="perfil-sidebar-footer">
+                <button type="button" class="perfil-sidebar-link" id="sidebar-btn-cerrar-sesion">
+                    Cerrar sesión
+                </button>
+            </div>
+        </aside>
+
+        <!-- CONTENIDO DEL PERFIL -->
+        <section class="perfil-lista-inner">
+            <div class="nombrePerfil">
+                <h3 class="nombre"><span id="nombre"></span> <span id="apellido"></span></h3>
+            </div>
+
+            <div class="info-cuenta">
+                <p class="dato-perfil">
+                    <strong>Email:</strong> <span id="email"></span>
+                </p>
+                <p class="dato-perfil">
+                    <strong>Tipo de cuenta:</strong> <span id="tipoCuenta"></span>
+                </p>
+            </div>
+        </section>
+
     </main>
 
     <!-- ============================ FOOTER ============================ -->

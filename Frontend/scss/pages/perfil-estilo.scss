@@ -25,9 +25,29 @@ $font-body: 'Inter', system-ui, -apple-system, sans-serif;
 $max-width: 1160px;
 $transition-base: all .25s ease;
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+//COLORES
+$color-nude: #f5f0e8;
+$color-beige: #ece4d6;
+$color-hueso: #faf8f4;
+$color-carbon: #1c1c1a;
+$color-carbon-suave: #2b2b28;
+$color-texto-secundario: #8a8378;
+$color-borde: #e8e0d2;
+$color-acento: #8c705c; // acento cálido — activo/hover en la sidebar
 
-html { scroll-behavior: smooth; background: $bg-main; }
+$font-serif: 'Cormorant Garamond', serif;
+$font-sans: 'Inter', sans-serif;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: $bg-main;
+}
 
 body {
   min-width: 320px;
@@ -38,11 +58,29 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-img { max-width: 100%; display: block; }
-a { color: inherit; text-decoration: none; }
-button, input, textarea { font: inherit; }
+img {
+  max-width: 100%;
+  display: block;
+}
 
-h1, h2, h3, h4 { font-family: $font-head; line-height: 1.1; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: $font-head;
+  line-height: 1.1;
+}
 
 .sr-only {
   position: absolute;
@@ -55,17 +93,32 @@ h1, h2, h3, h4 { font-family: $font-head; line-height: 1.1; }
   white-space: nowrap;
   border: 0;
 }
+
 .main-perfil {
-  width: min(100% - 48px, 760px);
+  // Cambia a tu variable $max-width para dar espacio a ambas columnas
+  width: calc(100% - 48px);
+  max-width: $max-width;
   min-height: 560px;
   margin: 0 auto;
   padding: 90px 0 110px;
+
+  // Corrige la grilla a formato fila
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 32px; // Espacio entre sidebar y tarjeta
+
+  animation: fade-in .65s ease both;
+}
+
+// Añade esta clase para controlar el lado derecho
+.perfil-lista-inner {
+  flex: 1; // Obliga al contenido a ocupar el ancho restante
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  animation: fade-in .65s ease both;
+  width: 100%;
 
+  // Mueve el título "MI ESPACIO" aquí
   &::before {
     content: 'MI ESPACIO';
     margin-bottom: 18px;
@@ -73,8 +126,10 @@ h1, h2, h3, h4 { font-family: $font-head; line-height: 1.1; }
     font-size: 10px;
     font-weight: 600;
     letter-spacing: .25em;
+    text-align: center;
   }
 }
+
 .nombrePerfil {
   width: 100%;
   padding: 48px 56px 36px;
@@ -98,6 +153,117 @@ h1, h2, h3, h4 { font-family: $font-head; line-height: 1.1; }
     }
   }
 }
+
+// --- Sidebar de cuenta ---
+.perfil-sidebar {
+  position: sticky;
+  top: 24px;
+  flex: 0 0 248px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 24px 20px;
+  border: 1px solid $color-borde;
+  border-radius: $radius-lg;
+  background: $color-hueso;
+  box-shadow: $shadow-card;
+}
+
+.perfil-sidebar-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 18px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid $color-borde;
+}
+
+.perfil-sidebar-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, $color-nude 0%, $color-beige 100%);
+  color: $color-carbon;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.perfil-sidebar-profile-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.perfil-sidebar-name {
+  overflow: hidden;
+  color: $color-carbon;
+  font-family: $font-sans;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.perfil-sidebar-edit {
+  color: $color-texto-secundario;
+  font-family: $font-sans;
+  font-size: 0.76rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-acento;
+  }
+}
+
+.perfil-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.perfil-sidebar-footer {
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px solid $color-borde;
+}
+
+.perfil-sidebar-link {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: $radius-md;
+  background: transparent;
+  color: $color-carbon-suave;
+  font-family: $font-sans;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background: $color-nude;
+  }
+
+  &.active,
+  &[aria-current="page"] {
+    background: $color-carbon;
+    color: $color-hueso;
+    font-weight: 600;
+  }
+}
+
 .info-cuenta {
   width: 100%;
   padding: 34px 56px 42px;
@@ -146,15 +312,17 @@ h1, h2, h3, h4 { font-family: $font-head; line-height: 1.1; }
     }
   }
 }
+
 // Adaptación responsive
 @media (max-width: 760px) {
-  .nombrePerfil { 
-    padding: 38px 22px 28px; 
+  .nombrePerfil {
+    padding: 38px 22px 28px;
   }
-  .info-cuenta { 
-    padding: 28px 22px 32px; 
-    grid-template-columns: 1fr; 
-    gap: 16px; 
+
+  .info-cuenta {
+    padding: 28px 22px 32px;
+    grid-template-columns: 1fr;
+    gap: 16px;
 
     .dato-perfil:last-child {
       justify-self: start;
@@ -163,25 +331,73 @@ h1, h2, h3, h4 { font-family: $font-head; line-height: 1.1; }
 }
 
 @media (max-width: 430px) {
-  .header-inner, .footer-inner { width: min(100% - 32px, 1160px); }
-  .nombrePerifl { flex-direction: column; align-items: center; }
-  .footer-inner { grid-template-columns: 1fr; }
-  .footer-brand, .footer-contact { grid-column: auto; }
+
+  .header-inner,
+  .footer-inner {
+    width: min(100% - 32px, 1160px);
+  }
+
+  .nombrePerifl {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-brand,
+  .footer-contact {
+    grid-column: auto;
+  }
 }
 
-.fade-in { animation: fade-in .6s ease both; }
-@keyframes fade-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in {
+  animation: fade-in .6s ease both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
+
   // Se conserva la identidad clara del sitio también en dispositivos con dark mode.
-  html, body { background: $bg-main; color: $text-primary; }
+  html,
+  body {
+    background: $bg-main;
+    color: $text-primary;
+  }
 }
 
 // Uso opcional: agregá class="fade-in" a main-perfil.
-.main-perfil { animation: fade-in .65s ease both; }
+.main-perfil {
+  animation: fade-in .65s ease both;
+}
 
-a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid $accent-warm-text; outline-offset: 3px; }
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid $accent-warm-text;
+  outline-offset: 3px;
+}

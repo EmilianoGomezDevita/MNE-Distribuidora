@@ -23,10 +23,15 @@ a {
   color: inherit;
   text-decoration: none; }
 
-button, input, textarea {
+button,
+input,
+textarea {
   font: inherit; }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: "Cormorant Garamond", Georgia, serif;
   line-height: 1.1; }
 
@@ -42,22 +47,30 @@ h1, h2, h3, h4 {
   border: 0; }
 
 .main-perfil {
-  width: min(100% - 48px, 760px);
+  width: calc(100% - 48px);
+  max-width: 1160px;
   min-height: 560px;
   margin: 0 auto;
   padding: 90px 0 110px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 32px;
   animation: fade-in .65s ease both; }
-  .main-perfil::before {
+
+.perfil-lista-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%; }
+  .perfil-lista-inner::before {
     content: 'MI ESPACIO';
     margin-bottom: 18px;
     color: #7D6B5D;
     font-size: 10px;
     font-weight: 600;
-    letter-spacing: .25em; }
+    letter-spacing: .25em;
+    text-align: center; }
 
 .nombrePerfil {
   width: 100%;
@@ -77,6 +90,97 @@ h1, h2, h3, h4 {
     line-height: 1.1; }
     .nombrePerfil .nombre span {
       font-family: inherit; }
+
+.perfil-sidebar {
+  position: sticky;
+  top: 24px;
+  flex: 0 0 248px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 24px 20px;
+  border: 1px solid #e8e0d2;
+  border-radius: 30px;
+  background: #faf8f4;
+  box-shadow: 0 18px 45px rgba(18, 18, 18, 0.07); }
+
+.perfil-sidebar-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 18px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e8e0d2; }
+
+.perfil-sidebar-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #f5f0e8 0%, #ece4d6 100%);
+  color: #1c1c1a; }
+  .perfil-sidebar-avatar svg {
+    width: 20px;
+    height: 20px; }
+
+.perfil-sidebar-profile-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0; }
+
+.perfil-sidebar-name {
+  overflow: hidden;
+  color: #1c1c1a;
+  font-family: "Inter", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
+
+.perfil-sidebar-edit {
+  color: #8a8378;
+  font-family: "Inter", sans-serif;
+  font-size: 0.76rem;
+  text-decoration: none;
+  transition: color 0.2s ease; }
+  .perfil-sidebar-edit:hover {
+    color: #8c705c; }
+
+.perfil-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px; }
+
+.perfil-sidebar-footer {
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px solid #e8e0d2; }
+
+.perfil-sidebar-link {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 16px;
+  background: transparent;
+  color: #2b2b28;
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease; }
+  .perfil-sidebar-link:hover {
+    background: #f5f0e8; }
+  .perfil-sidebar-link.active, .perfil-sidebar-link[aria-current="page"] {
+    background: #1c1c1a;
+    color: #faf8f4;
+    font-weight: 600; }
 
 .info-cuenta {
   width: 100%;
@@ -126,7 +230,8 @@ h1, h2, h3, h4 {
     .info-cuenta .dato-perfil:last-child {
       justify-self: start; } }
 @media (max-width: 430px) {
-  .header-inner, .footer-inner {
+  .header-inner,
+  .footer-inner {
     width: min(100% - 32px, 1160px); }
 
   .nombrePerifl {
@@ -136,7 +241,8 @@ h1, h2, h3, h4 {
   .footer-inner {
     grid-template-columns: 1fr; }
 
-  .footer-brand, .footer-contact {
+  .footer-brand,
+  .footer-contact {
     grid-column: auto; } }
 .fade-in {
   animation: fade-in .6s ease both; }
@@ -149,18 +255,24 @@ h1, h2, h3, h4 {
     opacity: 1;
     transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: .01ms !important;
     transition-duration: .01ms !important;
     scroll-behavior: auto !important; } }
 @media (prefers-color-scheme: dark) {
-  html, body {
+  html,
+  body {
     background: #F8F8F7;
     color: #121212; } }
 .main-perfil {
   animation: fade-in .65s ease both; }
 
-a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
   outline: 2px solid #7D6B5D;
   outline-offset: 3px; }
 
