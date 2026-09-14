@@ -82,8 +82,13 @@
                         <p>Gestioná el inventario, precios y disponibilidad de tu tienda</p>
                     </div>
                     <div class="admin-header-actions">
-                        <button type="button" class="btn-primary" id="btn-nuevo-producto" onclick="window.location.href='./form-Agregar-Producto.html'">
+                        <button type="button" class="btn-primary" id="btn-nuevo-producto"
+                            onclick="window.location.href='./form-Agregar-Producto.html'">
                             + Agregar producto
+                        </button>
+                        <button type="button" class="btn-primary" id="btn-nuevo-producto"
+                            onclick="window.location.href='./form-editar-Producto.html'">
+                            Actualizar producto
                         </button>
                     </div>
                 </header>
@@ -140,8 +145,7 @@
                                     <span class="status-badge status-published">Publicado</span>
                                 </td>
                                 <td class="td-actions">
-                                    <button type="button" class="btn-icon btn-edit"
-                                        aria-label="Editar producto">✏️</button>
+                                    <a href="./form-editar-Producto.html?id=" class="btn-icon btn-edit" aria-label="Editar producto">✏️</a>
                                     <button type="button" class="btn-icon btn-delete"
                                         aria-label="Eliminar producto">🗑️</button>
                                 </td>
@@ -177,8 +181,8 @@
                 </section>
             </main>
         </div>
-    </div>    
-            <script type="module" src="../../JS/admin/header-admin.js"></script>
+    </div>
+    <script type="module" src="../../JS/admin/header-admin.js"></script>
 </body>
 
 </html>
