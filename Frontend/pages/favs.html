@@ -88,7 +88,47 @@
 
     <!-- ============================ LISTA DE FAVORITOS ============================ -->
     <section class="favs-lista-section">
-      <div class="favs-lista-inner">
+      <div class="favs-body">
+
+        <!-- ============================ SIDEBAR DE CUENTA ============================
+             Nueva, a pedido: menú de cuenta al estilo "Mi cuenta" de e-commerce.
+             - .favs-sidebar-name es un placeholder ("Mi cuenta"): reemplazalo desde JS
+               con el nombre real, igual que hacés con #favs-count.
+             - El link "Mis pedidos" apunta a ./pedidos.html: ajustalo si tu ruta real
+               es otra (o quitalo si todavía no existe esa página).
+             - El botón de cerrar sesión tiene un id propio (sidebar-btn-cerrar-sesion)
+               para no duplicar el id del header (#btn-cerrar-sesion). Si ya tenés una
+               función de logout, conviene colgarla de una clase compartida en vez de
+               repetir el listener por id.
+        ============================================================================= -->
+        <aside class="favs-sidebar" aria-label="Menú de cuenta">
+          <div class="favs-sidebar-profile">
+            <span class="favs-sidebar-avatar" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
+              </svg>
+            </span>
+            <div class="favs-sidebar-profile-text">
+              <span class="favs-sidebar-name">Mi cuenta</span>
+              <a href="./perfil.html" class="favs-sidebar-edit">Editar perfil</a>
+            </div>
+          </div>
+
+          <nav class="favs-sidebar-nav" aria-label="Secciones de mi cuenta">
+            <a href="./perfil.html" class="favs-sidebar-link">Mi perfil</a>
+            <a href="./favs.html" class="favs-sidebar-link active" aria-current="page">Favoritos</a>
+            <a href="./pedidos.html" class="favs-sidebar-link">Mis pedidos</a>
+          </nav>
+
+          <div class="favs-sidebar-footer">
+            <button type="button" class="favs-sidebar-link" id="sidebar-btn-cerrar-sesion">
+              Cerrar sesión
+            </button>
+          </div>
+        </aside>
+
+        <div class="favs-lista-inner">
 
         <ul class="favs-grid" id="lista-favoritos">
 
@@ -135,7 +175,11 @@
           <a href="./catalogo.html" class="btn-dark">Ir al catálogo</a>
         </div>
 
+        </div>
+        <!-- fin .favs-lista-inner -->
+
       </div>
+      <!-- fin .favs-body -->
     </section>
 
   </main>
