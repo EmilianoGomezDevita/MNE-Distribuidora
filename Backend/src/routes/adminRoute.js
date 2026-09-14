@@ -12,7 +12,7 @@ router.get('/solicitudes', verificacionToken, verificarAdmin, listarSolicitudesP
 
 router.patch('/solicitudes/:id', verificacionToken, verificarAdmin, actualizarSolicitud)
 
-router.get('/productos',verificacionToken, verificarAdmin, ListarAllProductos   )
+router.get('/productos',verificacionToken, verificarAdmin, ListarAllProductos )
 
 router.post('/producto/add',verificacionToken, verificarAdmin, upload.array('imagenes', 5), agregarProducto) 
 
