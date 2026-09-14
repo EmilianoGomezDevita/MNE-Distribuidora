@@ -1,5 +1,7 @@
 // estilos.scss
 
+// 1. Base global (Se carga una sola vez al inicio)
+@import './base';
 
 // 2. Componentes globales (se cargan UNA sola vez)
 @import './components/header';
@@ -8,17 +10,17 @@
 // @import 'components/buttons';
 
 // 3. Vistas específicas
-@import './pages/index-estilo.scss';
-@import './pages/estilo-crearCuenta.scss';
-@import './pages/about-estilo.scss';
-@import './pages/perfil-estilo.scss';
-@import './pages/catalogo-estilo.scss';
-@import './pages/gestionSolicitudes-estilo.scss';
-@import './pages/404-estilo.scss';
-@import './pages/carrito-estilo.scss';
-@import './pages/comoComprar-estilo.scss';
-@import './pages/producto-estilo.scss';
-@import './pages/index-admin-estilo.scss';
-@import './pages/gestionProductos-estilo.scss';
-@import './pages/form-agregarProducto-estilo.scss';
-@import './pages/favs-estilo.scss';
+@import './pages/index-estilo';
+@import './pages/estilo-crearCuenta';
+@import './pages/about-estilo';
+@import './pages/perfil-estilo';
+@import './pages/catalogo-estilo';
+@import './pages/gestionSolicitudes-estilo';
+@import './pages/404-estilo';
+@import './pages/carrito-estilo';
+@import './pages/comoComprar-estilo';
+@import './pages/producto-estilo';
+@import './pages/index-admin-estilo';
+@import './pages/gestionProductos-estilo';
+@import './pages/form-agregarProducto-estilo';
+@import './pages/favs-estilo';

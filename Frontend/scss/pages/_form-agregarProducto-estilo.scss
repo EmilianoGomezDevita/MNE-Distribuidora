@@ -1,0 +1,192 @@
+// Variables del sistema de diseño
+$surface: #fbf9f6;
+$surface-container-lowest: #ffffff;
+$surface-container-low: #f5f3f0;
+$surface-container-high: #eae8e5;
+$on-surface: #1b1c1a;
+$on-surface-variant: #50453c;
+$primary: #785434;
+$on-primary: #ffffff;
+$primary-hover: #1c1a18;
+$outline-variant: #d4c4b8;
+
+$radius-sm: 0.5rem;
+$radius-default: 1rem;
+$radius-lg: 2rem;
+$radius-full: 9999px;
+
+$space-xs: 0.375rem;
+$space-sm: 0.75rem;
+$space-md: 1.25rem;
+$space-lg: 2rem;
+
+body {
+  background-color: $surface;
+  font-family: 'Inter', sans-serif;
+  color: $on-surface;
+  margin: 0;
+  padding: $space-lg 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.contenedor {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0 $space-md;
+
+  header {
+    margin-bottom: $space-lg;
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      line-height: 1.2;
+      margin: 0 0 $space-xs 0;
+    }
+
+    p {
+      color: $on-surface-variant;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+  }
+
+  .card {
+    background-color: $surface-container-lowest;
+    border-radius: $radius-lg;
+    padding: $space-lg;
+    box-shadow: 0 4px 24px -2px rgba(160, 120, 85, 0.06);
+    border: 1px solid rgba($outline-variant, 0.4);
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 $space-md 0;
+      border-bottom: 1px solid $surface-container-high;
+      padding-bottom: $space-xs;
+    }
+  }
+}
+
+#form-producto {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+
+  .fila {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: $space-md;
+  }
+
+  .campo {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xs;
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: $on-surface-variant;
+    }
+
+    // Campos de entrada específicos del formulario de alta
+    #nombreProducto,
+    #descripcion,
+    #stock,
+    #precio,
+    #precioProfesional,
+    #id_marca,
+    #id_categoria,
+    #fechaVencimiento {
+      width: 100%;
+      padding: $space-sm $space-md;
+      border-radius: $radius-default;
+      background-color: $surface-container-low;
+      color: $on-surface;
+      font-family: inherit;
+      font-size: 0.95rem;
+      border: 1px solid transparent;
+      outline: none;
+      box-sizing: border-box;
+      transition: all 0.2s ease;
+
+      &:focus {
+        background-color: $surface-container-lowest;
+        border-color: $primary;
+        box-shadow: 0 0 0 3px rgba(120, 84, 52, 0.15);
+      }
+    }
+
+    #descripcion {
+      resize: vertical;
+    }
+
+    #imagenes {
+      font-size: 0.875rem;
+      color: $on-surface-variant;
+      padding: $space-xs 0;
+
+      &::file-selector-button {
+        background-color: $surface-container-high;
+        color: $on-surface;
+        border: none;
+        border-radius: $radius-full;
+        padding: $space-xs $space-md;
+        margin-right: $space-sm;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background-color: $outline-variant;
+        }
+      }
+    }
+
+    &.campo-checkbox {
+      justify-content: flex-end;
+
+      label {
+        display: inline-flex;
+        align-items: center;
+        gap: $space-xs;
+        text-transform: none;
+        font-weight: 400;
+        font-size: 0.95rem;
+        color: $on-surface;
+        cursor: pointer;
+
+        #estado {
+          accent-color: $primary;
+          width: 1.1rem;
+          height: 1.1rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .btn-principal {
+    align-self: flex-start;
+    background-color: $primary;
+    color: $on-primary;
+    border-radius: $radius-full;
+    padding: $space-sm $space-lg;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: $primary-hover;
+    }
+  }
+}
